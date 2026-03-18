@@ -30,7 +30,7 @@
 </ItemGroup>
 ```
 
-> 통신만 사용하는 경우 `Going.Basis`만 참조. UI 포함 시 `Going.UI.OpenTK` (또는 `Going.UI.Forms`) 추가.
+> 통신만 사용하는 경우 `Going.Basis`만 참조. UI 포함 시 `Going.UI.OpenTK` 추가.
 
 ---
 

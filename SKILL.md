@@ -371,7 +371,6 @@ UUID 생성도 스크립트를 사용하지 말고 직접 작성하라.
 
 ```
 Going.UI          - 플랫폼 독립 UI 코어 (컨트롤, 컨테이너, 테마, 디자인)
-Going.UI.Forms    - WinForms 어댑터
 Going.UI.OpenTK   - OpenTK 어댑터 (임베디드/라즈베리파이)
 Going.Basis       - 통신 및 유틸리티 (Modbus, MQTT, 메모리, 직렬화)
 Going.UIEditor    - 비주얼 에디터 (.gud 파일 생성 도구)
