@@ -18,8 +18,10 @@
 
 ## 설치
 
-```
-/install going-kr/going-ui-skill
+프로젝트의 `.claude/skills/` 디렉터리에 스킬 파일을 복사합니다.
+
+```bash
+git clone https://github.com/going-kr/going-ui-skill.git .claude/skills/going-ui-skill
 ```
 
 ---
