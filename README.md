@@ -25,11 +25,11 @@ Going Library로 HMI 애플리케이션을 만드는 전체 흐름입니다.
  Modbus RTU로 슬레이브 1번과 통신."
 ```
 
-### Step 2. .gud 파일 생성
+### Step 2. 디자인 파일(.gud) 생성
 
 > 환경: Claude 채팅 / Claude Code
 
-브리프를 기반으로 `.gud` 파일(GoDesign JSON)을 생성합니다.
+브리프를 기반으로 디자인 파일(`.gud`)을 생성합니다.
 40개 이상의 산업용 컨트롤(GoButton, GoLamp, GoDataGrid, GoSlider 등)을 배치할 수 있습니다.
 
 ```
@@ -47,7 +47,7 @@ Going Library로 HMI 애플리케이션을 만드는 전체 흐름입니다.
 
 > 환경: 사용자 (Going UI Editor)
 
-생성된 .gud 파일을 UI Editor에서 열어 컨트롤 위치와 속성을 미세 조정합니다.
+생성된 디자인 파일(.gud)을 UI Editor에서 열어 컨트롤 위치와 속성을 미세 조정합니다.
 편집이 완료되면 **MakeCode** 버튼으로 C# 코드(Designer.cs)를 자동 생성합니다.
 
 ### Step 4. C# 코드 구현
