@@ -1,6 +1,20 @@
-# Going UI Skill
+<p align="center">
+  <img src="https://raw.githubusercontent.com/going-kr/Going-Library/master/icon/Going_logo_blue.png" alt="Going Library" width="120">
+</p>
 
-**Going Library**용 Claude Code 스킬 — C# .NET 8.0 산업용 HMI/SCADA UI 프레임워크를 AI로 개발합니다.
+<h1 align="center">Going UI Skill</h1>
+
+<p align="center">
+  <b>Going Library</b>용 Claude Code 스킬 — 산업용 HMI/SCADA UI를 AI로 개발합니다.
+</p>
+
+<p align="center">
+  <a href="https://github.com/going-kr/Going-Library"><img src="https://img.shields.io/badge/Going_Library-.NET_8.0-blue" alt="Going Library"></a>
+  <a href="https://www.nuget.org/packages/Going.UI"><img src="https://img.shields.io/nuget/v/Going.UI?label=Going.UI&color=blue" alt="NuGet"></a>
+  <a href="https://www.nuget.org/packages/Going.Basis"><img src="https://img.shields.io/nuget/v/Going.Basis?label=Going.Basis&color=blue" alt="NuGet"></a>
+</p>
+
+---
 
 ## 설치
 
@@ -8,13 +22,14 @@
 /install going-kr/going-ui-skill
 ```
 
+---
+
 ## 개발 절차
 
 Going Library로 HMI 애플리케이션을 만드는 전체 흐름입니다.
 
 ### Step 1. 프로젝트 브리프 작성
-
-> 환경: Claude 채팅 / Claude Code
+> `Claude 채팅` / `Claude Code`
 
 프로젝트의 요구사항을 정리한 `project_brief.md`를 작성합니다.
 화면 구성, 사용할 컨트롤, 통신 장비, 해상도 등을 대화로 정리하면 Claude가 문서를 생성합니다.
@@ -26,33 +41,30 @@ Going Library로 HMI 애플리케이션을 만드는 전체 흐름입니다.
 ```
 
 ### Step 2. 디자인 파일(.gud) 생성
-
-> 환경: Claude 채팅 / Claude Code
+> `Claude 채팅` / `Claude Code`
 
 브리프를 기반으로 디자인 파일(`.gud`)을 생성합니다.
 40개 이상의 산업용 컨트롤(GoButton, GoLamp, GoDataGrid, GoSlider 등)을 배치할 수 있습니다.
 
 ```
-"브리프 기반으로 .gud 파일 만들어줘."
+"브리프 기반으로 디자인 파일 만들어줘."
 ```
 
-이미지를 첨부하면 화면 레이아웃을 분석하여 .gud로 변환할 수도 있습니다.
+이미지를 첨부하면 화면 레이아웃을 분석하여 디자인 파일로 변환할 수도 있습니다.
 
 ```
-"이 이미지를 참고해서 .gud 파일 만들어줘."
+"이 이미지를 참고해서 디자인 파일 만들어줘."
 (HMI 화면 스크린샷 첨부)
 ```
 
-### Step 3. UIEditor에서 편집 + MakeCode
-
-> 환경: 사용자 (Going UI Editor)
+### Step 3. UI Editor에서 편집 + MakeCode
+> `사용자` — Going UI Editor
 
 생성된 디자인 파일(.gud)을 UI Editor에서 열어 컨트롤 위치와 속성을 미세 조정합니다.
 편집이 완료되면 **MakeCode** 버튼으로 C# 코드(Designer.cs)를 자동 생성합니다.
 
 ### Step 4. C# 코드 구현
-
-> 환경: Claude Code
+> `Claude Code`
 
 MakeCode가 생성한 Designer.cs를 기반으로 비즈니스 로직을 작성합니다.
 
@@ -73,8 +85,7 @@ btnStart.ButtonClicked += (o, s) =>
 ```
 
 ### Step 5. 빌드 및 장치 배포
-
-> 환경: Claude Code
+> `Claude Code`
 
 `dotnet publish`로 빌드 후, `gtcli`로 Raspberry Pi 터치 패널에 배포합니다.
 
@@ -104,16 +115,18 @@ btnStart.ButtonClicked += (o, s) =>
 
 ## 스킬 파일 구조
 
-| 파일 | 용도 |
-|------|------|
-| `SKILL.md` | 진입점 — 워크플로우, 규칙, 참조 테이블 |
-| `ui-json-quick.md` | .gud 생성 가이드 (전체 컨트롤) |
-| `ui-json.md` | .gud 구조 상세, Enum, 테마 |
-| `ui-image-to-gud.md` | 이미지→.gud 변환 절차 |
-| `ui-code.md` | C# 코드 패턴, Designer.cs 규칙 |
-| `basis.md` | 통신 패턴 (Modbus, MQTT, CNet, MC) |
-| `ui-mcp.md` | gtcli 배포 가이드 |
-| `api/` | 21개 HTML API 레퍼런스 |
+```
+going-ui-skill/
+├── SKILL.md                 진입점 — 워크플로우, 규칙, 참조 테이블
+├── ui-json-quick.md         디자인 파일 생성 가이드 (전체 컨트롤)
+├── ui-json.md               .gud 구조 상세, Enum, 테마
+├── ui-image-to-gud.md       이미지 → 디자인 파일 변환 절차
+├── ui-code.md               C# 코드 패턴, Designer.cs 규칙
+├── basis.md                 통신 패턴 (Modbus, MQTT, CNet, MC)
+├── ui-mcp.md                gtcli 배포 가이드
+├── evals.json               스킬 평가 테스트 케이스
+└── api/                     21개 HTML API 레퍼런스
+```
 
 ## 라이선스
 
