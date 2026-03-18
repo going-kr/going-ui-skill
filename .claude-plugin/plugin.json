@@ -1,0 +1,12 @@
+{
+  "name": "going-ui",
+  "description": "Industrial HMI/SCADA UI framework skill for Going Library (.NET 8.0). Generates .gud UI design files, writes C# control/event code, and handles Modbus RTU/TCP, MQTT, LS CNet, Mitsubishi MC PLC communication. Targets Raspberry Pi (linux-arm64) touch panels.",
+  "version": "1.1.0",
+  "author": {
+    "name": "Going"
+  },
+  "homepage": "https://github.com/going-kr/Going-Library",
+  "repository": "https://github.com/going-kr/going-ui-skill",
+  "license": "MIT",
+  "keywords": ["hmi", "scada", "industrial", "going", "modbus", "mqtt", "plc", "dotnet", "csharp", "gui", "raspberry-pi", "embedded"]
+}
