@@ -100,7 +100,6 @@ btnStart.ButtonClicked += (o, s) =>
 |--------|------|
 | [Going.UI](https://www.nuget.org/packages/Going.UI) | 플랫폼 독립 UI 코어 |
 | [Going.UI.OpenTK](https://www.nuget.org/packages/Going.UI.OpenTK) | OpenTK 어댑터 (임베디드/Raspberry Pi) |
-| [Going.UI.Forms](https://www.nuget.org/packages/Going.UI.Forms) | WinForms 어댑터 |
 | [Going.Basis](https://www.nuget.org/packages/Going.Basis) | 통신 및 유틸리티 |
 
 ## 스킬 파일 구조
