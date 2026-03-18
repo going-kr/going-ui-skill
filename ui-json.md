@@ -18,7 +18,7 @@
 
 ## .gud 파일 구조
 
-.gud 파일은 GoDesign 객체를 직접 직렬화한 **단일 JSON**이다 (이중 직렬화 없음).
+.gud 파일은 GoDesign 객체를 직접 직렬화한 **단일 JSON**이다.
 
 ```json
 {
@@ -354,4 +354,4 @@ None=0, Single=1, Multi=2, MultiPC=3
 2. **프로젝트 이름 검증** — 영문+숫자+언더스코어만, 영문/언더스코어로 시작, 띄어쓰기·한글·특수문자 불가. 위반 시 영문 PascalCase 이름 제안
 3. GoDesign JSON 구성 (Name, DesignWidth, DesignHeight, ProjectFolder 포함)
 4. 각 컨트롤마다 고유 UUID `Id` 생성
-5. `.gud` 파일로 저장 (단일 GoDesign JSON — 이중 직렬화 없음)
+5. `.gud` 파일로 저장 (단일 GoDesign JSON)

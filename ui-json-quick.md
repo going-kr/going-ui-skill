@@ -6,7 +6,7 @@
 
 ## .gud 파일 구조
 
-.gud = GoDesign 단일 JSON (이중 직렬화 없음, Project 래퍼 없음).
+.gud = GoDesign 단일 JSON.
 
 ```json
 {

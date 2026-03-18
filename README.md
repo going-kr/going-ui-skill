@@ -18,8 +18,10 @@
 
 ## 설치
 
-```
-/plugin install going-ui-skill
+프로젝트의 `.claude/skills/` 디렉터리에 클론합니다.
+
+```bash
+git clone https://github.com/going-kr/going-ui-skill .claude/skills/going-ui-skill
 ```
 
 ---
@@ -117,15 +119,23 @@ btnStart.ButtonClicked += (o, s) =>
 
 ```
 going-ui-skill/
-├── SKILL.md                 진입점 — 워크플로우, 규칙, 참조 테이블
-├── ui-json-quick.md         디자인 파일 생성 가이드 (전체 컨트롤)
-├── ui-json.md               .gud 구조 상세, Enum, 테마
-├── ui-image-to-gud.md       이미지 → 디자인 파일 변환 절차
-├── ui-code.md               C# 코드 패턴, Designer.cs 규칙
-├── basis.md                 통신 패턴 (Modbus, MQTT, CNet, MC)
-├── ui-mcp.md                gtcli 배포 가이드
-├── evals.json               스킬 평가 테스트 케이스
-└── api/                     21개 HTML API 레퍼런스
+├── SKILL.md                  진입점 — 워크플로우, 규칙, 참조 테이블
+├── ui-json-quick.md          디자인 파일(.gud) 빠른 생성 가이드
+├── ui-json.md                .gud 구조 상세, Enum, 테마
+├── ui-json-controls.md       기본 컨트롤 14종 속성
+├── ui-json-controls-ext.md   확장 컨트롤 19종 속성
+├── ui-json-containers.md     컨테이너 레이아웃
+├── ui-json-input-value.md    입력/값 표시 컨트롤
+├── ui-json-imagecanvas.md    이미지/캔버스 컨트롤
+├── ui-image-to-gud.md        이미지 → 디자인 파일 변환 절차
+├── ui-control-sample.md      컨트롤 코드 예제
+├── ui-code.md                C# 코드 패턴, Designer.cs 규칙
+├── ui-project-brief.md       프로젝트 브리프 작성 가이드
+├── basis.md                  통신 패턴 (Modbus, MQTT, CNet, MC)
+├── ui-mcp.md                 gtcli 배포 가이드
+├── evals.json                스킬 평가 테스트 케이스
+├── sample/                   샘플 프로젝트
+└── api/                      21개 HTML API 레퍼런스
 ```
 
 ## 라이선스

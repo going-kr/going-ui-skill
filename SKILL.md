@@ -109,10 +109,10 @@ Going Library의 클래스·속성·메서드·이벤트 확인이 필요할 때
 
 ```
 // 예: GoDataGrid의 메서드만 찾기
-Grep("GoDataGrid", path="{스킬 디렉터리}/api/ui/controls.html")
+Grep("GoDataGrid", path="./api/ui/controls.html")
 
 // 예: MasterRTU의 GetWord 시그니처 확인
-Grep("GetWord", path="{스킬 디렉터리}/api/basis/communications-modbus.html")
+Grep("GetWord", path="./api/basis/communications-modbus.html")
 ```
 
 ### 사용 예시
@@ -349,7 +349,6 @@ UUID 생성도 스크립트를 사용하지 말고 직접 작성하라.
 ```
 
 > .gud 파일은 GoDesign 객체를 **직접 직렬화**한 단일 JSON.
-> Project 래퍼 클래스와 이중 직렬화는 제거됨.
 
 ---
 
