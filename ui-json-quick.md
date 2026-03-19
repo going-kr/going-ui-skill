@@ -293,15 +293,57 @@ Fore, Back, Window, WindowBorder, Point, Title, Base0~Base5, Good, Warning, Dang
 - 이미지의 레이아웃을 **우선 참조** (텍스트와 충돌 시 이미지 우선)
 - 이미지에서 각 컨트롤의 **상대 위치 비율**을 추출하여 Bounds 계산 (위 "이미지 기반 Bounds 계산 절차" 참조)
 - 이미지에서 읽기 어려운 컨트롤은 텍스트로 보완
+- **이미지를 우선하되, 애매한 요소를 추측하지 말 것** — 반드시 사용자에게 확인 (예: "ON" 버튼이 전동기 ON인지 유압 ON인지 등)
 - 레지스터 맵은 이미지만으로 판단 불가 — 반드시 문의
+
+---
+
+## .gud 생성/수정 후 필수 검증
+
+.gud 파일을 생성하거나 수정한 후, **Write/Edit 도구로 저장하기 전에** 아래 항목을 반드시 확인한다.
+하나라도 위반하면 UIEditor에서 열리지 않거나 런타임 예외가 발생한다.
+
+### 구조 검증
+
+- [ ] **최상위가 GoDesign 단일 JSON**인가 (배열이나 래퍼 객체 없음)
+- [ ] **Name**이 유효한 C# 식별자인가 (영문+숫자+밑줄, 한글/띄어쓰기 불가)
+- [ ] **Pages가 Dictionary `{}`**인가 (Array `[]` 불가)
+- [ ] **Windows가 Dictionary `{}`**인가 (Array `[]` 불가)
+- [ ] 각 Page/Window가 **`"Type"` + `"Value"` 래퍼**로 감싸져 있는가
+- [ ] 컨트롤 배열 프로퍼티명이 **`"Childrens"`**인가 (`"Controls"` 아님)
+
+### 컨트롤 검증
+
+- [ ] **모든 컨트롤**에 `{ "Type": "GoXxx", "Value": { ... } }` 래퍼가 있는가
+- [ ] **모든 컨트롤**에 고유한 **Id (UUID)**가 있는가 — 중복 없음
+- [ ] **Bounds**가 `"L,T,R,B"` 문자열인가 (R>L, B>T 확인, W/H 아님)
+- [ ] **Enum 값**이 숫자인가 (문자열 `"Normal"`, `"Fill"` 등 불가)
+- [ ] **Margin/TextPadding**이 객체 `{"Left":0,...}`인가 (문자열 `"0,0,0,0"` 불가)
+- [ ] **Dock=Fill** 시 `"Dock": 5`인가 (`"Fill": true` 불가)
+- [ ] **색상 값**이 테마 키(`"Fore"`, `"Base3"`) 또는 CSS 색상명(`"red"`)인가
+
+### 컨테이너 검증
+
+- [ ] **GoTableLayoutPanel**의 Childrens가 `{"indexes":{...},"ls":[...]}`  객체 구조인가
+- [ ] GoTableLayoutPanel에서 **ColSpan**인가 (`ColumnSpan` 아님)
+- [ ] **GoSwitchPanel**의 Pages가 배열 `[{"Name":"Sub1","Childrens":[...]}]`인가
+
+### 최종 확인
+
+- [ ] 컨트롤이 화면 밖으로 나가지 않는가 (R ≤ DesignWidth, B ≤ DesignHeight)
+- [ ] 같은 컨테이너 내 컨트롤이 겹치지 않는가
+- [ ] Python/스크립트를 사용하지 않고 **Write/Edit 도구로 직접 작성**했는가
+
+> 이 검증 목록은 eval 대신 사용하는 자체 검증이다. 검증을 건너뛰면 UIEditor에서 파일을 열 수 없거나, 런타임에 JsonException이 발생한다.
 
 ---
 
 ## 절대 규칙 (요약)
 
-1. **Designer.cs / design.json 수정 금지** — UIEditor 자동 생성 파일
-2. **속성/메서드 추측 금지** — 이 문서에 없으면 `api/` HTML 확인 필수
-3. **코드 네이밍: 영문+숫자만** — 한글 식별자 불가, 주석으로 한글 보완
-4. **데이터 구조 임의 작성 금지** — 레지스터 맵은 사용자 확인 필수
-5. **Pages/Windows는 Dictionary** — Array 불가
-6. **Fill 속성 없음** — `"Dock": 5` 사용
+1. **Designer.cs / design.json 수정 금지** — UIEditor 자동 생성 파일. 수정해도 MakeCode 시 덮어씀
+2. **속성/메서드 추측 금지** — 이 문서에 없으면 `api/` HTML 확인 필수. 다른 프레임워크 지식으로 유추 금지
+3. **코드 네이밍: 영문+숫자만** — 한글 식별자 불가, 주석으로 한글 보완. 크로스 컴파일 인코딩 문제 방지
+4. **데이터 구조 임의 작성 금지** — 레지스터 맵은 사용자 확인 필수. 잘못된 쓰기는 장비 오동작 위험
+5. **Pages/Windows는 Dictionary** — Array 불가. 컨버터가 Dictionary만 역직렬화 가능
+6. **이미지 우선, 추측 금지** — 이미지를 우선하되 애매한 요소는 반드시 사용자에게 확인
+7. **.gud 생성/수정 시 스크립트 금지** — Write/Edit 도구로 직접 작성. 파일 크기/포맷은 예외 사유 아님

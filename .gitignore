@@ -7,10 +7,12 @@
 # Python
 __pycache__/
 *.pyc
-eval-runner.py
 
 # Scripts
 *.bat
+
+# Eval results
+eval_results.json
 
 # OS
 .DS_Store
