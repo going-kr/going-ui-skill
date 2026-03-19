@@ -18,11 +18,20 @@
 
 ## 설치
 
-프로젝트의 `.claude/skills/` 디렉터리에 클론합니다.
+**방법 1. Git Clone (CLI)**
 
 ```bash
+# 프로젝트 단위 — 해당 프로젝트에서만 사용
+cd your-project
 git clone https://github.com/going-kr/going-ui-skill .claude/skills/going-ui-skill
+
+# 전역 — 모든 프로젝트에서 사용
+git clone https://github.com/going-kr/going-ui-skill ~/.claude/skills/going-ui-skill
 ```
+
+**방법 2. Claude 데스크톱 앱**
+
+`설정 → 스킬 → 스킬 업로드`에서 `.zip` 파일을 드래그 앤 드롭하거나 `SKILL.md` 파일을 직접 업로드합니다.
 
 ---
 
