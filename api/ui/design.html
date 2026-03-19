@@ -46,6 +46,16 @@
         </div>
 
         <div class="member-section">
+          <div class="member-section-title">Properties — 기본</div>
+          <table class="api-table">
+            <tr data-search="name string"><td class="col-type">string?</td><td class="col-name">Name <span class="accessor">get set</span></td><td class="col-desc">디자인 이름</td></tr>
+            <tr data-search="designwidth int"><td class="col-type">int</td><td class="col-name">DesignWidth <span class="accessor">get set</span></td><td class="col-desc">디자인 너비</td></tr>
+            <tr data-search="designheight int"><td class="col-type">int</td><td class="col-name">DesignHeight <span class="accessor">get set</span></td><td class="col-desc">디자인 높이</td></tr>
+            <tr data-search="projectfolder string"><td class="col-type">string?</td><td class="col-name">ProjectFolder <span class="accessor">get set</span></td><td class="col-desc">프로젝트 폴더 경로</td></tr>
+          </table>
+        </div>
+
+        <div class="member-section">
           <div class="member-section-title">Properties — 레이아웃</div>
           <table class="api-table">
             <tr data-search="width int"><td class="col-type">int</td><td class="col-name">Width <span class="accessor">get</span></td><td class="col-desc">캔버스 너비 (px)</td></tr>
@@ -66,6 +76,7 @@
             <tr data-search="usefooter bool"><td class="col-type">bool</td><td class="col-name">UseFooter <span class="accessor">get set</span></td><td class="col-desc">푸터 사용 여부</td></tr>
             <tr data-search="overlaysidebar bool"><td class="col-type">bool</td><td class="col-name">OverlaySideBar <span class="accessor">get set</span></td><td class="col-desc">사이드바 오버레이 모드. 기본값: false</td></tr>
             <tr data-search="expandleftsidebar bool"><td class="col-type">bool</td><td class="col-name">ExpandLeftSideBar <span class="accessor">get set</span></td><td class="col-desc">왼쪽 사이드바 펼침 여부</td></tr>
+            <tr data-search="expandrightsidebar bool"><td class="col-type">bool</td><td class="col-name">ExpandRightSideBar <span class="accessor">get set</span></td><td class="col-desc">오른쪽 사이드바 펼침 여부</td></tr>
             <tr data-search="barcolor string"><td class="col-type">string</td><td class="col-name">BarColor <span class="accessor">get set</span></td><td class="col-desc">바 색상 이름. 기본값: "Base2"</td></tr>
             <tr data-search="titlebar gotitlebar"><td class="col-type">GoTitleBar</td><td class="col-name">TitleBar <span class="accessor">get</span></td><td class="col-desc">타이틀바 컴포넌트</td></tr>
             <tr data-search="leftsidebar gosidebar"><td class="col-type">GoSideBar</td><td class="col-name">LeftSideBar <span class="accessor">get</span></td><td class="col-desc">왼쪽 사이드바 컴포넌트</td></tr>
@@ -127,12 +138,13 @@
           <div class="member-section-title">Methods — 이미지 / 폰트</div>
           <table class="api-table">
             <tr data-search="addimage void string byte"><td class="ret">void</td><td class="col-method-name">AddImage</td><td class="params">(<span class="tp">string</span> name, <span class="tp">byte[]</span> data)</td><td class="col-desc">이미지 등록 (PNG 바이트)</td></tr>
+            <tr data-search="addimage void string list skimage"><td class="ret">void</td><td class="col-method-name">AddImage</td><td class="params">(<span class="tp">string</span> name, <span class="tp">List&lt;SKImage&gt;</span> imgs)</td><td class="col-desc">다중 프레임 이미지 등록</td></tr>
             <tr data-search="addimagefolder void string"><td class="ret">void</td><td class="col-method-name">AddImageFolder</td><td class="params">(<span class="tp">string</span> directory)</td><td class="col-desc">폴더 내 모든 이미지 일괄 등록</td></tr>
             <tr data-search="removeimage bool string"><td class="ret">bool</td><td class="col-method-name">RemoveImage</td><td class="params">(<span class="tp">string</span> name)</td><td class="col-desc">이미지 제거</td></tr>
             <tr data-search="getimage list skimage"><td class="ret">List&lt;SKImage&gt;</td><td class="col-method-name">GetImage</td><td class="params">(<span class="tp">string?</span> name)</td><td class="col-desc">이름으로 이미지 목록 반환</td></tr>
             <tr data-search="addfont void string byte"><td class="ret">void</td><td class="col-method-name">AddFont</td><td class="params">(<span class="tp">string</span> name, <span class="tp">byte[]</span> data)</td><td class="col-desc">커스텀 폰트 등록</td></tr>
             <tr data-search="addfontfolder void string"><td class="ret">void</td><td class="col-method-name">AddFontFolder</td><td class="params">(<span class="tp">string</span> directory)</td><td class="col-desc">폴더 내 폰트 일괄 등록</td></tr>
-            <tr data-search="removefont bool string"><td class="ret">bool</td><td class="col-method-name">RemoveFont</td><td class="params">(<span class="tp">string</span> name)</td><td class="col-desc">폰트 제거</td></tr>
+            <tr data-search="removefont void string"><td class="ret">void</td><td class="col-method-name">RemoveFont</td><td class="params">(<span class="tp">string</span> name)</td><td class="col-desc">폰트 제거</td></tr>
             <tr data-search="getfont list byte string"><td class="ret">List&lt;byte[]&gt;</td><td class="col-method-name">GetFont</td><td class="params">(<span class="tp">string?</span> name)</td><td class="col-desc">이름으로 폰트 데이터 목록 반환</td></tr>
             <tr data-search="getimages list tuple"><td class="ret">List&lt;(string, List&lt;SKImage&gt;)&gt;</td><td class="col-method-name">GetImages</td><td class="params">()</td><td class="col-desc">등록된 모든 이미지 (이름, 이미지 리스트) 목록 반환</td></tr>
             <tr data-search="getfonts list tuple"><td class="ret">List&lt;(string, List&lt;byte[]&gt;)&gt;</td><td class="col-method-name">GetFonts</td><td class="params">()</td><td class="col-desc">등록된 모든 폰트 (이름, 데이터 리스트) 목록 반환</td></tr>
@@ -147,7 +159,7 @@
             <tr data-search="select void igocontrol"><td class="ret">void</td><td class="col-method-name">Select</td><td class="params">(<span class="tp">IGoControl?</span> control)</td><td class="col-desc">컨트롤 선택</td></tr>
             <tr data-search="controlstack list igocontrol xy"><td class="ret">List&lt;IGoControl&gt;</td><td class="col-method-name">ControlStack</td><td class="params">(<span class="tp">IGoContainer</span> container, <span class="tp">float</span> x, <span class="tp">float</span> y)</td><td class="col-desc">좌표에 겹치는 컨트롤 스택 반환</td></tr>
             <tr data-search="controlstack list igocontrol skrect"><td class="ret">List&lt;IGoControl&gt;</td><td class="col-method-name">ControlStack</td><td class="params">(<span class="tp">IGoContainer</span> container, <span class="tp">SKRect</span> rt)</td><td class="col-desc">영역과 겹치는 컨트롤 스택 반환</td></tr>
-            <tr data-search="layoutbounds void"><td class="ret">void</td><td class="col-method-name">LayoutBounds</td><td class="params">()</td><td class="col-desc">레이아웃 영역 재계산</td></tr>
+            <tr data-search="layoutbounds tuple"><td class="ret">(SKRect, SKRect, SKRect, SKRect, SKRect, SKRect)</td><td class="col-method-name">LayoutBounds</td><td class="params">()</td><td class="col-desc">레이아웃 영역 계산. 반환: (rtL, rtT, rtR, rtB, rtF, rtFR)</td></tr>
           </table>
         </div>
 
@@ -277,7 +289,7 @@
             <tr data-search="barsize float"><td class="col-type">float</td><td class="col-name">BarSize <span class="accessor">get set</span></td><td class="col-desc">사이드바 너비 (px). 기본값: 150</td></tr>
             <tr data-search="fixed bool"><td class="col-type">bool</td><td class="col-name">Fixed <span class="accessor">get set</span></td><td class="col-desc">고정 모드 (콘텐츠 영역 밀기). 기본값: false</td></tr>
             <tr data-search="expand bool"><td class="col-type">bool</td><td class="col-name">Expand <span class="accessor">get set</span></td><td class="col-desc">펼침 여부</td></tr>
-            <tr data-search="realbarsize float"><td class="col-type">float</td><td class="col-name">RealBarSize <span class="accessor">get</span></td><td class="col-desc">애니메이션 적용된 실제 너비</td></tr>
+            <tr data-search="realbarsize float"><td class="col-type">float</td><td class="col-name">RealBarSize <span class="accessor">internal get</span></td><td class="col-desc">애니메이션 적용된 실제 너비 (internal)</td></tr>
             <tr data-search="opening bool"><td class="col-type">bool</td><td class="col-name">Opening <span class="accessor">get</span></td><td class="col-desc">열리는 중 여부</td></tr>
             <tr data-search="closing bool"><td class="col-type">bool</td><td class="col-name">Closing <span class="accessor">get</span></td><td class="col-desc">닫히는 중 여부</td></tr>
             <tr data-search="childrens list"><td class="col-type">List&lt;IGoControl&gt;</td><td class="col-name">Childrens <span class="accessor">get</span></td><td class="col-desc">사이드바 내부 컨트롤</td></tr>

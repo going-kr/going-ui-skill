@@ -92,7 +92,7 @@
         <div class="member-section">
           <div class="member-section-title">Properties</div>
           <table class="api-table">
-            <tr data-search="name string"><td class="col-type">string?</td><td class="col-name">Name <span class="accessor">get set</span></td><td class="col-desc">버튼 식별자</td></tr>
+            <tr data-search="name string"><td class="col-type">string</td><td class="col-name">Name <span class="accessor">get set</span></td><td class="col-desc">버튼 식별자</td></tr>
             <tr data-search="iconstring string"><td class="col-type">string?</td><td class="col-name">IconString <span class="accessor">get set</span></td><td class="col-desc">Font Awesome 아이콘 코드</td></tr>
             <tr data-search="text string"><td class="col-type">string?</td><td class="col-name">Text <span class="accessor">get set</span></td><td class="col-desc">버튼 텍스트</td></tr>
             <tr data-search="size string"><td class="col-type">string</td><td class="col-name">Size <span class="accessor">get set</span></td><td class="col-desc">버튼 크기 문자열. 기본값: "100%"</td></tr>
@@ -125,7 +125,7 @@
 
     <div id="class-GoMouseClickEventArgs" class="class-card" data-search="gomouseclickeventargs class event click mouse button">
       <div class="class-card-header" onclick="toggleCard(this)">
-        <div class="class-signature"><span class="kw">public class</span> <span class="nm">GoMouseClickEventArgs</span></div>
+        <div class="class-signature"><span class="kw">public class</span> <span class="nm">GoMouseClickEventArgs</span> <span class="base">: GoMouseEventArgs</span></div>
         <div class="class-desc">마우스 클릭 이벤트 인수</div>
       </div>
       <div class="class-card-body">
@@ -136,6 +136,24 @@
             <tr data-search="x float"><td class="col-type">float</td><td class="col-name">X <span class="accessor">get</span></td><td class="col-desc">클릭 X 좌표</td></tr>
             <tr data-search="y float"><td class="col-type">float</td><td class="col-name">Y <span class="accessor">get</span></td><td class="col-desc">클릭 Y 좌표</td></tr>
             <tr data-search="button gomousebutton"><td class="col-type">GoMouseButton</td><td class="col-name">Button <span class="accessor">get</span></td><td class="col-desc">클릭된 마우스 버튼</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <hr class="class-separator">
+
+    <div id="class-GoMouseWheelEventArgs" class="class-card" data-search="gomousewheeleventargs class event mouse wheel delta">
+      <div class="class-card-header" onclick="toggleCard(this)">
+        <div class="class-signature"><span class="kw">public class</span> <span class="nm">GoMouseWheelEventArgs</span> <span class="base">: GoMouseEventArgs</span></div>
+        <div class="class-desc">마우스 휠 이벤트 인수</div>
+      </div>
+      <div class="class-card-body">
+        <div class="member-section">
+          <div class="member-section-title">Constructor &amp; Properties</div>
+          <table class="api-table">
+            <tr data-search="gomousewheeleventargs constructor"><td class="col-method-name">GoMouseWheelEventArgs</td><td class="params">(<span class="tp">float</span> x, <span class="tp">float</span> y, <span class="tp">float</span> delta)</td><td class="col-desc">휠 이벤트 생성</td></tr>
+            <tr data-search="delta float"><td class="col-type">float</td><td class="col-name">Delta <span class="accessor">get</span></td><td class="col-desc">휠 변화량</td></tr>
           </table>
         </div>
       </div>

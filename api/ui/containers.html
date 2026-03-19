@@ -333,6 +333,49 @@
             <tr data-search="add void igocontrol col row"><td class="ret">void</td><td class="col-method-name">Add</td><td class="params">(<span class="tp">IGoControl</span> control, <span class="tp">int</span> col, <span class="tp">int</span> row)</td><td class="col-desc">컨트롤을 지정된 격자 위치에 추가</td></tr>
             <tr data-search="remove bool"><td class="ret">bool</td><td class="col-method-name">Remove</td><td class="params">(<span class="tp">IGoControl</span> control)</td><td class="col-desc">컨트롤 제거</td></tr>
             <tr data-search="clear void"><td class="ret">void</td><td class="col-method-name">Clear</td><td class="params">()</td><td class="col-desc">모든 컨트롤 제거</td></tr>
+            <tr data-search="contains bool"><td class="ret">bool</td><td class="col-method-name">Contains</td><td class="params">(<span class="tp">IGoControl</span> control)</td><td class="col-desc">컨트롤 포함 여부</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+    <hr class="class-separator">
+    <!-- Class: GoScalePanel -->
+    <div id="class-GoScalePanel" class="class-card" data-search="goscalepanel class container scale zoom base width height">
+      <div class="class-card-header" onclick="toggleCard(this)">
+        <div class="class-signature"><span class="kw">public class</span> <span class="nm">GoScalePanel</span> <span class="base">: GoContainer</span></div>
+        <div class="class-desc">스케일 패널. BaseWidth/BaseHeight 기준으로 자식 컨트롤을 자동 확대/축소합니다.</div>
+      </div>
+      <div class="class-card-body">
+        <div class="member-section">
+          <div class="member-section-title">Properties</div>
+          <table class="api-table">
+            <tr data-search="childrens list"><td class="col-type">List&lt;IGoControl&gt;</td><td class="col-name">Childrens <span class="accessor">get</span></td><td class="col-desc">자식 컨트롤 목록</td></tr>
+            <tr data-search="basewidth int"><td class="col-type">int?</td><td class="col-name">BaseWidth <span class="accessor">get set</span></td><td class="col-desc">기준 너비(px). null이면 실제 크기</td></tr>
+            <tr data-search="baseheight int"><td class="col-type">int?</td><td class="col-name">BaseHeight <span class="accessor">get set</span></td><td class="col-desc">기준 높이(px). null이면 실제 크기</td></tr>
+            <tr data-search="panelalignment gocontentalignment"><td class="col-type">GoContentAlignment</td><td class="col-name">PanelAlignment <span class="accessor">get set</span></td><td class="col-desc">패널 정렬. 기본값: MiddleCenter</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+    <hr class="class-separator">
+    <!-- Class: GoPicturePanel -->
+    <div id="class-GoPicturePanel" class="class-card" data-search="gopicturepanel class container picture image background">
+      <div class="class-card-header" onclick="toggleCard(this)">
+        <div class="class-signature"><span class="kw">public class</span> <span class="nm">GoPicturePanel</span> <span class="base">: GoContainer</span></div>
+        <div class="class-desc">이미지 배경 패널. 배경 이미지 위에 자식 컨트롤을 배치합니다.</div>
+      </div>
+      <div class="class-card-body">
+        <div class="member-section">
+          <div class="member-section-title">Properties</div>
+          <table class="api-table">
+            <tr data-search="childrens list"><td class="col-type">List&lt;IGoControl&gt;</td><td class="col-name">Childrens <span class="accessor">get</span></td><td class="col-desc">자식 컨트롤 목록</td></tr>
+            <tr data-search="image string"><td class="col-type">string?</td><td class="col-name">Image <span class="accessor">get set</span></td><td class="col-desc">GoDesign에 등록된 이미지 키</td></tr>
+            <tr data-search="scalemode goimagescalemode"><td class="col-type">GoImageScaleMode</td><td class="col-name">ScaleMode <span class="accessor">get set</span></td><td class="col-desc">이미지 크기 조절 모드. 기본값: Real</td></tr>
+            <tr data-search="round goroundtype"><td class="col-type">GoRoundType</td><td class="col-name">Round <span class="accessor">get set</span></td><td class="col-desc">모서리 스타일. 기본값: All</td></tr>
           </table>
         </div>
       </div>
