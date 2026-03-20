@@ -16,22 +16,15 @@
 
 ---
 
-## 설치
+## 개발 환경 구성
 
-**방법 1. Git Clone (CLI)**
+Claude Code에 이렇게 말하세요:
 
-```bash
-# 프로젝트 단위 — 해당 프로젝트에서만 사용
-cd your-project
-git clone https://github.com/going-kr/going-ui-skill .claude/skills/going-ui-skill
-
-# 전역 — 모든 프로젝트에서 사용
-git clone https://github.com/going-kr/going-ui-skill ~/.claude/skills/going-ui-skill
+```
+https://going-kr.github.io/Going-Library/setup.html 여기 보고 개발 환경 구성해줘
 ```
 
-**방법 2. Claude 데스크톱 앱**
-
-`설정 → 스킬 → 스킬 업로드`에서 `.zip` 파일을 드래그 앤 드롭하거나 `SKILL.md` 파일을 직접 업로드합니다.
+스킬 설치, UIEditor 다운로드, 바탕화면 바로가기 생성까지 자동으로 진행됩니다.
 
 ---
 
@@ -142,7 +135,9 @@ going-ui-skill/
 ├── ui-project-brief.md       프로젝트 브리프 작성 가이드
 ├── basis.md                  통신 패턴 (Modbus, MQTT, CNet, MC)
 ├── ui-mcp.md                 gtcli 배포 가이드
-├── evals.json                스킬 평가 테스트 케이스
+├── troubleshooting.md        빌드/통신/런타임/배포 에러 해결
+├── session-context.md        세션 간 컨텍스트 유지 (Claude Code 전용)
+├── evals.json                스킬 평가 테스트 케이스 (35개, core/extended 구분)
 ├── sample/                   샘플 프로젝트
 └── api/                      21개 HTML API 레퍼런스
 ```
