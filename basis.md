@@ -30,6 +30,18 @@
 </ItemGroup>
 ```
 
+## 네임스페이스
+
+| 네임스페이스 | 클래스 | 용도 |
+|------------|--------|------|
+| `Going.Basis.Communications.Modbus.RTU` | MasterRTU, SlaveRTU | Modbus RTU 래퍼 (권장) |
+| `Going.Basis.Communications.Modbus.TCP` | MasterTCP, SlaveTCP | Modbus TCP 래퍼 (권장) |
+| `Going.Basis.Communications.Modbus` | ModbusRTUMaster, ModbusTCPMaster, ModbusRTUSlave, ModbusTCPSlave | Modbus 저수준 |
+| `Going.Basis.Communications.LS` | CNet | LS Electric PLC |
+| `Going.Basis.Communications.Mitsubishi` | MC | Mitsubishi PLC |
+| `Going.Basis.Communications.Mqtt` | MQClient | MQTT 클라이언트 |
+```
+
 > 통신만 사용하는 경우 `Going.Basis`만 참조. UI 포함 시 `Going.UI.OpenTK` 추가.
 
 ---

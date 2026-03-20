@@ -437,6 +437,8 @@ Going.UI          - 플랫폼 독립 UI 코어 (컨트롤, 컨테이너, 테마,
 Going.UI.OpenTK   - OpenTK 어댑터 (임베디드/라즈베리파이)
 Going.Basis       - 통신 및 유틸리티 (Modbus, MQTT, 메모리, 직렬화)
 Going.UIEditor    - 비주얼 에디터 (.gud 파일 생성 도구)
+                    다운로드: gh release download -R going-kr/Going-Library --pattern "UIEditor.zip"
+                    ※ going-kr/going-ui-skill 레포가 아님. 반드시 Going-Library 릴리즈에서 받을 것.
 ```
 
 ---
