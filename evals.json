@@ -8,9 +8,21 @@
       "lampRun.OnOff = true 설정",
       "Designer.cs를 직접 수정하지 않음"
     ],
-    "must_contain": ["ButtonClicked", "lampRun.OnOff", "true"],
-    "must_not_contain": ["Click +=", "EventHandler", "new EventHandler", "MouseClick"],
-    "references": ["ui-code.md"]
+    "must_contain": [
+      "ButtonClicked",
+      "lampRun.OnOff",
+      "true"
+    ],
+    "must_not_contain": [
+      "Click +=",
+      "EventHandler",
+      "new EventHandler",
+      "MouseClick"
+    ],
+    "references": [
+      "ui-code.md"
+    ],
+    "priority": "core"
   },
   {
     "name": "GoInputNumber JSON 생성",
@@ -23,9 +35,23 @@
       "Bounds는 SKRect 형식 (L,T,R,B)",
       "Id 필드에 UUID 포함"
     ],
-    "must_contain": ["GoInputNumber<Int32>", "\"Value\"", "\"Minimum\"", "\"Maximum\"", "\"Unit\""],
-    "must_not_contain": ["GoInputNumber<int>", "\"Width\"", "\"Height\""],
-    "references": ["ui-json.md", "ui-json-input-value.md"]
+    "must_contain": [
+      "GoInputNumber<Int32>",
+      "\"Value\"",
+      "\"Minimum\"",
+      "\"Maximum\"",
+      "\"Unit\""
+    ],
+    "must_not_contain": [
+      "GoInputNumber<int>",
+      "\"Width\"",
+      "\"Height\""
+    ],
+    "references": [
+      "ui-json.md",
+      "ui-json-input-value.md"
+    ],
+    "priority": "core"
   },
   {
     "name": "Modbus RTU 통신 코드 작성",
@@ -37,9 +63,24 @@
       "GetWord(1, \"D100\") 패턴으로 캐시에서 값 조회",
       "IsOpen 또는 DeviceOpened/DeviceClosed로 통신 상태 판단"
     ],
-    "must_contain": ["MasterRTU", "MonitorWord_F3", "GetWord", "WordAreas"],
-    "must_not_contain": ["ReadHoldingRegisters", "ModbusClient", "DataReceived", "AutoResponse", "DeviceData", "AutoWordRead"],
-    "references": ["basis.md"]
+    "must_contain": [
+      "MasterRTU",
+      "MonitorWord_F3",
+      "GetWord",
+      "WordAreas"
+    ],
+    "must_not_contain": [
+      "ReadHoldingRegisters",
+      "ModbusClient",
+      "DataReceived",
+      "AutoResponse",
+      "DeviceData",
+      "AutoWordRead"
+    ],
+    "references": [
+      "basis.md"
+    ],
+    "priority": "core"
   },
   {
     "name": "GoBarGraph Series 설정",
@@ -50,9 +91,20 @@
       "값 업데이트 시 series.Value 속성 사용",
       "ui-control-sample.md를 참조해서 작성"
     ],
-    "must_contain": ["GoGraphSeries", "Series", "Value"],
-    "must_not_contain": ["DataPoint", "Chart"],
-    "references": ["ui-control-sample.md", "ui-code.md"]
+    "must_contain": [
+      "GoGraphSeries",
+      "Series",
+      "Value"
+    ],
+    "must_not_contain": [
+      "DataPoint",
+      "Chart"
+    ],
+    "references": [
+      "ui-control-sample.md",
+      "ui-code.md"
+    ],
+    "priority": "extended"
   },
   {
     "name": "design.json 로드 실패 트러블슈팅",
@@ -62,9 +114,18 @@
       "csproj에 CopyToOutputDirectory 설정 안내",
       "design.json을 직접 수정하지 말라는 경고"
     ],
-    "must_contain": ["MakeCode", "CopyToOutputDirectory"],
-    "must_not_contain": ["수동으로 JSON 파일을 만들", "design.json을 편집"],
-    "references": ["SKILL.md"]
+    "must_contain": [
+      "MakeCode",
+      "CopyToOutputDirectory"
+    ],
+    "must_not_contain": [
+      "수동으로 JSON 파일을 만들",
+      "design.json을 편집"
+    ],
+    "references": [
+      "SKILL.md"
+    ],
+    "priority": "extended"
   },
   {
     "name": "SKRect Bounds 직렬화",
@@ -74,9 +135,18 @@
       "Width/Height가 아닌 Right/Bottom 좌표 계산",
       "문자열 형태 (쉼표 구분)"
     ],
-    "must_contain": ["10,20,210,60"],
-    "must_not_contain": ["\"Width\"", "\"Height\"", "10,20,200,40"],
-    "references": ["ui-json.md"]
+    "must_contain": [
+      "10,20,210,60"
+    ],
+    "must_not_contain": [
+      "\"Width\"",
+      "\"Height\"",
+      "10,20,200,40"
+    ],
+    "references": [
+      "ui-json.md"
+    ],
+    "priority": "core"
   },
   {
     "name": "Enum 직렬화 규칙",
@@ -86,9 +156,18 @@
       "\"ContentAlignment\": 4 (MiddleCenter = 4)",
       "문자열 \"MiddleCenter\" 사용 금지"
     ],
-    "must_contain": ["4"],
-    "must_not_contain": ["\"MiddleCenter\"", "\"Center\""],
-    "references": ["ui-json.md", "ui-json-controls.md"]
+    "must_contain": [
+      "4"
+    ],
+    "must_not_contain": [
+      "\"MiddleCenter\"",
+      "\"Center\""
+    ],
+    "references": [
+      "ui-json.md",
+      "ui-json-controls.md"
+    ],
+    "priority": "core"
   },
   {
     "name": "GoTableLayoutPanel 레이아웃 구성",
@@ -99,9 +178,20 @@
       "각 버튼에 Dock=Fill (5) 설정",
       "Controls 배열에 래퍼 형식으로 컨트롤 추가"
     ],
-    "must_contain": ["GoTableLayoutPanel", "\"Dock\": 5", "\"Rows\"", "\"Columns\""],
-    "must_not_contain": ["Grid", "StackPanel"],
-    "references": ["ui-json-containers.md"]
+    "must_contain": [
+      "GoTableLayoutPanel",
+      "\"Dock\": 5",
+      "\"Rows\"",
+      "\"Columns\""
+    ],
+    "must_not_contain": [
+      "Grid",
+      "StackPanel"
+    ],
+    "references": [
+      "ui-json-containers.md"
+    ],
+    "priority": "core"
   },
   {
     "name": "IcPage + ImageCanvas 컨트롤 JSON 생성",
@@ -114,9 +204,23 @@
       "각 컨트롤 Value 래퍼 구조: { \"Type\": \"IcButton\", \"Value\": { ... } }",
       "모든 컨트롤에 UUID Id 포함"
     ],
-    "must_contain": ["IcPage", "IcButton", "IcLabel", "OffImage", "OnImage"],
-    "must_not_contain": ["GoPage", "GoButton", "GoLabel"],
-    "references": ["ui-json.md", "ui-json-imagecanvas.md"]
+    "must_contain": [
+      "IcPage",
+      "IcButton",
+      "IcLabel",
+      "OffImage",
+      "OnImage"
+    ],
+    "must_not_contain": [
+      "GoPage",
+      "GoButton",
+      "GoLabel"
+    ],
+    "references": [
+      "ui-json.md",
+      "ui-json-imagecanvas.md"
+    ],
+    "priority": "extended"
   },
   {
     "name": "gtcli 장치 배포 워크플로우",
@@ -127,9 +231,21 @@
       "gtcli deploy로 원클릭 배포 (업로드→설치→시작)",
       "--token 옵션으로 인증"
     ],
-    "must_contain": ["dotnet publish", "linux-arm64", "gtcli", "deploy", "--token"],
-    "must_not_contain": ["docker", "windows-x64"],
-    "references": ["ui-mcp.md"]
+    "must_contain": [
+      "dotnet publish",
+      "linux-arm64",
+      "gtcli",
+      "deploy",
+      "--token"
+    ],
+    "must_not_contain": [
+      "docker",
+      "windows-x64"
+    ],
+    "references": [
+      "ui-mcp.md"
+    ],
+    "priority": "extended"
   },
   {
     "name": "MasterTCP 통신 코드 작성",
@@ -143,9 +259,25 @@
       "GetWord(1, \"D0\") 패턴으로 값 조회",
       "IsOpen 또는 DeviceOpened/DeviceClosed로 통신 상태 판단"
     ],
-    "must_contain": ["MasterTCP", "RemoteIP", "RemotePort", "MonitorWord_F3", "GetWord"],
-    "must_not_contain": ["Host", "Port = 502", ".Port =", "ModbusTCPMaster", "DeviceData", "AutoWordRead"],
-    "references": ["basis.md"]
+    "must_contain": [
+      "MasterTCP",
+      "RemoteIP",
+      "RemotePort",
+      "MonitorWord_F3",
+      "GetWord"
+    ],
+    "must_not_contain": [
+      "Host",
+      "Port = 502",
+      ".Port =",
+      "ModbusTCPMaster",
+      "DeviceData",
+      "AutoWordRead"
+    ],
+    "references": [
+      "basis.md"
+    ],
+    "priority": "extended"
   },
   {
     "name": "MQTT 클라이언트 코드 작성",
@@ -158,9 +290,26 @@
       "Publish로 메시지 발행",
       "MQQos 열거형 사용"
     ],
-    "must_contain": ["MQClient", "BrokerHostName", "Received", "s.Datas", "Subscribe", "Publish", "MQQos"],
-    "must_not_contain": ["s.Message", "mqtt.Port", "MQQosLevel", "MqttClient", "ConnectAsync"],
-    "references": ["basis.md"]
+    "must_contain": [
+      "MQClient",
+      "BrokerHostName",
+      "Received",
+      "s.Datas",
+      "Subscribe",
+      "Publish",
+      "MQQos"
+    ],
+    "must_not_contain": [
+      "s.Message",
+      "mqtt.Port",
+      "MQQosLevel",
+      "MqttClient",
+      "ConnectAsync"
+    ],
+    "references": [
+      "basis.md"
+    ],
+    "priority": "extended"
   },
   {
     "name": "GoWindow 팝업 콜백 패턴",
@@ -173,9 +322,23 @@
       "Cancel 버튼에서 Close()",
       "호출 측에서 람다로 결과 수신"
     ],
-    "must_contain": ["GoWindow", "Action", "Show()", "Close()", "ButtonClicked"],
-    "must_not_contain": ["ShowDialog", "DialogResult", "MessageBox.Show", "Form"],
-    "references": ["ui-code.md"]
+    "must_contain": [
+      "GoWindow",
+      "Action",
+      "Show()",
+      "Close()",
+      "ButtonClicked"
+    ],
+    "must_not_contain": [
+      "ShowDialog",
+      "DialogResult",
+      "MessageBox.Show",
+      "Form"
+    ],
+    "references": [
+      "ui-code.md"
+    ],
+    "priority": "extended"
   },
   {
     "name": "LauncherTouch MCP 장치 관리",
@@ -187,9 +350,22 @@
       "--token 옵션으로 인증",
       "reboot/uninstall 같은 위험 명령은 사용자 확인 필요"
     ],
-    "must_contain": ["gtcli", "programs", "stop", "show-ui", "--token"],
-    "must_not_contain": ["curl", "ssh", "systemctl"],
-    "references": ["ui-mcp.md"]
+    "must_contain": [
+      "gtcli",
+      "programs",
+      "stop",
+      "show-ui",
+      "--token"
+    ],
+    "must_not_contain": [
+      "curl",
+      "ssh",
+      "systemctl"
+    ],
+    "references": [
+      "ui-mcp.md"
+    ],
+    "priority": "extended"
   },
   {
     "name": "MCP 도구 직접 호출로 프로그램 관리",
@@ -201,9 +377,22 @@
       "JSON-RPC 2.0 메시지 형식",
       "stop_program 파라미터에 appName 포함"
     ],
-    "must_contain": ["5001/mcp", "X-MCP-Token", "get_programs", "stop_program", "appName"],
-    "must_not_contain": ["GetPrograms", "StopProgram", "PascalCase 도구명"],
-    "references": ["ui-mcp.md"]
+    "must_contain": [
+      "5001/mcp",
+      "X-MCP-Token",
+      "get_programs",
+      "stop_program",
+      "appName"
+    ],
+    "must_not_contain": [
+      "GetPrograms",
+      "StopProgram",
+      "PascalCase 도구명"
+    ],
+    "references": [
+      "ui-mcp.md"
+    ],
+    "priority": "extended"
   },
   {
     "name": "절대규칙: Designer.cs 수정 거부",
@@ -213,9 +402,17 @@
       "UIEditor에서 MakeCode를 다시 실행하라고 안내",
       "절대 규칙 #1을 준수"
     ],
-    "must_contain": ["Designer.cs"],
-    "must_not_contain": ["btnRun =", "var btnRun"],
-    "references": ["SKILL.md"]
+    "must_contain": [
+      "Designer.cs"
+    ],
+    "must_not_contain": [
+      "btnRun =",
+      "var btnRun"
+    ],
+    "references": [
+      "SKILL.md"
+    ],
+    "priority": "core"
   },
   {
     "name": "절대규칙: API 추측 금지 — 잘못된 속성명 교정",
@@ -225,9 +422,19 @@
       "올바른 속성명 ButtonColor를 사용",
       "API 문서 확인을 권고하거나 직접 확인"
     ],
-    "must_contain": ["ButtonColor"],
-    "must_not_contain": ["BackColor", ".BackColor =", "Background"],
-    "references": ["SKILL.md", "ui-code.md"]
+    "must_contain": [
+      "ButtonColor"
+    ],
+    "must_not_contain": [
+      "BackColor",
+      ".BackColor =",
+      "Background"
+    ],
+    "references": [
+      "SKILL.md",
+      "ui-code.md"
+    ],
+    "priority": "core"
   },
   {
     "name": "절대규칙: 영문 네이밍 — 한글 식별자 금지",
@@ -238,9 +445,24 @@
       "ID 프로퍼티 포함",
       "Set{기능이름}() 메서드명도 영문"
     ],
-    "must_contain": ["ID", "MasterRTU", "GetWord", "SetWord"],
-    "must_not_contain": ["운전상태", "public.*온도", "Set온도", "Set설정", "public.*설정"],
-    "references": ["SKILL.md", "basis.md"]
+    "must_contain": [
+      "ID",
+      "MasterRTU",
+      "GetWord",
+      "SetWord"
+    ],
+    "must_not_contain": [
+      "운전상태",
+      "public.*온도",
+      "Set온도",
+      "Set설정",
+      "public.*설정"
+    ],
+    "references": [
+      "SKILL.md",
+      "basis.md"
+    ],
+    "priority": "core"
   },
   {
     "name": "절대규칙: 데이터 구조 임의 작성 금지",
@@ -250,9 +472,17 @@
       "사용자에게 레지스터 맵/데이터 모델을 문의",
       "주소/데이터 의미를 확인해야 한다고 안내"
     ],
-    "must_contain": ["레지스터"],
-    "must_not_contain": ["MonitorWord_F3(1, 0", "GetWord(1, \"D0\")"],
-    "references": ["SKILL.md"]
+    "must_contain": [
+      "레지스터"
+    ],
+    "must_not_contain": [
+      "MonitorWord_F3(1, 0",
+      "GetWord(1, \"D0\")"
+    ],
+    "references": [
+      "SKILL.md"
+    ],
+    "priority": "core"
   },
   {
     "name": "DeviceData + MasterRTU 다중 슬레이브 패턴",
@@ -264,9 +494,22 @@
       "DeviceManager에서 Device1, Device2를 각각 생성",
       "MonitorWord_F3로 슬레이브별 주기 읽기 등록"
     ],
-    "must_contain": ["DeviceData", "ID", "MasterRTU", "GetWord", "SetWord"],
-    "must_not_contain": ["ModbusRTUMaster", "WordReadReceived", "AutoWordRead_FC3"],
-    "references": ["basis.md"]
+    "must_contain": [
+      "DeviceData",
+      "ID",
+      "MasterRTU",
+      "GetWord",
+      "SetWord"
+    ],
+    "must_not_contain": [
+      "ModbusRTUMaster",
+      "WordReadReceived",
+      "AutoWordRead_FC3"
+    ],
+    "references": [
+      "basis.md"
+    ],
+    "priority": "extended"
   },
   {
     "name": "MasterRTU vs ModbusRTUMaster 클래스 선택",
@@ -277,9 +520,17 @@
       "ModbusRTUMaster는 수신 이벤트 직접 제어가 필요할 때만 사용",
       "MasterRTU가 기본, ModbusRTUMaster는 예외적 사용"
     ],
-    "must_contain": ["MasterRTU"],
-    "must_not_contain": ["ModbusRTUMaster를 사용", "AutoWordRead_FC3"],
-    "references": ["basis.md"]
+    "must_contain": [
+      "MasterRTU"
+    ],
+    "must_not_contain": [
+      "ModbusRTUMaster를 사용",
+      "AutoWordRead_FC3"
+    ],
+    "references": [
+      "basis.md"
+    ],
+    "priority": "extended"
   },
   {
     "name": "SlaveRTU 패턴 — Modbus 슬레이브 구현",
@@ -291,9 +542,22 @@
       "Slave = 1 설정",
       "WordMemory는 .W 프로퍼티로 접근, BitMemory는 직접 인덱싱"
     ],
-    "must_contain": ["SlaveRTU", "WordMemory", "BitMemory", "WordAreas", "BitAreas"],
-    "must_not_contain": ["ModbusRTUSlave", "MasterRTU", "MonitorWord"],
-    "references": ["basis.md"]
+    "must_contain": [
+      "SlaveRTU",
+      "WordMemory",
+      "BitMemory",
+      "WordAreas",
+      "BitAreas"
+    ],
+    "must_not_contain": [
+      "ModbusRTUSlave",
+      "MasterRTU",
+      "MonitorWord"
+    ],
+    "references": [
+      "basis.md"
+    ],
+    "priority": "extended"
   },
   {
     "name": "CNet 패턴 — LS Electric PLC 통신",
@@ -305,9 +569,22 @@
       "DataReceived 이벤트에서 s.Data (int[]) 처리",
       "LS 주소체계(%MW) 사용"
     ],
-    "must_contain": ["CNet", "AutoRSB", "ManualWSS", "%MW"],
-    "must_not_contain": ["MasterRTU", "ModbusRTUMaster", "MonitorWord", "MC"],
-    "references": ["basis.md"]
+    "must_contain": [
+      "CNet",
+      "AutoRSB",
+      "ManualWSS",
+      "%MW"
+    ],
+    "must_not_contain": [
+      "MasterRTU",
+      "ModbusRTUMaster",
+      "MonitorWord",
+      "MC"
+    ],
+    "references": [
+      "basis.md"
+    ],
+    "priority": "extended"
   },
   {
     "name": "MC 패턴 — Mitsubishi PLC 통신",
@@ -319,9 +596,22 @@
       "WordDataReceived / BitDataReceived 이벤트 분리",
       "Mitsubishi 주소체계(D0) 사용"
     ],
-    "must_contain": ["MC", "AutoWordRead", "ManualWordWrite", "WordDataReceived"],
-    "must_not_contain": ["MasterRTU", "CNet", "MonitorWord", "AutoRSB"],
-    "references": ["basis.md"]
+    "must_contain": [
+      "MC",
+      "AutoWordRead",
+      "ManualWordWrite",
+      "WordDataReceived"
+    ],
+    "must_not_contain": [
+      "MasterRTU",
+      "CNet",
+      "MonitorWord",
+      "AutoRSB"
+    ],
+    "references": [
+      "basis.md"
+    ],
+    "priority": "extended"
   },
   {
     "name": "Main 싱글턴 + Program.cs 진입점 패턴",
@@ -332,9 +622,24 @@
       "devMgr.Start() → wnd.Run() (블로킹) → devMgr.Stop() 순서",
       "DI 컨테이너 없이 정적 접근 패턴"
     ],
-    "must_contain": ["Main.Window", "Main.DevMgr", "Main.DataMgr", "Start()", "Run()", "Stop()"],
-    "must_not_contain": ["IServiceCollection", "builder.Services", "DependencyInjection", "AddSingleton"],
-    "references": ["ui-code.md"]
+    "must_contain": [
+      "Main.Window",
+      "Main.DevMgr",
+      "Main.DataMgr",
+      "Start()",
+      "Run()",
+      "Stop()"
+    ],
+    "must_not_contain": [
+      "IServiceCollection",
+      "builder.Services",
+      "DependencyInjection",
+      "AddSingleton"
+    ],
+    "references": [
+      "ui-code.md"
+    ],
+    "priority": "core"
   },
   {
     "name": "Page OnUpdate 데이터 바인딩",
@@ -346,9 +651,22 @@
       "GoLabel.Text로 데이터 값 표시",
       "base.OnUpdate() 호출"
     ],
-    "must_contain": ["OnUpdate", "Main.DevMgr", "OnOff", ".Text"],
-    "must_not_contain": ["Timer", "DispatcherTimer", "Task.Run", "Thread"],
-    "references": ["ui-code.md"]
+    "must_contain": [
+      "OnUpdate",
+      "Main.DevMgr",
+      "OnOff",
+      ".Text"
+    ],
+    "must_not_contain": [
+      "Timer",
+      "DispatcherTimer",
+      "Task.Run",
+      "Thread"
+    ],
+    "references": [
+      "ui-code.md"
+    ],
+    "priority": "extended"
   },
   {
     "name": "GoDialogs 시스템 다이얼로그",
@@ -359,9 +677,20 @@
       "콜백에서 GoDialogResult 확인",
       "System.Windows.Forms의 MessageBox와 혼동하지 않음"
     ],
-    "must_contain": ["GoDialogs", "MessageBox", "GoDialogResult"],
-    "must_not_contain": ["MessageBox.Show(", "System.Windows", "WinForms"],
-    "references": ["ui-code.md"]
+    "must_contain": [
+      "GoDialogs",
+      "MessageBox",
+      "GoDialogResult"
+    ],
+    "must_not_contain": [
+      "MessageBox.Show(",
+      "System.Windows",
+      "WinForms"
+    ],
+    "references": [
+      "ui-code.md"
+    ],
+    "priority": "extended"
   },
   {
     "name": "GoDataGrid C# 컬럼 구성 + 데이터 바인딩",
@@ -372,9 +701,22 @@
       "SetDataSource<T>로 데이터 바인딩",
       "CellButtonClick 이벤트로 버튼 클릭 처리"
     ],
-    "must_contain": ["GoDataGridLabelColumn", "GoDataGridNumberColumn<Double>", "GoDataGridLampColumn", "GoDataGridButtonColumn", "SetDataSource"],
-    "must_not_contain": ["DataGridView", "GridViewColumn", "DataGrid.Columns.Add(\""],
-    "references": ["ui-control-sample.md"]
+    "must_contain": [
+      "GoDataGridLabelColumn",
+      "GoDataGridNumberColumn<Double>",
+      "GoDataGridLampColumn",
+      "GoDataGridButtonColumn",
+      "SetDataSource"
+    ],
+    "must_not_contain": [
+      "DataGridView",
+      "GridViewColumn",
+      "DataGrid.Columns.Add(\""
+    ],
+    "references": [
+      "ui-control-sample.md"
+    ],
+    "priority": "extended"
   },
   {
     "name": "GoTrendGraph 실시간 스트리밍",
@@ -385,9 +727,20 @@
       "데이터 객체의 프로퍼티명이 Series.Name과 일치",
       "SetDataSource가 아닌 Start/SetData 패턴 사용"
     ],
-    "must_contain": ["Start(", "SetData(", "OnUpdate"],
-    "must_not_contain": ["SetDataSource", "AddPoint", "Timer"],
-    "references": ["ui-control-sample.md"]
+    "must_contain": [
+      "Start(",
+      "SetData(",
+      "OnUpdate"
+    ],
+    "must_not_contain": [
+      "SetDataSource",
+      "AddPoint",
+      "Timer"
+    ],
+    "references": [
+      "ui-control-sample.md"
+    ],
+    "priority": "extended"
   },
   {
     "name": ".gud 최상위 구조 + Name 유효성",
@@ -398,9 +751,21 @@
       "단일 GoDesign JSON (Project 래퍼 없음)",
       "Pages 안에 PageMain이 Type/Value 래퍼 구조로 포함"
     ],
-    "must_contain": ["\"Name\"", "OilRecovery", "\"DesignWidth\": 1024", "\"DesignHeight\": 600", "\"Pages\""],
-    "must_not_contain": ["Oil Recovery", "유증기"],
-    "references": ["ui-json.md"]
+    "must_contain": [
+      "\"Name\"",
+      "OilRecovery",
+      "\"DesignWidth\": 1024",
+      "\"DesignHeight\": 600",
+      "\"Pages\""
+    ],
+    "must_not_contain": [
+      "Oil Recovery",
+      "유증기"
+    ],
+    "references": [
+      "ui-json.md"
+    ],
+    "priority": "core"
   },
   {
     "name": "GoNavigator + PageName 자동 페이지 전환",
@@ -411,8 +776,112 @@
       "PageName 지정으로 별도 코드 없이 자동 전환",
       "TitleBar.Childrens에 GoNavigator 배치"
     ],
-    "must_contain": ["GoNavigator", "PageName", "PageMonitor", "PageSetting", "Menus"],
-    "must_not_contain": ["SetPage", "ButtonClicked", "MenuClicked"],
-    "references": ["ui-json-controls-ext.md", "ui-code.md"]
+    "must_contain": [
+      "GoNavigator",
+      "PageName",
+      "PageMonitor",
+      "PageSetting",
+      "Menus"
+    ],
+    "must_not_contain": [
+      "SetPage",
+      "ButtonClicked",
+      "MenuClicked"
+    ],
+    "references": [
+      "ui-json-controls-ext.md",
+      "ui-code.md"
+    ],
+    "priority": "extended"
+  },
+  {
+    "name": "이미지 → .gud 변환: 6단계 절차 준수",
+    "prompt": "첨부한 HMI 화면 이미지를 .gud 파일로 변환해줘. 해상도는 1024x600이야.",
+    "expected_behavior": [
+      "6단계 절차를 따름 (인벤토리→그루핑→컨테이너→도식→검증→생성)",
+      "바로 .gud를 생성하지 않고 분석 단계를 거침",
+      "ui-image-to-gud.md를 참조"
+    ],
+    "must_contain": [
+      "인벤토리",
+      "그루핑",
+      "컨테이너"
+    ],
+    "must_not_contain": [
+      "바로 .gud를 생성"
+    ],
+    "references": [
+      "ui-image-to-gud.md"
+    ],
+    "priority": "core"
+  },
+  {
+    "name": "이미지 → .gud 변환: Bounds 비율 계산",
+    "prompt": "이미지에서 좌측 30% 영역에 패널, 우측 70% 영역에 차트를 배치해줘. 해상도 1024x600.",
+    "expected_behavior": [
+      "비율 기반 Bounds 계산: 좌측 패널 0,0,307,600",
+      "우측 차트: 307,0,1024,600",
+      "SKRect L,T,R,B 형식 사용"
+    ],
+    "must_contain": [
+      "307",
+      "1024",
+      "600"
+    ],
+    "must_not_contain": [
+      "\"Width\"",
+      "\"Height\""
+    ],
+    "references": [
+      "ui-json.md",
+      "ui-image-to-gud.md"
+    ],
+    "priority": "extended"
+  },
+  {
+    "name": "GoSwitchPanel + GoTabControl .gud 생성",
+    "prompt": ".gud에 GoSwitchPanel과 GoTabControl을 각각 포함하는 페이지를 만들어줘. SwitchPanel에는 Sub1, Sub2 두 페이지, TabControl에는 Tab1, Tab2 두 탭.",
+    "expected_behavior": [
+      "GoSwitchPanel은 Pages 배열: [{\"Name\":\"Sub1\",\"Childrens\":[...]}, ...]",
+      "GoTabControl은 TabPages 배열: [{\"Name\":\"Tab1\",\"Text\":\"Tab1\",\"Childrens\":[...]}, ...]",
+      "두 컨테이너의 구조가 서로 다름을 정확히 반영",
+      "모든 컨트롤에 UUID Id 포함"
+    ],
+    "must_contain": [
+      "GoSwitchPanel",
+      "GoTabControl",
+      "Pages",
+      "TabPages"
+    ],
+    "must_not_contain": [
+      "\"Controls\""
+    ],
+    "references": [
+      "ui-json-containers.md"
+    ],
+    "priority": "extended"
+  },
+  {
+    "name": "절대규칙: .gud 생성 시 스크립트 사용 거부",
+    "prompt": ".gud 파일이 너무 커서 Python으로 JSON을 생성해줘. 컨트롤 50개를 반복문으로 만들어야 해.",
+    "expected_behavior": [
+      "Python/스크립트 사용을 거부",
+      "Write/Edit 도구로 직접 JSON을 작성하겠다고 안내",
+      "절대 규칙 #7을 준수",
+      "\"파일이 크다\"는 예외 사유가 아님을 인지"
+    ],
+    "must_contain": [
+      "Write",
+      "직접"
+    ],
+    "must_not_contain": [
+      "import json",
+      "json.dumps",
+      "for i in range"
+    ],
+    "references": [
+      "SKILL.md"
+    ],
+    "priority": "core"
   }
 ]

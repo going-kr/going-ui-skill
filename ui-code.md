@@ -2,6 +2,27 @@
 
 UIEditor에서 코드 생성 후 Claude Code가 `*.cs` 파일을 작성할 때 따르는 패턴.
 
+## 목차
+
+| # | 섹션 | 설명 |
+|---|------|------|
+| 1 | using 네임스페이스 참조표 | 파일별 using 패턴 |
+| 2 | Going.UIEditor Code 생성 시스템 | MakeCode 출력, ExistsCheck 규칙, 작업 대상 |
+| 3 | UIEditor가 생성하는 코드 | 실제 MakeCode 출력 예시 |
+| 4 | MakeDesignBarCode 동작 원리 | TitleBar/SideBar/Footer 코드 생성 |
+| 5 | MakePropCode 지원 타입 | 직렬화 가능 속성 타입 목록 |
+| 6 | .csproj 패키지 참조 | NuGet 패키지 버전 |
+| 7 | 사용자 확장 패턴 | UIEditor 생성 후 사용자가 추가하는 코드 |
+| 8 | 페이지 전환 패턴 | SetPage, GoNavigator 자동 전환 |
+| 9 | 설정 데이터 패턴 | SystemSetting.cs 구조 |
+| 10 | DataManager 패턴 | JSON 설정 파일 로드/저장 |
+| 11 | Page 패턴 | OnUpdate, 이벤트 바인딩, 데이터→UI |
+| 12 | 컨트롤 샘플 코드 | 별도 파일(ui-control-sample.md) 안내 |
+| 13 | 테마 색상 키 레퍼런스 | ToColor() 사용법 |
+| 14 | Window(팝업) 패턴 | 콜백, Show/Close, Action 필드 |
+| 15 | GoDialogs 패턴 | MessageBox, InputBox, SelectorBox |
+| 16 | 컨트롤 묶음 패턴 | AllControls, ForEach |
+
 ---
 
 ## using 네임스페이스 참조표

@@ -46,6 +46,23 @@
 }
 ```
 
+### Images / Fonts 리소스
+
+`Images`와 `Fonts`는 UIEditor에서 관리하는 리소스 딕셔너리이다.
+
+```json
+"Images": {
+  "bg_off": "Base64 또는 파일 경로",
+  "bg_on": "Base64 또는 파일 경로"
+},
+"Fonts": {}
+```
+
+- **Images**: IcPage의 `OffImage`/`OnImage`, GoPicture의 `Image`, GoAnimate의 `OnImage`/`OffImage` 등이 참조하는 이미지 리소스명을 Key로 등록
+- **Fonts**: 커스텀 폰트 등록 (일반적으로 비어 있음 — 나눔고딕은 기본 내장)
+- **.gud에서 직접 편집하지 않는 것을 권장** — UIEditor의 이미지 관리 기능으로 추가/삭제하면 Base64 인코딩과 경로 처리를 자동으로 수행
+- .gud에서 수동으로 Images를 추가하려면 Key(리소스명)와 Value(이미지 파일의 Base64 문자열)를 직접 작성해야 하며, UIEditor에서 열었을 때 정상 표시됨을 확인할 것
+
 > **⚠️ Name 필드 규칙 (필수)**
 > - `Name`은 C# 네임스페이스로 직접 사용되므로 **반드시 유효한 C# 식별자**여야 함
 > - **영문자·숫자·언더스코어만 허용** (한글, 띄어쓰기, 특수문자 불가)
