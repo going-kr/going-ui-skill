@@ -7,11 +7,13 @@ description: "Going Library skill for industrial HMI/SCADA development. Use when
 
 Going Library는 산업용 HMI/SCADA 화면을 만들기 위한 C# .NET 8.0 UI 프레임워크. SkiaSharp 기반 커스텀 렌더링으로 GoButton, GoLamp, GoDataGrid 등 40여 종의 산업용 컨트롤을 제공하며, Going.Basis로 Modbus RTU/TCP, LS Electric CNet, Mitsubishi MC, MQTT 통신을 지원한다. 주 타겟은 라즈베리파이(linux-arm64) 터치패널이며 Windows에서도 동작한다.
 
-| 패키지 | 버전 |
+| 패키지 | 설명 |
 |--------|------|
-| Going.Basis | 1.1.1 |
-| Going.UI | 1.1.1 |
-| Going.UI.OpenTK | 1.1.1 |
+| Going.Basis | 통신 및 유틸리티 (Modbus, MQTT, 직렬화) |
+| Going.UI | 플랫폼 독립 UI 코어 |
+| Going.UI.OpenTK | OpenTK 어댑터 (라즈베리파이/Windows) |
+
+> NuGet 최신 안정 버전 사용. `dotnet add package Going.UI.OpenTK`로 설치.
 
 > 스킬 최종 갱신: 2026-03-20
 

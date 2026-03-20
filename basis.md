@@ -22,13 +22,13 @@
 
 ## .csproj 패키지 참조
 
-```xml
-<ItemGroup>
-  <PackageReference Include="Going.Basis" Version="1.1.1" />
-  <PackageReference Include="Going.UI" Version="1.1.1" />
-  <PackageReference Include="Going.UI.OpenTK" Version="1.1.1" />
-</ItemGroup>
+```bash
+dotnet add package Going.Basis
+dotnet add package Going.UI
+dotnet add package Going.UI.OpenTK
 ```
+
+> 버전 미지정 시 NuGet 최신 안정 버전이 자동 설치된다.
 
 ## 네임스페이스
 
@@ -145,10 +145,18 @@ public class DeviceManager
 | `Timeout` | int | 타임아웃 |
 | `IsStart` | bool (읽기전용) | 시작 상태 |
 | `IsOpen` | bool (읽기전용) | 포트 열림 상태 |
+| `LastReceived` | Dictionary\<int, DateTime\> (읽기전용) | 슬레이브별 최종 수신 시각. 장비별 통신 상태 확인용 |
 | `WordAreas` | Dictionary\<int, string\> | 워드 영역 매핑 |
 | `BitAreas` | Dictionary\<int, string\> | 비트 영역 매핑 |
 | `Devices` | Dictionary\<int, Mems\> | 수신 데이터 캐시 |
 | `Tag` | object? | 사용자 데이터 |
+
+> **장비별 통신 상태 확인**: `IsOpen`은 포트/소켓 전체 상태만 알려준다. 개별 슬레이브가 살아있는지 확인하려면 `LastReceived[slaveId]`와 현재 시각을 비교하여 타임아웃 판정한다.
+> ```csharp
+> bool IsSlaveAlive(int slave, int timeoutMs = 3000)
+>     => RTU.LastReceived.ContainsKey(slave)
+>        && (DateTime.Now - RTU.LastReceived[slave]).TotalMilliseconds < timeoutMs;
+> ```
 
 ### MasterRTU 메서드
 
@@ -234,8 +242,8 @@ public class DeviceManager
 | `RemoteIP` | string | 서버 IP 주소 (**TCP 전용**) |
 | `RemotePort` | int | 서버 포트 (기본 502) (**TCP 전용**) |
 
-> `Interval`, `Timeout`, `IsStart`, `IsOpen`, `WordAreas`, `BitAreas`, `Devices`, `Tag`은 MasterRTU와 동일.
-> 메서드/이벤트도 동일 (Monitor/Set/Get/DeviceOpened/DeviceClosed).
+> `Interval`, `Timeout`, `IsStart`, `IsOpen`, `LastReceived`, `WordAreas`, `BitAreas`, `Devices`, `Tag`은 MasterRTU와 동일.
+> 메서드/이벤트도 동일 (Monitor/Set/Get/DeviceOpened/DeviceClosed). `LastReceived`로 슬레이브별 통신 상태 확인 가능.
 
 ---
 
@@ -539,7 +547,7 @@ public class DeviceManager
 - DeviceData는 항상 `ID` 프로퍼티(slaveId)를 가진다
 - 읽기 프로퍼티: MasterRTU/MasterTCP의 `GetWord(ID, ...)` / `GetBit(ID, ...)`를 래핑
 - 쓰기 메서드: `Set{기능이름}()` 형태로 MasterRTU/MasterTCP의 `SetWord` / `SetBit`를 래핑
-- 통신 상태: MasterRTU/MasterTCP 사용 시 `IsOpen` 또는 `DeviceOpened/DeviceClosed` 이벤트로 판단
+- 통신 상태: `LastReceived[ID]`로 슬레이브별 개별 판정. `IsOpen`은 포트/소켓 전체 상태만 확인용
 
 ### MasterRTU + DeviceData (권장)
 
@@ -569,6 +577,11 @@ public class DeviceData
         => _rtu.SetBit(ID, "P10", value);
     public void SetPressure(int value)
         => _rtu.SetWord(ID, "D21", value);
+
+    // 통신 상태 — 슬레이브별 개별 판정
+    public bool IsAlive(int timeoutMs = 3000)
+        => _rtu.LastReceived.ContainsKey(ID)
+           && (DateTime.Now - _rtu.LastReceived[ID]).TotalMilliseconds < timeoutMs;
 }
 ```
 
