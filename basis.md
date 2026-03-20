@@ -24,9 +24,9 @@
 
 ```xml
 <ItemGroup>
-  <PackageReference Include="Going.Basis" Version="1.1.0" />
-  <PackageReference Include="Going.UI" Version="1.1.0" />
-  <PackageReference Include="Going.UI.OpenTK" Version="1.1.0" />
+  <PackageReference Include="Going.Basis" Version="1.1.1" />
+  <PackageReference Include="Going.UI" Version="1.1.1" />
+  <PackageReference Include="Going.UI.OpenTK" Version="1.1.1" />
 </ItemGroup>
 ```
 
