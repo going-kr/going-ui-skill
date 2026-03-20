@@ -20,3 +20,4 @@ Thumbs.db
 
 # Large reference files
 sample/sample1/reference/*.xlsx
+.claude/
