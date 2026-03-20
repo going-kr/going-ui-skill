@@ -175,6 +175,10 @@ GoDirectionHV:      Horizon=0 Vertical=1
 GoDirection:        Left=0 Right=1 Up=2 Down=3
 GoAutoFontSize:     NotUsed=0 XXS=1 XS=2 S=3 M=4 L=5 XL=6 XXL=7
 GoButtonFillStyle:  Flat=0 Emboss=1 Gradient=2
+GoButtonsMode:      Button=0 Toggle=1 Radio=2
+GoBarGraphMode:     Stack=0 List=1
+GoItemSelectionMode: None=0 Single=1 Multi=2 MultiPC=3
+GoImageScaleMode:   Real=0 CenterImage=1 Stretch=2 Zoom=3
 ProgressDirection:  LTR=0 RTL=1 BTT=2 TTB=3
 ```
 
@@ -203,6 +207,7 @@ ProgressDirection:  LTR=0 RTL=1 BTT=2 TTB=3
 | GoKnob | ✓ | `FontName:"나눔고딕"` `FontSize:12` `TextColor:"Fore"` `KnobColor:"Base3"` `CursorColor:"Fore"` `Value:0` `Minimum:0` `Maximum:100` `Tick:null` `Format:"0"` `SweepAngle:270` `DrawText:true` — **BackColor/NeedleColor 아님** |
 | GoNumberBox | ✓ | `FontName:"나눔고딕"` `FontSize:12` `Direction:0` `TextColor:"Fore"` `BorderColor:"Base3"` `ButtonColor:"Base3"` `ValueColor:"Base1"` `Round:1` `Value:0` `Minimum:0` `Maximum:100` `Tick:1` `Format:null` `ButtonSize:40` `AutoFontSize:0` — **Step/FormatString 아님** |
 | GoStep | ✓ | `PrevIconString:"fa-chevron-left"` `NextIconString:"fa-chevron-right"` `ButtonColor:"Base3"` `StepColor:"Base2"` `SelectColor:"Select"` `IsCircle:false` `UseButton:true` `StepCount:7` `Step:0` — **Items/FontName/Direction 없음** |
+| GoButtons | ✓ | `IconSize:12` `IconDirection:0` `IconGap:5` `FontName:"나눔고딕"` `FontSize:12` `TextColor:"Fore"` `ButtonColor:"Base3"` `BorderColor:"Base3"` `SelectedButtonColor:"Select"` `SelectedBorderColor:"Select"` `Round:1` `BorderWidth:1` `FillStyle:0` `Buttons:[]` `Direction:0` `Mode:0` — Mode: GoButtonsMode(Button=0,Toggle=1,Radio=2). Buttons: `List<GoButtonsItem>` {Name, Text, IconString, Size:"100%", Selected} |
 
 ### 확장 컨트롤
 
@@ -221,7 +226,7 @@ ProgressDirection:  LTR=0 RTL=1 BTT=2 TTB=3
 | GoListBox | ✓ | `IconSize:12` `IconGap:5` `FontName:"나눔고딕"` `FontSize:12` `TextColor:"Fore"` `BoxColor:"Base1"` `BorderColor:"Base3"` `SelectColor:"Select"` `Round:1` `BackgroundDraw:true` `ItemHeight:30` `ItemAlignment:4` `SelectionMode:0` `Items:[]` |
 | GoTreeView | ✓ | `IconSize:12` `IconGap:5` `FontName:"나눔고딕"` `FontSize:12` `TextColor:"Fore"` `BoxColor:"Base1"` `BorderColor:"Base3"` `SelectColor:"Select"` `Round:1` `BackgroundDraw:true` `DragMode:false` `ItemHeight:30` `SelectionMode:0` `Nodes:[]` |
 | GoToolBox | ✓ | `IconSize:12` `IconGap:5` `FontName:"나눔고딕"` `FontSize:12` `TextColor:"Fore"` `BoxColor:"Base1"` `BorderColor:"Base3"` `SelectColor:"Select"` `CategoryColor:"Base2"` `Round:1` `BackgroundDraw:true` `ItemHeight:30` `Categories:[]` `DragMode:true` |
-| GoBarGraph | ✓ | `GridColor:"Base3"` `TextColor:"Fore"` `RemarkColor:"Base2"` `GraphColor:"Back"` `FontName:"나눔고딕"` `FontSize:12` `GraduationCount:10` `FormatString:null` `Mode:0` `Direction:1` `Series:[]` `BarSize:20` `BarGap:20` `Minimum:null` `Maximum:null` |
+| GoBarGraph | ✓ | `GridColor:"Base3"` `TextColor:"Fore"` `RemarkColor:"Base2"` `GraphColor:"Back"` `FontName:"나눔고딕"` `FontSize:12` `GraduationCount:10` `FormatString:null` `Mode:1` `Direction:1` `Series:[]` `BarSize:20` `BarGap:20` `Minimum:null` `Maximum:null` |
 | GoCircleGraph | | `GridColor:"Base3"` `TextColor:"Fore"` `RemarkColor:"Base2"` `FontName:"나눔고딕"` `FontSize:12` `Series:[]` |
 | GoLineGraph | ✓ | `GridColor:"Base3"` `TextColor:"Fore"` `RemarkColor:"Base2"` `GraphColor:"Back"` `FontName:"나눔고딕"` `FontSize:12` `GraduationCount:10` `FormatString:null` `Series:[]` `PointWidth:70` |
 | GoTimeGraph | ✓ | `GridColor:"Base3"` `TextColor:"Fore"` `RemarkColor:"Base2"` `GraphColor:"Back"` `FontName:"나눔고딕"` `FontSize:12` `XScale:"01:00:00"` `XAxisGraduationTime:"00:10:00"` `YAxisGraduationCount:10` `TimeFormatString:null` `ValueFormatString:null` `Series:[]` |

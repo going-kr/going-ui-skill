@@ -1,34 +1,43 @@
 #!/usr/bin/env python3
-"""
-Going UI Skill — Eval Runner
+"""Going UI Skill — Eval Runner
 
-evals.json 테스트 케이스를 Anthropic API로 실행하고,
+evals.json 테스트 케이스를 claude CLI로 실행하고,
 must_contain/must_not_contain 검증 + .gud JSON 구조 validation을 수행한다.
 
 사용법:
   # 전체 실행
   python eval_runner.py
 
-  # 특정 케이스만 실행
-  python eval_runner.py --name "GoButton 클릭 이벤트 바인딩"
+  # 특정 케이스만 실행 (이름 부분 일치)
+  python eval_runner.py --name "GoButton"
+
+  # 특정 인덱스만 실행 (0-based)
+  python eval_runner.py --index 0 2 5
 
   # .gud 파일 단독 검증
   python eval_runner.py --validate path/to/file.gud
 
-  # 모델 지정
-  python eval_runner.py --model claude-sonnet-4-6-20250514
+  # 병렬 실행
+  python eval_runner.py --parallel 3
 
-환경 변수:
-  ANTHROPIC_API_KEY — Anthropic API 키 (필수)
+  # 프롬프트만 확인 (실행 안 함)
+  python eval_runner.py --dry-run
+
+  # 결과 JSON 저장
+  python eval_runner.py --output results.json
+
+필요 조건:
+  claude CLI (Claude Code) — pip/npm 패키지 불필요
 """
 
 import argparse
 import io
 import json
-import os
 import re
+import subprocess
 import sys
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 # Windows cp949 인코딩 문제 방지
@@ -36,19 +45,11 @@ if sys.stdout.encoding != "utf-8":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
-HAS_ANTHROPIC = False
-try:
-    import anthropic
-    HAS_ANTHROPIC = True
-except ImportError:
-    pass
-
 
 # ─── 경로 설정 ───────────────────────────────────────────────
 
 SKILL_DIR = Path(__file__).parent
 EVALS_PATH = SKILL_DIR / "evals.json"
-SKILL_MD_PATH = SKILL_DIR / "SKILL.md"
 
 
 # ─── .gud JSON Validator ─────────────────────────────────────
@@ -253,23 +254,29 @@ def validate_gud_file(filepath):
     return validate_gud(data)
 
 
-# ─── Eval Runner ─────────────────────────────────────────────
+# ─── Claude CLI Runner ───────────────────────────────────────
 
-def load_skill_context():
-    """SKILL.md를 시스템 프롬프트용 컨텍스트로 로드한다."""
-    skill_text = SKILL_MD_PATH.read_text(encoding="utf-8")
-    return skill_text
-
-
-def load_reference_docs(references):
-    """references 목록의 md 파일들을 읽어 컨텍스트에 추가한다."""
-    docs = []
-    for ref in references:
-        ref_path = SKILL_DIR / ref
-        if ref_path.exists():
-            content = ref_path.read_text(encoding="utf-8")
-            docs.append(f"--- {ref} ---\n{content}")
-    return "\n\n".join(docs)
+def run_claude(prompt, timeout=120):
+    """claude -p 로 프롬프트를 실행하고 (응답, 소요시간) 반환."""
+    full_prompt = (
+        "You are evaluating the Going UI skill. "
+        "Answer the user's prompt using the going-ui skill knowledge. "
+        "Respond in the same language as the prompt.\n\n---\n\n"
+        + prompt
+    )
+    start = time.time()
+    result = subprocess.run(
+        ["claude", "-p", full_prompt, "--no-input"],
+        capture_output=True,
+        text=True,
+        timeout=timeout,
+        cwd=str(SKILL_DIR),
+    )
+    elapsed = time.time() - start
+    output = result.stdout.strip()
+    if result.returncode != 0 and not output:
+        output = f"[ERROR] returncode={result.returncode}\nstderr: {result.stderr.strip()}"
+    return output, elapsed
 
 
 def extract_json_from_response(text):
@@ -293,36 +300,28 @@ def extract_json_from_response(text):
     return None
 
 
-def run_eval(client, eval_case, model, skill_context):
-    """단일 eval 케이스를 실행하고 결과를 반환한다."""
+# ─── Eval Runner ─────────────────────────────────────────────
+
+def run_single_eval(index, eval_case, timeout):
+    """단일 eval 실행 + 검사. 결과 dict 반환."""
     name = eval_case["name"]
-    prompt = eval_case["prompt"]
     must_contain = eval_case.get("must_contain", [])
     must_not_contain = eval_case.get("must_not_contain", [])
-    references = eval_case.get("references", [])
 
-    # 참조 문서 로드
-    ref_docs = load_reference_docs(references)
-    system_prompt = f"{skill_context}\n\n{ref_docs}" if ref_docs else skill_context
-
-    # API 호출
-    start_time = time.time()
     try:
-        response = client.messages.create(
-            model=model,
-            max_tokens=4096,
-            system=system_prompt,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        response_text = response.content[0].text
-        elapsed = time.time() - start_time
-    except Exception as e:
+        response_text, elapsed = run_claude(eval_case["prompt"], timeout=timeout)
+    except subprocess.TimeoutExpired:
         return {
+            "index": index,
             "name": name,
             "passed": False,
-            "errors": [f"API 호출 실패: {e}"],
-            "elapsed": time.time() - start_time,
+            "errors": ["TIMEOUT"],
+            "elapsed": timeout,
+            "response_preview": "[TIMEOUT]",
         }
+    except FileNotFoundError:
+        print("ERROR: 'claude' CLI not found. Install Claude Code first.", file=sys.stderr)
+        sys.exit(1)
 
     # must_contain 검증
     errors = []
@@ -335,24 +334,21 @@ def run_eval(client, eval_case, model, skill_context):
         if keyword in response_text:
             errors.append(f"MUST_NOT_CONTAIN 실패: '{keyword}' 포함됨")
 
-    # .gud 관련 케이스 — JSON 구조 validation
-    # evals.json에 "validate_gud": true 태그가 있거나,
-    # 응답에 JSON 블록이 있고 그 안에 GoDesign 관련 키가 있으면 검증
+    # .gud JSON 구조 validation
     is_gud_case = eval_case.get("validate_gud", False)
-    gud_errors = []
     extracted = extract_json_from_response(response_text)
     if extracted:
-        # GoDesign 관련 키가 있으면 자동 감지
         gud_keys = {"Pages", "Windows", "DesignWidth", "DesignHeight", "TitleBar"}
         if is_gud_case or (isinstance(extracted, dict) and gud_keys & set(extracted.keys())):
             is_gud_case = True
     if is_gud_case and extracted:
-            gud_validation = validate_gud(extracted)
-            gud_errors = [str(e) for e in gud_validation]
-            if gud_errors:
-                errors.extend([f"GUD_VALIDATION: {e}" for e in gud_errors])
+        gud_validation = validate_gud(extracted)
+        gud_errors = [str(e) for e in gud_validation]
+        if gud_errors:
+            errors.extend([f"GUD_VALIDATION: {e}" for e in gud_errors])
 
     return {
+        "index": index,
         "name": name,
         "passed": len(errors) == 0,
         "errors": errors,
@@ -363,11 +359,14 @@ def run_eval(client, eval_case, model, skill_context):
 
 def main():
     parser = argparse.ArgumentParser(description="Going UI Skill Eval Runner")
-    parser.add_argument("--name", type=str, help="특정 케이스 이름만 실행")
+    parser.add_argument("--name", type=str, help="이름 부분 일치 필터")
+    parser.add_argument("--index", type=int, nargs="+", help="실행할 eval 인덱스 (0-based)")
     parser.add_argument("--validate", type=str, help=".gud 파일 단독 검증")
-    parser.add_argument("--model", type=str, default="claude-sonnet-4-6-20250514",
-                        help="사용할 모델 (기본: claude-sonnet-4-6-20250514)")
+    parser.add_argument("--timeout", type=int, default=120, help="케이스당 타임아웃 초 (기본 120)")
+    parser.add_argument("--parallel", type=int, default=1, help="동시 실행 수 (기본 1)")
+    parser.add_argument("--output", "-o", type=str, help="결과 JSON 저장 경로")
     parser.add_argument("--verbose", action="store_true", help="응답 미리보기 출력")
+    parser.add_argument("--dry-run", action="store_true", help="프롬프트만 출력, 실행 안 함")
     args = parser.parse_args()
 
     # .gud 단독 검증 모드
@@ -382,84 +381,105 @@ def main():
             print("PASS — 구조 검증 통과")
         sys.exit(1 if errors else 0)
 
-    # anthropic 패키지 확인
-    if not HAS_ANTHROPIC:
-        print("ERROR: anthropic 패키지가 필요합니다. pip install anthropic")
-        sys.exit(1)
-
-    # API 키 확인
-    api_key = os.environ.get("ANTHROPIC_API_KEY")
-    if not api_key:
-        print("ERROR: ANTHROPIC_API_KEY 환경 변수를 설정하세요.")
-        sys.exit(1)
-
     # evals.json 로드
     with open(EVALS_PATH, "r", encoding="utf-8") as f:
         evals = json.load(f)
 
-    # 특정 케이스 필터
+    # 필터
+    selected = list(enumerate(evals))
+    if args.index is not None:
+        index_set = set(args.index)
+        selected = [(i, e) for i, e in selected if i in index_set]
     if args.name:
-        evals = [e for e in evals if args.name.lower() in e["name"].lower()]
-        if not evals:
-            print(f"ERROR: '{args.name}'에 해당하는 케이스 없음")
-            sys.exit(1)
+        name_lower = args.name.lower()
+        selected = [(i, e) for i, e in selected if name_lower in e["name"].lower()]
 
-    # 스킬 컨텍스트 로드
-    skill_context = load_skill_context()
-    client = anthropic.Anthropic(api_key=api_key)
+    if not selected:
+        print("ERROR: 조건에 맞는 케이스 없음")
+        sys.exit(1)
 
     print(f"\n{'='*60}")
-    print(f"  Going UI Skill Eval Runner")
-    print(f"  Model: {args.model}")
-    print(f"  Cases: {len(evals)}")
+    print(f"  Going UI Skill Eval Runner (claude CLI)")
+    print(f"  Cases: {len(selected)}/{len(evals)} | Parallel: {args.parallel}")
     print(f"{'='*60}\n")
 
+    # dry-run 모드
+    if args.dry_run:
+        for i, case in selected:
+            print(f"[{i:2d}] {case['name']}")
+            print(f"     prompt: {case['prompt'][:100]}...")
+            print(f"     must_contain: {case.get('must_contain', [])}")
+            print(f"     must_not_contain: {case.get('must_not_contain', [])}")
+            print()
+        print(f"(dry-run: {len(selected)} cases listed, nothing executed)")
+        return
+
+    # 실행
     results = []
-    passed = 0
-    failed = 0
+    total_start = time.time()
 
-    for i, eval_case in enumerate(evals, 1):
-        name = eval_case["name"]
-        print(f"[{i}/{len(evals)}] {name} ... ", end="", flush=True)
+    if args.parallel <= 1:
+        # 순차 실행
+        for idx, (i, eval_case) in enumerate(selected, 1):
+            print(f"[{idx}/{len(selected)}] {eval_case['name']} ... ", end="", flush=True)
+            result = run_single_eval(i, eval_case, args.timeout)
+            results.append(result)
 
-        result = run_eval(client, eval_case, args.model, skill_context)
-        results.append(result)
+            if result["passed"]:
+                print(f"PASS ({result['elapsed']:.1f}s)")
+            else:
+                print(f"FAIL ({result['elapsed']:.1f}s)")
+                for err in result["errors"]:
+                    print(f"    {err}")
 
-        if result["passed"]:
-            passed += 1
-            print(f"PASS ({result['elapsed']:.1f}s)")
-        else:
-            failed += 1
-            print(f"FAIL ({result['elapsed']:.1f}s)")
-            for err in result["errors"]:
-                print(f"    {err}")
+            if args.verbose and "response_preview" in result:
+                print(f"    Response: {result['response_preview']}")
+            print()
+    else:
+        # 병렬 실행
+        with ThreadPoolExecutor(max_workers=args.parallel) as pool:
+            futures = {
+                pool.submit(run_single_eval, i, case, args.timeout): (i, case)
+                for i, case in selected
+            }
+            for future in as_completed(futures):
+                result = future.result()
+                results.append(result)
+                status = "PASS" if result["passed"] else "FAIL"
+                print(f"  [{result['index']:2d}] {status} ({result['elapsed']:.1f}s) {result['name']}")
+                if not result["passed"]:
+                    for err in result["errors"]:
+                        print(f"       {err}")
+        results.sort(key=lambda x: x["index"])
 
-        if args.verbose and "response_preview" in result:
-            print(f"    Response: {result['response_preview']}")
-
-        print()
+    total_elapsed = time.time() - total_start
 
     # 결과 요약
-    total = passed + failed
+    passed = sum(1 for r in results if r["passed"])
+    failed = len(results) - passed
+    total = len(results)
+
     print(f"{'='*60}")
     print(f"  Results: {passed}/{total} passed ({passed/total*100:.0f}%)")
+    print(f"  Time: {total_elapsed:.1f}s")
     if failed:
         print(f"  Failed: {failed}")
         print(f"\n  실패 케이스:")
         for r in results:
             if not r["passed"]:
-                print(f"    - {r['name']}")
+                print(f"    - [{r['index']}] {r['name']}")
     print(f"{'='*60}\n")
 
     # 결과 JSON 저장
-    output_path = SKILL_DIR / "eval_results.json"
+    output_path = args.output or str(SKILL_DIR / "eval_results.json")
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump({
-            "model": args.model,
+            "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S"),
             "total": total,
             "passed": passed,
             "failed": failed,
             "pass_rate": f"{passed/total*100:.1f}%",
+            "elapsed": round(total_elapsed, 1),
             "results": results,
         }, f, ensure_ascii=False, indent=2)
     print(f"결과 저장: {output_path}")

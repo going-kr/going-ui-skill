@@ -64,10 +64,23 @@ GoInput은 추상 기본 클래스. 하위 타입:
 }
 ```
 
+> GoInputCombo = **드롭다운** 선택. 클릭 시 팝업 목록이 열리고 항목 선택.
+> Event: `SelectedIndexChanged`. 런타임: `SelectedIndex`(int), `SelectedItem`(GoListItem?).
+
 ### GoInputSelector 추가 속성
 ```json
 { "Items": [] }
 ```
+
+> GoInputSelector = **좌우 화살표** 선택기. 좌/우 버튼으로 항목을 순환.
+> Event: `SelectedIndexChanged`. 런타임: `SelectedIndex`(int), `SelectedItem`(GoListItem?).
+>
+> **GoInputCombo vs GoInputSelector 차이:**
+> | | GoInputCombo | GoInputSelector |
+> |---|---|---|
+> | UX | 드롭다운 팝업 | 좌우 화살표 순환 |
+> | 속성 | Items + ItemHeight + MaximumViewCount | Items만 |
+> | 적합 | 항목이 많을 때 (5개 이상) | 항목이 적을 때 (2~4개) |
 
 ### GoInputColor 추가 속성
 ```json

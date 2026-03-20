@@ -219,4 +219,4 @@
 }
 ```
 
-> `ScaleMode`: GoImageScaleMode — Real=0, Stretch=1, Uniform=2, UniformFill=3
+> `ScaleMode`: GoImageScaleMode — Real=0, CenterImage=1, Stretch=2, Zoom=3

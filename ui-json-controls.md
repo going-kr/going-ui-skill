@@ -1,6 +1,6 @@
 # Going UI — 컨트롤 JSON (기본)
 
-> 이 문서는 `ui-json.md`의 하위 참조 문서. 기본 컨트롤 14종의 JSON 구조를 다룬다.
+> 이 문서는 `ui-json.md`의 하위 참조 문서. 기본 컨트롤 15종의 JSON 구조를 다룬다.
 > 확장 컨트롤(GoDataGrid, 그래프, 목록 등)은 `ui-json-controls-ext.md` 참조.
 > GoInput/GoValue 계열은 `ui-json-input-value.md` 참조.
 > 공통 속성, Enum, 테마 등은 `ui-json.md` 참조.
@@ -16,6 +16,7 @@
 | 5 | GoSwitch | 12 | GoKnob |
 | 6 | GoToggleButton | 13 | GoNumberBox |
 | 7 | GoRadioButton | 14 | GoStep |
+| | | 15 | GoButtons |
 
 ---
 
@@ -359,3 +360,42 @@
 
 > GoStep에는 Items/FontName/FontSize/TextColor/Direction 속성 없음!
 > `Step` (not CurrentStep), `StepCount`(int)로 개수 지정.
+
+### GoButtons
+```json
+{
+  "Type": "GoButtons",
+  "Value": {
+    "IconSize": 12, "IconDirection": 0, "IconGap": 5,
+    "FontName": "나눔고딕", "FontStyle": 0, "FontSize": 12,
+    "TextColor": "Fore",
+    "ButtonColor": "Base3", "BorderColor": "Base3",
+    "SelectedButtonColor": "Select", "SelectedBorderColor": "Select",
+    "Round": 1, "BorderWidth": 1, "FillStyle": 0,
+    "Buttons": [],
+    "Direction": 0, "Mode": 0,
+    "Id": "UUID", "Name": null,
+    "Visible": true, "Enabled": true, "Selectable": true,
+    "Bounds": "0,0,300,40", "Dock": 0,
+    "Margin": { "Left": 3, "Top": 3, "Right": 3, "Bottom": 3 }
+  }
+}
+```
+
+> `Mode`: GoButtonsMode — Button=0(일반 클릭), Toggle=1(토글 선택), Radio=2(단일 선택).
+> `Direction`: GoDirectionHV — Horizon=0, Vertical=1.
+> `Buttons`: `List<GoButtonsItem>`. 아래 구조:
+>
+> ```json
+> { "Name": "btn1", "Text": "버튼1", "IconString": null, "Size": "100%", "Selected": false }
+> ```
+>
+> | 속성 | 타입 | 설명 |
+> |------|------|------|
+> | `Name` | string | 버튼 식별자 (ButtonClicked 이벤트에서 사용) |
+> | `Text` | string? | 표시 텍스트 |
+> | `IconString` | string? | FontAwesome 아이콘 |
+> | `Size` | string | 버튼 크기 — `"100%"` (균등), `"80px"` (고정) |
+> | `Selected` | bool | Toggle/Radio 모드에서 선택 상태 |
+>
+> GoButtons ≠ GoButton. GoButton은 단일 버튼, **GoButtons는 멀티 버튼 컨트롤**로 여러 버튼을 하나의 컨트롤에 배치.

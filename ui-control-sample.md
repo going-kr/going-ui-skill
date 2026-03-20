@@ -392,6 +392,69 @@ public partial class PageSwitchPanel : GoPage
 
 ---
 
+## GoButtons (멀티 버튼)
+
+### 디자인 설정 (UIEditor)
+
+```
+Mode: 0                     # GoButtonsMode — 0=Button, 1=Toggle, 2=Radio
+Direction: 0                # GoDirectionHV — 0=Horizon, 1=Vertical
+Buttons:
+  - { Name: "btn1", Text: "메뉴1", IconString: null, Size: "100%", Selected: false }
+  - { Name: "btn2", Text: "메뉴2", IconString: null, Size: "100%", Selected: false }
+  - { Name: "btn3", Text: "메뉴3", IconString: null, Size: "100%", Selected: false }
+```
+
+### C# 코드 — Button 모드 (클릭 이벤트)
+
+```csharp
+// Designer.cs에서 var buttons = design["btns"] as GoButtons;
+buttons.ButtonClicked += (o, s) =>
+{
+    // s.ButtonsItem — 클릭된 GoButtonsItem
+    // s.ButtonsItem.Name — 버튼 식별자
+    switch (s.ButtonsItem.Name)
+    {
+        case "btn1": /* 메뉴1 동작 */ break;
+        case "btn2": /* 메뉴2 동작 */ break;
+        case "btn3": /* 메뉴3 동작 */ break;
+    }
+};
+```
+
+### C# 코드 — Radio 모드 (단일 선택)
+
+```csharp
+// Mode=2 (Radio) — 하나만 선택, 나머지 자동 해제
+buttons.SelectedChanged += (o, s) =>
+{
+    // s.ButtonsItem — 선택된 GoButtonsItem
+    // s.ButtonsItem.Name, s.ButtonsItem.Selected
+    var selected = s.ButtonsItem;
+    if (selected.Selected)
+    {
+        // 선택된 버튼 처리
+    }
+};
+```
+
+### C# 코드 — Toggle 모드 (다중 토글)
+
+```csharp
+// Mode=1 (Toggle) — 각 버튼 독립 토글
+buttons.SelectedChanged += (o, s) =>
+{
+    var item = s.ButtonsItem;
+    // item.Name, item.Selected (true/false 토글됨)
+};
+```
+
+> GoButtons의 `Mode`에 따라 이벤트 사용이 달라짐:
+> - **Button(0)**: `ButtonClicked` 이벤트 — 클릭 동작용
+> - **Toggle(1)/Radio(2)**: `SelectedChanged` 이벤트 — 선택 상태 변경용
+
+---
+
 ## GoDataGrid (종합 샘플)
 
 ### 디자인 설정 (UIEditor)

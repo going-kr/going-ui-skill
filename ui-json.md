@@ -6,7 +6,7 @@
 
 | 작업 | 파일 | 설명 |
 |------|------|------|
-| 기본 컨트롤 배치 | `ui-json-controls.md` | GoLabel, GoButton, GoLamp, GoSlider 등 기본 14종 |
+| 기본 컨트롤 배치 | `ui-json-controls.md` | GoLabel, GoButton, GoLamp, GoSlider, GoButtons 등 기본 15종 |
 | 확장 컨트롤 배치 | `ui-json-controls-ext.md` | GoDataGrid, GoGauge, GoBarGraph, GoNavigator 등 확장 19종 |
 | GoInput/GoValue 배치 | `ui-json-input-value.md` | GoInputString, GoInputNumber 등 입력 7종 + GoValue 표시 3종 |
 | 컨테이너 배치 | `ui-json-containers.md` | GoTableLayoutPanel, GoBoxPanel, GoTabControl 등 9종 |
@@ -237,13 +237,29 @@ Normal=0, Italic=1, Bold=2, BoldItalic=3
 ### GoRoundType
 Rect=0, All=1, L=2, R=3, T=4, B=5, LT=6, RT=7, LB=8, RB=9, Ellipse=10
 
+| 값 | 의미 |
+|----|------|
+| `Rect`(0) | 직각 (라운드 없음) |
+| `All`(1) | 네 모서리 모두 라운드 |
+| `L`(2) | 왼쪽 두 모서리만 라운드 |
+| `R`(3) | 오른쪽 두 모서리만 라운드 |
+| `T`(4) | 위쪽 두 모서리만 라운드 |
+| `B`(5) | 아래쪽 두 모서리만 라운드 |
+| `LT`(6) | 좌상단만 라운드 |
+| `RT`(7) | 우상단만 라운드 |
+| `LB`(8) | 좌하단만 라운드 |
+| `RB`(9) | 우하단만 라운드 |
+| `Ellipse`(10) | 타원형 |
+
 ### GoDockStyle
 None=0, Left=1, Top=2, Right=3, Bottom=4, Fill=5
 
 ### GoContentAlignment
 TopLeft=0, TopCenter=1, TopRight=2,
-MiddleLeft=3, **MiddleCenter=4**, MiddleRight=5,
+MiddleLeft=3, **MiddleCenter=4** (기본값), MiddleRight=5,
 BottomLeft=6, BottomCenter=7, BottomRight=8
+
+> 대부분의 컨트롤에서 `ContentAlignment: 4` = MiddleCenter(중앙 정렬).
 
 ### GoDirectionHV
 Horizon=0, Vertical=1
@@ -284,6 +300,9 @@ Stack=0, List=1
 
 ### GoItemSelectionMode
 None=0, Single=1, Multi=2, MultiPC=3
+
+### GoButtonsMode
+Button=0, Toggle=1, Radio=2
 
 ---
 

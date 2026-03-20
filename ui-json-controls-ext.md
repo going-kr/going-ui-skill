@@ -14,7 +14,7 @@
 | 4 | GoIconButton | 11 | GoNavigator | 18 | GoTimeGraph |
 | 5 | GoGauge | 12 | GoListBox | 19 | GoTrendGraph |
 | 6 | GoMeter | 13 | GoTreeView | |  |
-| 7 |  | 14 | GoToolBox | |  |
+| 7 | GoColorSelector | 14 | GoToolBox | |  |
 
 ---
 
@@ -257,7 +257,7 @@
 }
 ```
 
-> `ScaleMode`: GoImageScaleMode — Real=0, Stretch=1, Uniform=2, UniformFill=3.
+> `ScaleMode`: GoImageScaleMode — Real=0, CenterImage=1, Stretch=2, Zoom=3.
 > `Round`: GoRoundType — GoPicture는 기본 Rect(0).
 
 ### GoAnimate
@@ -407,7 +407,7 @@
     "RemarkColor": "Base2", "GraphColor": "Back",
     "FontName": "나눔고딕", "FontStyle": 0, "FontSize": 12,
     "GraduationCount": 10, "FormatString": null,
-    "Mode": 0, "Direction": 1,
+    "Mode": 1, "Direction": 1,
     "Series": [],
     "BarSize": 20, "BarGap": 20,
     "Minimum": null, "Maximum": null,
@@ -419,7 +419,7 @@
 }
 ```
 
-> `Mode`: GoBarGraphMode — List=0, Stack=1.
+> `Mode`: GoBarGraphMode — Stack=0, List=1.
 > `Series`: List\<GoGraphSeries\>.
 
 ### GoCircleGraph
