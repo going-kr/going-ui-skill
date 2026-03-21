@@ -32,12 +32,8 @@ https://going-kr.github.io/Going-Library/setup.html 여기 보고 개발 환경 
 
 Going Library로 HMI 애플리케이션을 만드는 전체 흐름입니다.
 
-<table>
-<tr><td>
-
-### 🔵 Step 1 — 프로젝트 브리프 작성
-
-<sup><code>Claude 채팅</code> · <code>Claude Code</code></sup>
+### Step 1. 프로젝트 브리프 작성
+> 🔵 `Claude 채팅` / `Claude Code`
 
 화면 구성, 통신 장비, 해상도 등을 대화로 정리하면 `project_brief.md`를 생성합니다.
 
@@ -47,12 +43,10 @@ Going Library로 HMI 애플리케이션을 만드는 전체 흐름입니다.
  Modbus RTU로 슬레이브 1번과 통신."
 ```
 
-</td></tr>
-<tr><td>
+---
 
-### 🔵 Step 2 — 디자인 파일(.gud) 생성
-
-<sup><code>Claude 채팅</code> · <code>Claude Code</code></sup>
+### Step 2. 디자인 파일(.gud) 생성
+> 🔵 `Claude 채팅` / `Claude Code`
 
 브리프 기반으로 `.gud` 파일을 생성합니다. 50여 종의 산업용 컨트롤을 배치할 수 있습니다.
 이미지를 첨부하면 화면 레이아웃을 분석하여 변환할 수도 있습니다.
@@ -62,31 +56,25 @@ Going Library로 HMI 애플리케이션을 만드는 전체 흐름입니다.
 "이 이미지를 참고해서 디자인 파일 만들어줘."  ← HMI 스크린샷 첨부
 ```
 
-</td></tr>
-<tr><td>
+---
 
-### 🟢 Step 3 — UI Editor에서 편집 + MakeCode
-
-<sup><code>사용자</code> · Going UI Editor</sup>
+### Step 3. UI Editor에서 편집 + MakeCode
+> 🟢 `사용자` — Going UI Editor
 
 `.gud` 파일을 UI Editor에서 열어 컨트롤 위치와 속성을 미세 조정합니다.
 편집 완료 후 **MakeCode** 버튼 → C# 코드(`Designer.cs`)를 자동 생성합니다.
 
-</td></tr>
-<tr><td>
+---
 
-### 🔵 Step 4 — C# 코드 구현
-
-<sup><code>Claude Code</code></sup>
+### Step 4. C# 코드 구현
+> 🔵 `Claude Code`
 
 MakeCode가 생성한 `Designer.cs`를 기반으로 비즈니스 로직을 작성합니다.
 
-| 작업 | 예시 |
-|------|------|
-| 이벤트 바인딩 | `ButtonClicked`, `MouseClicked`, `ValueChanged` |
-| 데이터 연동 | `OnUpdate()`에서 주기적 UI 갱신 |
-| 통신 코드 | Modbus RTU/TCP, MQTT, CNet, MC |
-| 화면 전환 | 페이지/윈도우 전환 |
+- **이벤트 바인딩** — `ButtonClicked`, `MouseClicked`, `ValueChanged`
+- **데이터 연동** — `OnUpdate()`에서 주기적 UI 갱신
+- **통신 코드** — Modbus RTU/TCP, MQTT, CNet, MC
+- **화면 전환** — 페이지/윈도우 전환
 
 ```csharp
 btnStart.ButtonClicked += (o, s) =>
@@ -95,21 +83,16 @@ btnStart.ButtonClicked += (o, s) =>
 };
 ```
 
-</td></tr>
-<tr><td>
+---
 
-### 🔵 Step 5 — 빌드 및 장치 배포
-
-<sup><code>Claude Code</code></sup>
+### Step 5. 빌드 및 장치 배포
+> 🔵 `Claude Code`
 
 `dotnet publish`로 빌드 후, `gtcli`로 Raspberry Pi 터치 패널에 배포합니다.
 
 ```
 "172.30.1.50 장치에 빌드해서 배포해줘."
 ```
-
-</td></tr>
-</table>
 
 ---
 
