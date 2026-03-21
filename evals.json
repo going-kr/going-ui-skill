@@ -1,31 +1,220 @@
 [
   {
-    "name": "GoButton 클릭 이벤트 바인딩",
-    "prompt": "GoButton 클릭 이벤트를 바인딩하는 C# 코드를 작성해줘. 버튼 이름은 btnStart이고, 클릭하면 GoLamp lampRun의 OnOff를 true로 변경해야 해.",
+    "category": "절대규칙",
+    "name": "절대규칙: Designer.cs 수정 거부",
+    "priority": "core",
+    "prompt": "MainWindow.Designer.cs에서 btnStart 변수명을 btnRun으로 변경해줘.",
     "expected_behavior": [
-      "Designer.cs에서 btnStart, lampRun 변수를 참조",
-      "btnStart.ButtonClicked += (o, s) => { ... } 패턴 사용 (GoButton 전용 이벤트)",
-      "lampRun.OnOff = true 설정",
-      "Designer.cs를 직접 수정하지 않음"
+      "Designer.cs 수정을 거부",
+      "UIEditor에서 MakeCode를 다시 실행하라고 안내",
+      "절대 규칙 #1을 준수"
     ],
     "must_contain": [
-      "ButtonClicked",
-      "lampRun.OnOff",
-      "true"
+      "Designer.cs"
     ],
     "must_not_contain": [
-      "Click +=",
-      "EventHandler",
-      "new EventHandler",
-      "MouseClick"
+      "btnRun =",
+      "var btnRun"
     ],
     "references": [
-      "ui-code.md"
-    ],
-    "priority": "core"
+      "SKILL.md"
+    ]
   },
   {
+    "category": "절대규칙",
+    "name": "절대규칙: API 추측 금지 — 잘못된 속성명 교정",
+    "priority": "core",
+    "prompt": "GoButton의 BackColor 속성을 빨간색으로 변경하는 C# 코드를 작성해줘.",
+    "expected_behavior": [
+      "BackColor는 GoButton에 없는 속성임을 인지",
+      "올바른 속성명 ButtonColor를 사용",
+      "API 문서 확인을 권고하거나 직접 확인"
+    ],
+    "must_contain": [
+      "ButtonColor"
+    ],
+    "must_not_contain": [
+      "BackColor",
+      ".BackColor =",
+      "Background"
+    ],
+    "references": [
+      "SKILL.md",
+      "code-pattern.md"
+    ]
+  },
+  {
+    "category": "절대규칙",
+    "name": "절대규칙: 영문 네이밍 — 한글 식별자 금지",
+    "priority": "core",
+    "prompt": "VRU 장치의 DeviceData 클래스를 만들어줘. MasterRTU 기반이고 slaveId=1. 레지스터: D0=운전상태(bool), D10=온도(0.1℃). 쓰기: D20=설정온도.",
+    "expected_behavior": [
+      "프로퍼티명/메서드명에 영문+숫자만 사용",
+      "한글은 주석으로만 사용",
+      "ID 프로퍼티 포함",
+      "Set{기능이름}() 메서드명도 영문"
+    ],
+    "must_contain": [
+      "ID",
+      "MasterRTU",
+      "GetWord",
+      "SetWord"
+    ],
+    "must_not_contain": [
+      "운전상태",
+      "public.*온도",
+      "Set온도",
+      "Set설정",
+      "public.*설정"
+    ],
+    "references": [
+      "SKILL.md",
+      "comm-pattern.md"
+    ]
+  },
+  {
+    "category": "절대규칙",
+    "name": "절대규칙: 데이터 구조 임의 작성 금지",
+    "priority": "core",
+    "prompt": "project_brief.md에 Modbus RTU 통신이 필요하다고 적혀있어. DeviceManager와 DeviceData를 작성해줘. 레지스터 맵은 따로 안 줬어.",
+    "expected_behavior": [
+      "레지스터 맵 없이 DeviceManager를 임의로 작성하지 않음",
+      "사용자에게 레지스터 맵/데이터 모델을 문의",
+      "주소/데이터 의미를 확인해야 한다고 안내"
+    ],
+    "must_contain": [
+      "레지스터"
+    ],
+    "must_not_contain": [
+      "MonitorWord_F3(1, 0",
+      "GetWord(1, \"D0\")"
+    ],
+    "references": [
+      "SKILL.md"
+    ]
+  },
+  {
+    "category": "절대규칙",
+    "name": "절대규칙: .gud 생성 시 스크립트 사용 거부",
+    "priority": "core",
+    "prompt": ".gud 파일이 너무 커서 Python으로 JSON을 생성해줘. 컨트롤 50개를 반복문으로 만들어야 해.",
+    "expected_behavior": [
+      "Python/스크립트 사용을 거부",
+      "Write/Edit 도구로 직접 JSON을 작성하겠다고 안내",
+      "절대 규칙 #7을 준수",
+      "\"파일이 크다\"는 예외 사유가 아님을 인지"
+    ],
+    "must_contain": [
+      "Write",
+      "직접"
+    ],
+    "must_not_contain": [
+      "import json",
+      "json.dumps",
+      "for i in range"
+    ],
+    "references": [
+      "SKILL.md"
+    ]
+  },
+  {
+    "category": "프로젝트 시작",
+    "name": "project_brief 인터뷰 절차",
+    "priority": "extended",
+    "prompt": "Going Library로 새 프로젝트를 시작하려고 해. 1024x600 터치패널용 모터 제어 화면을 만들고 싶어.",
+    "expected_behavior": [
+      "project_brief.md 작성 절차를 안내",
+      "인터뷰를 통해 필요 정보 수집 (해상도, 페이지, 통신, 레지스터 등)",
+      "사용자에게 페이지 구성, 통신 방식, 레지스터 맵을 질문",
+      "project_brief.md 템플릿에 맞춰 정보 정리"
+    ],
+    "must_contain": [
+      "project_brief",
+      "인터뷰",
+      "페이지",
+      "통신",
+      "레지스터"
+    ],
+    "must_not_contain": [],
+    "references": [
+      "project-brief.md"
+    ]
+  },
+  {
+    "category": ".gud 생성",
+    "name": ".gud 최상위 구조 + Name 유효성",
+    "priority": "core",
+    "prompt": "프로젝트명 'OilRecovery', 해상도 1024x600의 .gud 파일 최상위 구조를 보여줘. Pages에 PageMain 하나만 포함해줘.",
+    "expected_behavior": [
+      "Name, DesignWidth, DesignHeight, ProjectFolder, Pages 등 GoDesign 필드 포함",
+      "Name은 유효한 C# 식별자 (영문+숫자+밑줄)",
+      "단일 GoDesign JSON (Project 래퍼 없음)",
+      "Pages 안에 PageMain이 Type/Value 래퍼 구조로 포함"
+    ],
+    "must_contain": [
+      "\"Name\"",
+      "OilRecovery",
+      "\"DesignWidth\": 1024",
+      "\"DesignHeight\": 600",
+      "\"Pages\""
+    ],
+    "must_not_contain": [
+      "Oil Recovery",
+      "유증기"
+    ],
+    "references": [
+      "gud-structure.md"
+    ]
+  },
+  {
+    "category": ".gud 생성",
+    "name": "SKRect Bounds 직렬화",
+    "priority": "core",
+    "prompt": "GoLabel을 좌표 (10, 20) 위치에 너비 200, 높이 40으로 .gud에 추가해줘.",
+    "expected_behavior": [
+      "Bounds를 SKRect 형식으로: \"10,20,210,60\" (L,T,R,B)",
+      "Width/Height가 아닌 Right/Bottom 좌표 계산",
+      "문자열 형태 (쉼표 구분)"
+    ],
+    "must_contain": [
+      "10,20,210,60"
+    ],
+    "must_not_contain": [
+      "\"Width\"",
+      "\"Height\"",
+      "10,20,200,40"
+    ],
+    "references": [
+      "gud-structure.md"
+    ]
+  },
+  {
+    "category": ".gud 생성",
+    "name": "Enum 직렬화 규칙",
+    "priority": "core",
+    "prompt": ".gud에서 GoButton의 ContentAlignment를 MiddleCenter로 설정해줘.",
+    "expected_behavior": [
+      "Enum 값을 숫자로 직렬화",
+      "\"ContentAlignment\": 4 (MiddleCenter = 4)",
+      "문자열 \"MiddleCenter\" 사용 금지"
+    ],
+    "must_contain": [
+      "4"
+    ],
+    "must_not_contain": [
+      "\"MiddleCenter\"",
+      "\"Center\""
+    ],
+    "references": [
+      "gud-structure.md",
+      "controls/GoButton.md",
+      "enums-reference.md"
+    ]
+  },
+  {
+    "category": ".gud 생성",
     "name": "GoInputNumber JSON 생성",
+    "priority": "core",
     "prompt": ".gud 파일에 GoInputNumber<int> 컨트롤을 추가해줘. 범위는 0~100, 초기값 50, 단위는 '%'로.",
     "expected_behavior": [
       "Type: GoInputNumber<Int32> (.NET 타입명 사용)",
@@ -48,129 +237,15 @@
       "\"Height\""
     ],
     "references": [
-      "ui-json.md",
-      "ui-json-input-value.md"
-    ],
-    "priority": "core"
+      "gud-structure.md",
+      "controls/GoInput.md",
+      "controls/GoValue.md"
+    ]
   },
   {
-    "name": "Modbus RTU 통신 코드 작성",
-    "prompt": "MasterRTU로 슬레이브 1번의 D100 워드 10개를 읽는 코드를 작성해줘.",
-    "expected_behavior": [
-      "MasterRTU 인스턴스 생성 및 Start() 호출",
-      "WordAreas.Add로 영역 매핑 (예: WordAreas.Add(0, \"D\"))",
-      "MonitorWord_F3(1, 100, 10) 패턴 사용",
-      "GetWord(1, \"D100\") 패턴으로 캐시에서 값 조회",
-      "IsOpen 또는 DeviceOpened/DeviceClosed로 통신 상태 판단"
-    ],
-    "must_contain": [
-      "MasterRTU",
-      "MonitorWord_F3",
-      "GetWord",
-      "WordAreas"
-    ],
-    "must_not_contain": [
-      "ReadHoldingRegisters",
-      "ModbusClient",
-      "DataReceived",
-      "AutoResponse",
-      "DeviceData",
-      "AutoWordRead"
-    ],
-    "references": [
-      "basis.md"
-    ],
-    "priority": "core"
-  },
-  {
-    "name": "GoBarGraph Series 설정",
-    "prompt": "GoBarGraph에 3개의 시리즈(온도, 습도, 압력)를 추가하고 값을 업데이트하는 C# 코드를 작성해줘.",
-    "expected_behavior": [
-      "GoGraphSeries 인스턴스 3개 생성",
-      "Series 리스트에 Add",
-      "값 업데이트 시 series.Value 속성 사용",
-      "ui-control-sample.md를 참조해서 작성"
-    ],
-    "must_contain": [
-      "GoGraphSeries",
-      "Series",
-      "Value"
-    ],
-    "must_not_contain": [
-      "DataPoint",
-      "Chart"
-    ],
-    "references": [
-      "ui-control-sample.md",
-      "ui-code.md"
-    ],
-    "priority": "extended"
-  },
-  {
-    "name": "design.json 로드 실패 트러블슈팅",
-    "prompt": "앱 실행하면 FileNotFoundException: design.json 에러가 나. 어떻게 해결해?",
-    "expected_behavior": [
-      "UIEditor에서 MakeCode 실행 안내",
-      "csproj에 CopyToOutputDirectory 설정 안내",
-      "design.json을 직접 수정하지 말라는 경고"
-    ],
-    "must_contain": [
-      "MakeCode",
-      "CopyToOutputDirectory"
-    ],
-    "must_not_contain": [
-      "수동으로 JSON 파일을 만들",
-      "design.json을 편집"
-    ],
-    "references": [
-      "SKILL.md"
-    ],
-    "priority": "extended"
-  },
-  {
-    "name": "SKRect Bounds 직렬화",
-    "prompt": "GoLabel을 좌표 (10, 20) 위치에 너비 200, 높이 40으로 .gud에 추가해줘.",
-    "expected_behavior": [
-      "Bounds를 SKRect 형식으로: \"10,20,210,60\" (L,T,R,B)",
-      "Width/Height가 아닌 Right/Bottom 좌표 계산",
-      "문자열 형태 (쉼표 구분)"
-    ],
-    "must_contain": [
-      "10,20,210,60"
-    ],
-    "must_not_contain": [
-      "\"Width\"",
-      "\"Height\"",
-      "10,20,200,40"
-    ],
-    "references": [
-      "ui-json.md"
-    ],
-    "priority": "core"
-  },
-  {
-    "name": "Enum 직렬화 규칙",
-    "prompt": ".gud에서 GoButton의 ContentAlignment를 MiddleCenter로 설정해줘.",
-    "expected_behavior": [
-      "Enum 값을 숫자로 직렬화",
-      "\"ContentAlignment\": 4 (MiddleCenter = 4)",
-      "문자열 \"MiddleCenter\" 사용 금지"
-    ],
-    "must_contain": [
-      "4"
-    ],
-    "must_not_contain": [
-      "\"MiddleCenter\"",
-      "\"Center\""
-    ],
-    "references": [
-      "ui-json.md",
-      "ui-json-controls.md"
-    ],
-    "priority": "core"
-  },
-  {
+    "category": ".gud 생성",
     "name": "GoTableLayoutPanel 레이아웃 구성",
+    "priority": "core",
     "prompt": "2행 3열 테이블 레이아웃에 6개의 GoButton을 배치하는 .gud JSON을 만들어줘.",
     "expected_behavior": [
       "GoTableLayoutPanel 컨테이너 사용",
@@ -189,12 +264,38 @@
       "StackPanel"
     ],
     "references": [
-      "ui-json-containers.md"
-    ],
-    "priority": "core"
+      "controls/GoTableLayoutPanel.md"
+    ]
   },
   {
+    "category": ".gud 생성",
+    "name": "GoSwitchPanel + GoTabControl .gud 생성",
+    "priority": "extended",
+    "prompt": ".gud에 GoSwitchPanel과 GoTabControl을 각각 포함하는 페이지를 만들어줘. SwitchPanel에는 Sub1, Sub2 두 페이지, TabControl에는 Tab1, Tab2 두 탭.",
+    "expected_behavior": [
+      "GoSwitchPanel은 Pages 배열: [{\"Name\":\"Sub1\",\"Childrens\":[...]}, ...]",
+      "GoTabControl은 TabPages 배열: [{\"Name\":\"Tab1\",\"Text\":\"Tab1\",\"Childrens\":[...]}, ...]",
+      "두 컨테이너의 구조가 서로 다름을 정확히 반영",
+      "모든 컨트롤에 UUID Id 포함"
+    ],
+    "must_contain": [
+      "GoSwitchPanel",
+      "GoTabControl",
+      "Pages",
+      "TabPages"
+    ],
+    "must_not_contain": [
+      "\"Controls\""
+    ],
+    "references": [
+      "controls/GoSwitchPanel.md",
+      "controls/GoTabControl.md"
+    ]
+  },
+  {
+    "category": ".gud 생성",
     "name": "IcPage + ImageCanvas 컨트롤 JSON 생성",
+    "priority": "extended",
     "prompt": "ImageCanvas 방식으로 IcPage에 IcButton 2개와 IcLabel 1개를 배치하는 .gud JSON을 작성해줘. OffImage는 \"bg_off\", OnImage는 \"bg_on\"으로.",
     "expected_behavior": [
       "Pages에 Type: IcPage 사용 (GoPage 아님)",
@@ -217,102 +318,170 @@
       "GoLabel"
     ],
     "references": [
-      "ui-json.md",
-      "ui-json-imagecanvas.md"
-    ],
-    "priority": "extended"
+      "gud-structure.md",
+      "controls/IcButton.md",
+      "controls/IcLabel.md"
+    ]
   },
   {
-    "name": "gtcli 장치 배포 워크플로우",
-    "prompt": "Going UI 프로젝트를 빌드해서 터치 장치(172.30.1.13)에 배포해줘. 앱 이름은 MyApp이고 토큰은 abc123이야.",
+    "category": "이미지 → .gud",
+    "name": "이미지 → .gud 변환: 6단계 절차 준수",
+    "priority": "core",
+    "prompt": "첨부한 HMI 화면 이미지를 .gud 파일로 변환해줘. 해상도는 1024x600이야.",
     "expected_behavior": [
-      "dotnet publish -r linux-arm64 타겟으로 빌드",
-      "publish 결과물을 zip으로 압축",
-      "gtcli deploy로 원클릭 배포 (업로드→설치→시작)",
-      "--token 옵션으로 인증"
+      "6단계 절차를 따름 (인벤토리→그루핑→컨테이너→도식→검증→생성)",
+      "바로 .gud를 생성하지 않고 분석 단계를 거침",
+      "ui-image-to-gud.md를 참조"
     ],
     "must_contain": [
-      "dotnet publish",
-      "linux-arm64",
-      "gtcli",
-      "deploy",
-      "--token"
+      "인벤토리",
+      "그루핑",
+      "컨테이너"
     ],
     "must_not_contain": [
-      "docker",
-      "windows-x64"
+      "바로 .gud를 생성"
     ],
     "references": [
-      "ui-mcp.md"
-    ],
-    "priority": "extended"
+      "image-to-gud.md"
+    ]
   },
   {
-    "name": "MasterTCP 통신 코드 작성",
-    "prompt": "MasterTCP로 192.168.0.10의 슬레이브 1번에서 D0~D49 워드 50개를 읽는 DeviceManager를 작성해줘.",
+    "category": "이미지 → .gud",
+    "name": "이미지 → .gud 변환: Bounds 비율 계산",
+    "priority": "extended",
+    "prompt": "이미지에서 좌측 30% 영역에 패널, 우측 70% 영역에 차트를 배치해줘. 해상도 1024x600.",
     "expected_behavior": [
-      "MasterTCP 인스턴스 생성",
-      "RemoteIP로 IP 설정 (Host 아님)",
-      "RemotePort로 포트 설정 (Port 아님)",
-      "WordAreas.Add로 영역 매핑",
-      "MonitorWord_F3(1, 0, 50) 패턴 사용",
-      "GetWord(1, \"D0\") 패턴으로 값 조회",
-      "IsOpen 또는 DeviceOpened/DeviceClosed로 통신 상태 판단"
+      "비율 기반 Bounds 계산: 좌측 패널 0,0,307,600",
+      "우측 차트: 307,0,1024,600",
+      "SKRect L,T,R,B 형식 사용"
     ],
     "must_contain": [
-      "MasterTCP",
-      "RemoteIP",
-      "RemotePort",
-      "MonitorWord_F3",
-      "GetWord"
+      "307",
+      "1024",
+      "600"
     ],
     "must_not_contain": [
-      "Host",
-      "Port = 502",
-      ".Port =",
-      "ModbusTCPMaster",
-      "DeviceData",
-      "AutoWordRead"
+      "\"Width\"",
+      "\"Height\""
     ],
     "references": [
-      "basis.md"
-    ],
-    "priority": "extended"
+      "gud-structure.md",
+      "image-to-gud.md"
+    ]
   },
   {
-    "name": "MQTT 클라이언트 코드 작성",
-    "prompt": "MQTT로 브로커 192.168.0.100에 연결해서 sensor/temperature 토픽을 구독하고, command/start 토픽에 \"1\"을 발행하는 코드를 작성해줘.",
+    "category": ".gud 수정",
+    "name": ".gud 부분 수정",
+    "priority": "extended",
+    "prompt": "기존 .gud 파일에서 GoButton의 ButtonColor를 'Base3'에서 'Point'로 변경하고, GoProgress의 Direction을 BottomToTop으로 바꿔줘.",
     "expected_behavior": [
-      "MQClient 인스턴스 생성",
-      "BrokerHostName으로 브로커 주소 설정",
-      "Received 이벤트에서 s.Datas (byte[])를 UTF-8 디코딩",
-      "Subscribe로 토픽 구독",
-      "Publish로 메시지 발행",
-      "MQQos 열거형 사용"
+      "Edit 도구로 기존 .gud 파일을 부분 수정",
+      "ButtonColor를 \"Point\"로 변경",
+      "Direction을 숫자 2 (BottomToTop)로 변경",
+      "Write로 전체 재생성하지 않음"
     ],
     "must_contain": [
-      "MQClient",
-      "BrokerHostName",
-      "Received",
-      "s.Datas",
-      "Subscribe",
-      "Publish",
-      "MQQos"
+      "Edit",
+      "ButtonColor",
+      "Point",
+      "Direction",
+      "2"
     ],
     "must_not_contain": [
-      "s.Message",
-      "mqtt.Port",
-      "MQQosLevel",
-      "MqttClient",
-      "ConnectAsync"
+      "Write",
+      "전체 재생성"
     ],
     "references": [
-      "basis.md"
-    ],
-    "priority": "extended"
+      "troubleshooting.md"
+    ]
   },
   {
+    "category": "C# 코드",
+    "name": "GoButton 클릭 이벤트 바인딩",
+    "priority": "core",
+    "prompt": "GoButton 클릭 이벤트를 바인딩하는 C# 코드를 작성해줘. 버튼 이름은 btnStart이고, 클릭하면 GoLamp lampRun의 OnOff를 true로 변경해야 해.",
+    "expected_behavior": [
+      "Designer.cs에서 btnStart, lampRun 변수를 참조",
+      "btnStart.ButtonClicked += (o, s) => { ... } 패턴 사용 (GoButton 전용 이벤트)",
+      "lampRun.OnOff = true 설정",
+      "Designer.cs를 직접 수정하지 않음"
+    ],
+    "must_contain": [
+      "ButtonClicked",
+      "lampRun.OnOff",
+      "true"
+    ],
+    "must_not_contain": [
+      "Click +=",
+      "EventHandler",
+      "new EventHandler",
+      "MouseClick"
+    ],
+    "references": [
+      "code-pattern.md"
+    ]
+  },
+  {
+    "category": "C# 코드",
+    "name": "Main 싱글턴 + Program.cs 진입점 패턴",
+    "priority": "core",
+    "prompt": "Going UI 프로젝트의 Program.cs와 Main 싱글턴 클래스를 작성해줘. DataManager와 DeviceManager를 포함하고, 통신 시작/종료 순서도 맞춰줘.",
+    "expected_behavior": [
+      "Main 클래스에 static 프로퍼티: Window, DevMgr, DataMgr",
+      "Program.cs에서 DataManager → DeviceManager → MainWindow 순서 생성",
+      "devMgr.Start() → wnd.Run() (블로킹) → devMgr.Stop() 순서",
+      "DI 컨테이너 없이 정적 접근 패턴"
+    ],
+    "must_contain": [
+      "Main.Window",
+      "Main.DevMgr",
+      "Main.DataMgr",
+      "Start()",
+      "Run()",
+      "Stop()"
+    ],
+    "must_not_contain": [
+      "IServiceCollection",
+      "builder.Services",
+      "DependencyInjection",
+      "AddSingleton"
+    ],
+    "references": [
+      "code-pattern.md"
+    ]
+  },
+  {
+    "category": "C# 코드",
+    "name": "Page OnUpdate 데이터 바인딩",
+    "priority": "extended",
+    "prompt": "PageMain의 OnUpdate에서 DeviceManager의 온도/압력 데이터를 GoLabel에 표시하고, 통신 상태를 GoLamp에 반영하는 코드를 작성해줘.",
+    "expected_behavior": [
+      "protected override void OnUpdate() 오버라이드",
+      "Main.DevMgr에서 데이터 조회",
+      "GoLamp.OnOff로 통신 상태 반영",
+      "GoLabel.Text로 데이터 값 표시",
+      "base.OnUpdate() 호출"
+    ],
+    "must_contain": [
+      "OnUpdate",
+      "Main.DevMgr",
+      "OnOff",
+      ".Text"
+    ],
+    "must_not_contain": [
+      "Timer",
+      "DispatcherTimer",
+      "Task.Run",
+      "Thread"
+    ],
+    "references": [
+      "code-pattern.md"
+    ]
+  },
+  {
+    "category": "C# 코드",
     "name": "GoWindow 팝업 콜백 패턴",
+    "priority": "extended",
     "prompt": "설정값(이름, 타임아웃)을 입력받는 SettingWindow를 만들고, PageMain에서 버튼 클릭 시 팝업을 열어 결과를 받는 코드를 작성해줘.",
     "expected_behavior": [
       "GoWindow 상속",
@@ -336,156 +505,265 @@
       "Form"
     ],
     "references": [
-      "ui-code.md"
-    ],
-    "priority": "extended"
+      "code-pattern.md"
+    ]
   },
   {
-    "name": "LauncherTouch MCP 장치 관리",
-    "prompt": "LauncherTouch 장치(172.30.1.13)에서 설치된 프로그램 목록을 확인하고, MyApp을 중지한 뒤 키오스크 모드를 해제해줘. 토큰은 abc123이야.",
+    "category": "C# 코드",
+    "name": "GoDialogs 시스템 다이얼로그",
+    "priority": "extended",
+    "prompt": "사용자가 버튼을 클릭하면 '저장하시겠습니까?' 확인 다이얼로그를 표시하고, 확인 시 DataManager.Save()를 호출하는 코드를 작성해줘.",
     "expected_behavior": [
-      "gtcli programs로 프로그램 목록 확인",
-      "gtcli stop으로 앱 중지",
-      "gtcli show-ui로 키오스크 해제",
-      "--token 옵션으로 인증",
-      "reboot/uninstall 같은 위험 명령은 사용자 확인 필요"
+      "GoDialogs.MessageBox 사용",
+      "ShowMessageBoxOkCancel 또는 ShowMessageBoxYesNo 호출",
+      "콜백에서 GoDialogResult 확인",
+      "System.Windows.Forms의 MessageBox와 혼동하지 않음"
     ],
     "must_contain": [
-      "gtcli",
-      "programs",
-      "stop",
-      "show-ui",
-      "--token"
+      "GoDialogs",
+      "MessageBox",
+      "GoDialogResult"
     ],
     "must_not_contain": [
-      "curl",
-      "ssh",
-      "systemctl"
+      "MessageBox.Show(",
+      "System.Windows",
+      "WinForms"
     ],
     "references": [
-      "ui-mcp.md"
-    ],
-    "priority": "extended"
+      "code-pattern.md"
+    ]
   },
   {
-    "name": "MCP 도구 직접 호출로 프로그램 관리",
-    "prompt": "gtcli 없이 LauncherTouch MCP Server(172.30.1.13:5001)에 직접 연결해서 설치된 프로그램 목록을 조회하고, TestApp을 중지하는 MCP 호출을 작성해줘. 토큰은 mytoken123이야.",
+    "category": "C# 코드",
+    "name": "GoBarGraph Series 설정",
+    "priority": "extended",
+    "prompt": "GoBarGraph에 3개의 시리즈(온도, 습도, 압력)를 추가하고 값을 업데이트하는 C# 코드를 작성해줘.",
     "expected_behavior": [
-      "MCP 엔드포인트: POST http://172.30.1.13:5001/mcp",
-      "X-MCP-Token 헤더로 인증",
-      "도구명은 snake_case: get_programs, stop_program",
-      "JSON-RPC 2.0 메시지 형식",
-      "stop_program 파라미터에 appName 포함"
+      "GoGraphSeries 인스턴스 3개 생성",
+      "Series 리스트에 Add",
+      "값 업데이트 시 series.Value 속성 사용",
+      "ui-control-sample.md를 참조해서 작성"
     ],
     "must_contain": [
-      "5001/mcp",
-      "X-MCP-Token",
-      "get_programs",
-      "stop_program",
-      "appName"
+      "GoGraphSeries",
+      "Series",
+      "Value"
     ],
     "must_not_contain": [
-      "GetPrograms",
-      "StopProgram",
-      "PascalCase 도구명"
+      "DataPoint",
+      "Chart"
     ],
     "references": [
-      "ui-mcp.md"
-    ],
-    "priority": "extended"
+      "controls/GoBarGraph.md",
+      "code-pattern.md"
+    ]
   },
   {
-    "name": "절대규칙: Designer.cs 수정 거부",
-    "prompt": "MainWindow.Designer.cs에서 btnStart 변수명을 btnRun으로 변경해줘.",
+    "category": "C# 코드",
+    "name": "GoDataGrid C# 컬럼 구성 + 데이터 바인딩",
+    "priority": "extended",
+    "prompt": "GoDataGrid에 LabelColumn(장치명), NumberColumn<Double>(온도, 포맷 '0.0'), LampColumn(통신상태), ButtonColumn(삭제)을 추가하고 데이터를 바인딩하는 코드를 작성해줘.",
     "expected_behavior": [
-      "Designer.cs 수정을 거부",
-      "UIEditor에서 MakeCode를 다시 실행하라고 안내",
-      "절대 규칙 #1을 준수"
+      "GoDataGridLabelColumn, GoDataGridNumberColumn<Double>, GoDataGridLampColumn, GoDataGridButtonColumn 사용",
+      "각 컬럼의 Name이 데이터 클래스의 프로퍼티명과 일치",
+      "SetDataSource<T>로 데이터 바인딩",
+      "CellButtonClick 이벤트로 버튼 클릭 처리"
     ],
     "must_contain": [
-      "Designer.cs"
+      "GoDataGridLabelColumn",
+      "GoDataGridNumberColumn<Double>",
+      "GoDataGridLampColumn",
+      "GoDataGridButtonColumn",
+      "SetDataSource"
     ],
     "must_not_contain": [
-      "btnRun =",
-      "var btnRun"
+      "DataGridView",
+      "GridViewColumn",
+      "DataGrid.Columns.Add(\""
     ],
     "references": [
-      "SKILL.md"
-    ],
-    "priority": "core"
+      "controls/GoDataGrid.md"
+    ]
   },
   {
-    "name": "절대규칙: API 추측 금지 — 잘못된 속성명 교정",
-    "prompt": "GoButton의 BackColor 속성을 빨간색으로 변경하는 C# 코드를 작성해줘.",
+    "category": "C# 코드",
+    "name": "GoTrendGraph 실시간 스트리밍",
+    "priority": "extended",
+    "prompt": "GoTrendGraph로 온도/습도를 실시간으로 표시하는 코드를 작성해줘. DeviceManager의 통신 데이터에서 값을 가져와야 해.",
     "expected_behavior": [
-      "BackColor는 GoButton에 없는 속성임을 인지",
-      "올바른 속성명 ButtonColor를 사용",
-      "API 문서 확인을 권고하거나 직접 확인"
+      "Start<T>(template)로 트렌드 수집 시작",
+      "OnUpdate에서 SetData(obj)로 매 프레임 데이터 갱신",
+      "데이터 객체의 프로퍼티명이 Series.Name과 일치",
+      "SetDataSource가 아닌 Start/SetData 패턴 사용"
     ],
     "must_contain": [
-      "ButtonColor"
+      "Start(",
+      "SetData(",
+      "OnUpdate"
     ],
     "must_not_contain": [
-      "BackColor",
-      ".BackColor =",
-      "Background"
+      "SetDataSource",
+      "AddPoint",
+      "Timer"
     ],
     "references": [
-      "SKILL.md",
-      "ui-code.md"
-    ],
-    "priority": "core"
+      "controls/GoTrendGraph.md"
+    ]
   },
   {
-    "name": "절대규칙: 영문 네이밍 — 한글 식별자 금지",
-    "prompt": "VRU 장치의 DeviceData 클래스를 만들어줘. MasterRTU 기반이고 slaveId=1. 레지스터: D0=운전상태(bool), D10=온도(0.1℃). 쓰기: D20=설정온도.",
+    "category": "C# 코드",
+    "name": "GoNavigator + PageName 자동 페이지 전환",
+    "priority": "extended",
+    "prompt": ".gud에 GoNavigator를 TitleBar에 배치하고, 모니터링(PageMonitor)과 설정(PageSetting) 두 메뉴를 추가해줘. 메뉴 클릭 시 페이지가 자동 전환되어야 해.",
     "expected_behavior": [
-      "프로퍼티명/메서드명에 영문+숫자만 사용",
-      "한글은 주석으로만 사용",
-      "ID 프로퍼티 포함",
-      "Set{기능이름}() 메서드명도 영문"
+      "GoNavigator 타입 사용",
+      "Menus 배열에 GoMenuItem 구조 (Text, IconString, PageName)",
+      "PageName 지정으로 별도 코드 없이 자동 전환",
+      "TitleBar.Childrens에 GoNavigator 배치"
     ],
     "must_contain": [
-      "ID",
+      "GoNavigator",
+      "PageName",
+      "PageMonitor",
+      "PageSetting",
+      "Menus"
+    ],
+    "must_not_contain": [
+      "SetPage",
+      "ButtonClicked",
+      "MenuClicked"
+    ],
+    "references": [
+      "controls/GoNavigator.md",
+      "code-pattern.md"
+    ]
+  },
+  {
+    "category": "통신",
+    "name": "Modbus RTU 통신 코드 작성",
+    "priority": "core",
+    "prompt": "MasterRTU로 슬레이브 1번의 D100 워드 10개를 읽는 코드를 작성해줘.",
+    "expected_behavior": [
+      "MasterRTU 인스턴스 생성 및 Start() 호출",
+      "WordAreas.Add로 영역 매핑 (예: WordAreas.Add(0, \"D\"))",
+      "MonitorWord_F3(1, 100, 10) 패턴 사용",
+      "GetWord(1, \"D100\") 패턴으로 캐시에서 값 조회",
+      "IsOpen 또는 DeviceOpened/DeviceClosed로 통신 상태 판단"
+    ],
+    "must_contain": [
       "MasterRTU",
+      "MonitorWord_F3",
       "GetWord",
-      "SetWord"
+      "WordAreas"
     ],
     "must_not_contain": [
-      "운전상태",
-      "public.*온도",
-      "Set온도",
-      "Set설정",
-      "public.*설정"
+      "ReadHoldingRegisters",
+      "ModbusClient",
+      "DataReceived",
+      "AutoResponse",
+      "DeviceData",
+      "AutoWordRead"
     ],
     "references": [
-      "SKILL.md",
-      "basis.md"
-    ],
-    "priority": "core"
+      "comm-pattern.md"
+    ]
   },
   {
-    "name": "절대규칙: 데이터 구조 임의 작성 금지",
-    "prompt": "project_brief.md에 Modbus RTU 통신이 필요하다고 적혀있어. DeviceManager와 DeviceData를 작성해줘. 레지스터 맵은 따로 안 줬어.",
+    "category": "통신",
+    "name": "MasterTCP 통신 코드 작성",
+    "priority": "extended",
+    "prompt": "MasterTCP로 192.168.0.10의 슬레이브 1번에서 D0~D49 워드 50개를 읽는 DeviceManager를 작성해줘.",
     "expected_behavior": [
-      "레지스터 맵 없이 DeviceManager를 임의로 작성하지 않음",
-      "사용자에게 레지스터 맵/데이터 모델을 문의",
-      "주소/데이터 의미를 확인해야 한다고 안내"
+      "MasterTCP 인스턴스 생성",
+      "RemoteIP로 IP 설정 (Host 아님)",
+      "RemotePort로 포트 설정 (Port 아님)",
+      "WordAreas.Add로 영역 매핑",
+      "MonitorWord_F3(1, 0, 50) 패턴 사용",
+      "GetWord(1, \"D0\") 패턴으로 값 조회",
+      "IsOpen 또는 DeviceOpened/DeviceClosed로 통신 상태 판단",
+      "Port, Baudrate 설정 (TCP에서는 RemoteIP/RemotePort)"
     ],
     "must_contain": [
-      "레지스터"
+      "MasterTCP",
+      "RemoteIP",
+      "RemotePort",
+      "MonitorWord_F3",
+      "GetWord",
+      "WordAreas"
     ],
     "must_not_contain": [
-      "MonitorWord_F3(1, 0",
-      "GetWord(1, \"D0\")"
+      "Host",
+      "Port = 502",
+      ".Port =",
+      "ModbusTCPMaster",
+      "DeviceData",
+      "AutoWordRead",
+      "ReadHoldingRegisters"
     ],
     "references": [
-      "SKILL.md"
-    ],
-    "priority": "core"
+      "comm-pattern.md"
+    ]
   },
   {
+    "category": "통신",
+    "name": "SlaveRTU 슬레이브 서버 구현",
+    "priority": "extended",
+    "prompt": "Going.Basis로 Modbus RTU 슬레이브를 구현해줘. 슬레이브 번호 1, 포트 COM1, 9600bps, 워드 메모리 100개(시작주소 0x0000), 비트 메모리 32개(시작주소 0x0000).",
+    "expected_behavior": [
+      "SlaveRTU 인스턴스 생성",
+      "WordAreas.Add(0x0000, new WordMemory(100))",
+      "BitAreas.Add(0x0000, new BitMemory(32))",
+      "Slave = 1 설정",
+      "WordMemory는 .W 프로퍼티로 접근, BitMemory는 직접 인덱싱",
+      "Port = \"COM1\" 설정",
+      "Baudrate = 9600 설정",
+      ".Start()로 슬레이브 시작"
+    ],
+    "must_contain": [
+      "SlaveRTU",
+      "WordMemory",
+      "BitMemory",
+      "WordAreas",
+      "BitAreas",
+      "Port",
+      "Baudrate",
+      ".Start()"
+    ],
+    "must_not_contain": [
+      "ModbusRTUSlave",
+      "MasterRTU",
+      "MonitorWord"
+    ],
+    "references": [
+      "comm-pattern.md"
+    ]
+  },
+  {
+    "category": "통신",
+    "name": "MasterRTU vs ModbusRTUMaster 클래스 선택",
+    "priority": "extended",
+    "prompt": "Modbus RTU로 슬레이브 3대의 레지스터를 주기적으로 읽어서 화면에 표시해야 해. 어떤 클래스를 써야 하고 왜 그런지 설명해줘.",
+    "expected_behavior": [
+      "MasterRTU를 권장",
+      "WordAreas/BitAreas로 영역 매핑, GetWord/GetBit로 캐시 조회가 일반 폴링에 적합",
+      "ModbusRTUMaster는 수신 이벤트 직접 제어가 필요할 때만 사용",
+      "MasterRTU가 기본, ModbusRTUMaster는 예외적 사용"
+    ],
+    "must_contain": [
+      "MasterRTU"
+    ],
+    "must_not_contain": [
+      "ModbusRTUMaster를 사용",
+      "AutoWordRead_FC3"
+    ],
+    "references": [
+      "comm-pattern.md"
+    ]
+  },
+  {
+    "category": "통신",
     "name": "DeviceData + MasterRTU 다중 슬레이브 패턴",
+    "priority": "extended",
     "prompt": "MasterRTU 기반으로 슬레이브 1번과 2번의 DeviceData 클래스를 작성해줘. 슬레이브 1: D0=운전상태(1=운전), D10=온도(0.1℃ 단위), 쓰기 D20=설정온도. 슬레이브 2: D0=압력, 쓰기 D20=설정압력. DeviceManager도 함께 작성해줘.",
     "expected_behavior": [
       "DeviceData 클래스에 ID(slaveId) 프로퍼티 필수",
@@ -507,60 +785,48 @@
       "AutoWordRead_FC3"
     ],
     "references": [
-      "basis.md"
-    ],
-    "priority": "extended"
+      "comm-pattern.md"
+    ]
   },
   {
-    "name": "MasterRTU vs ModbusRTUMaster 클래스 선택",
-    "prompt": "Modbus RTU로 슬레이브 3대의 레지스터를 주기적으로 읽어서 화면에 표시해야 해. 어떤 클래스를 써야 하고 왜 그런지 설명해줘.",
+    "category": "통신",
+    "name": "MQTT 클라이언트 구독/발행",
+    "priority": "extended",
+    "prompt": "MQTT로 브로커 192.168.0.100에 연결해서 sensor/temperature 토픽을 구독하고, command/start 토픽에 \"1\"을 발행하는 코드를 작성해줘.",
     "expected_behavior": [
-      "MasterRTU를 권장",
-      "WordAreas/BitAreas로 영역 매핑, GetWord/GetBit로 캐시 조회가 일반 폴링에 적합",
-      "ModbusRTUMaster는 수신 이벤트 직접 제어가 필요할 때만 사용",
-      "MasterRTU가 기본, ModbusRTUMaster는 예외적 사용"
+      "MQClient 인스턴스 생성",
+      "BrokerHostName으로 브로커 주소 설정",
+      "Received 이벤트에서 s.Datas (byte[])를 UTF-8 디코딩",
+      "Subscribe로 토픽 구독",
+      "Publish로 메시지 발행",
+      "MQQos 열거형 사용",
+      "MQSubscribe로 토픽 구독 (대체 패턴)"
     ],
     "must_contain": [
-      "MasterRTU"
+      "MQClient",
+      "BrokerHostName",
+      "Received",
+      "s.Datas",
+      "Subscribe",
+      "Publish",
+      "MQQos"
     ],
     "must_not_contain": [
-      "ModbusRTUMaster를 사용",
-      "AutoWordRead_FC3"
+      "s.Message",
+      "mqtt.Port",
+      "MQQosLevel",
+      "MqttClient",
+      "ConnectAsync",
+      "Port ="
     ],
     "references": [
-      "basis.md"
-    ],
-    "priority": "extended"
+      "comm-pattern.md"
+    ]
   },
   {
-    "name": "SlaveRTU 패턴 — Modbus 슬레이브 구현",
-    "prompt": "Going.Basis로 Modbus RTU 슬레이브를 구현해줘. 슬레이브 번호 1, 포트 COM1, 9600bps, 워드 메모리 100개(시작주소 0x0000), 비트 메모리 32개(시작주소 0x0000).",
-    "expected_behavior": [
-      "SlaveRTU 인스턴스 생성",
-      "WordAreas.Add(0x0000, new WordMemory(100))",
-      "BitAreas.Add(0x0000, new BitMemory(32))",
-      "Slave = 1 설정",
-      "WordMemory는 .W 프로퍼티로 접근, BitMemory는 직접 인덱싱"
-    ],
-    "must_contain": [
-      "SlaveRTU",
-      "WordMemory",
-      "BitMemory",
-      "WordAreas",
-      "BitAreas"
-    ],
-    "must_not_contain": [
-      "ModbusRTUSlave",
-      "MasterRTU",
-      "MonitorWord"
-    ],
-    "references": [
-      "basis.md"
-    ],
-    "priority": "extended"
-  },
-  {
+    "category": "통신",
     "name": "CNet 패턴 — LS Electric PLC 통신",
+    "priority": "extended",
     "prompt": "LS Electric PLC와 CNet 통신 코드를 작성해줘. %MW100부터 10개 워드를 주기적으로 읽고, %MW200에 값을 써야 해.",
     "expected_behavior": [
       "CNet 인스턴스 생성",
@@ -582,12 +848,13 @@
       "MC"
     ],
     "references": [
-      "basis.md"
-    ],
-    "priority": "extended"
+      "comm-pattern.md"
+    ]
   },
   {
+    "category": "통신",
     "name": "MC 패턴 — Mitsubishi PLC 통신",
+    "priority": "extended",
     "prompt": "Mitsubishi PLC와 MC 통신 코드를 작성해줘. D0부터 50개 워드를 주기적으로 읽고, D100에 값을 써야 해.",
     "expected_behavior": [
       "MC 인스턴스 생성",
@@ -609,279 +876,186 @@
       "AutoRSB"
     ],
     "references": [
-      "basis.md"
-    ],
-    "priority": "extended"
+      "comm-pattern.md"
+    ]
   },
   {
-    "name": "Main 싱글턴 + Program.cs 진입점 패턴",
-    "prompt": "Going UI 프로젝트의 Program.cs와 Main 싱글턴 클래스를 작성해줘. DataManager와 DeviceManager를 포함하고, 통신 시작/종료 순서도 맞춰줘.",
+    "category": "배포",
+    "name": "gtcli 장치 배포 워크플로우",
+    "priority": "extended",
+    "prompt": "Going UI 프로젝트를 빌드해서 터치 장치(172.30.1.13)에 배포해줘. 앱 이름은 MyApp이고 토큰은 abc123이야.",
     "expected_behavior": [
-      "Main 클래스에 static 프로퍼티: Window, DevMgr, DataMgr",
-      "Program.cs에서 DataManager → DeviceManager → MainWindow 순서 생성",
-      "devMgr.Start() → wnd.Run() (블로킹) → devMgr.Stop() 순서",
-      "DI 컨테이너 없이 정적 접근 패턴"
+      "dotnet publish -r linux-arm64 타겟으로 빌드",
+      "publish 결과물을 zip으로 압축",
+      "gtcli deploy로 원클릭 배포 (업로드→설치→시작)",
+      "--token 옵션으로 인증"
     ],
     "must_contain": [
-      "Main.Window",
-      "Main.DevMgr",
-      "Main.DataMgr",
-      "Start()",
-      "Run()",
-      "Stop()"
+      "dotnet publish",
+      "linux-arm64",
+      "gtcli",
+      "deploy",
+      "--token"
     ],
     "must_not_contain": [
-      "IServiceCollection",
-      "builder.Services",
-      "DependencyInjection",
-      "AddSingleton"
+      "docker",
+      "windows-x64"
     ],
     "references": [
-      "ui-code.md"
-    ],
-    "priority": "core"
+      "deploy-cli.md"
+    ]
   },
   {
-    "name": "Page OnUpdate 데이터 바인딩",
-    "prompt": "PageMain의 OnUpdate에서 DeviceManager의 온도/압력 데이터를 GoLabel에 표시하고, 통신 상태를 GoLamp에 반영하는 코드를 작성해줘.",
+    "category": "배포",
+    "name": "gtcli 배포 명령",
+    "priority": "extended",
+    "prompt": "Going Library 프로젝트를 라즈베리파이 장치에 배포해줘. IP는 192.168.0.50이야.",
     "expected_behavior": [
-      "protected override void OnUpdate() 오버라이드",
-      "Main.DevMgr에서 데이터 조회",
-      "GoLamp.OnOff로 통신 상태 반영",
-      "GoLabel.Text로 데이터 값 표시",
-      "base.OnUpdate() 호출"
+      "dotnet publish로 linux-arm64 빌드",
+      "gtcli deploy로 장치에 배포",
+      "대상 IP 192.168.0.50 지정",
+      "scp/ssh 직접 사용 안함"
     ],
     "must_contain": [
-      "OnUpdate",
-      "Main.DevMgr",
-      "OnOff",
-      ".Text"
+      "gtcli",
+      "deploy",
+      "192.168.0.50",
+      "dotnet publish"
     ],
     "must_not_contain": [
-      "Timer",
-      "DispatcherTimer",
-      "Task.Run",
-      "Thread"
+      "scp",
+      "ssh"
     ],
     "references": [
-      "ui-code.md"
-    ],
-    "priority": "extended"
+      "deploy-cli.md"
+    ]
   },
   {
-    "name": "GoDialogs 시스템 다이얼로그",
-    "prompt": "사용자가 버튼을 클릭하면 '저장하시겠습니까?' 확인 다이얼로그를 표시하고, 확인 시 DataManager.Save()를 호출하는 코드를 작성해줘.",
+    "category": "배포",
+    "name": "LauncherTouch MCP 장치 관리",
+    "priority": "extended",
+    "prompt": "LauncherTouch 장치(172.30.1.13)에서 설치된 프로그램 목록을 확인하고, MyApp을 중지한 뒤 키오스크 모드를 해제해줘. 토큰은 abc123이야.",
     "expected_behavior": [
-      "GoDialogs.MessageBox 사용",
-      "ShowMessageBoxOkCancel 또는 ShowMessageBoxYesNo 호출",
-      "콜백에서 GoDialogResult 확인",
-      "System.Windows.Forms의 MessageBox와 혼동하지 않음"
+      "gtcli programs로 프로그램 목록 확인",
+      "gtcli stop으로 앱 중지",
+      "gtcli show-ui로 키오스크 해제",
+      "--token 옵션으로 인증",
+      "reboot/uninstall 같은 위험 명령은 사용자 확인 필요"
     ],
     "must_contain": [
-      "GoDialogs",
-      "MessageBox",
-      "GoDialogResult"
+      "gtcli",
+      "programs",
+      "stop",
+      "show-ui",
+      "--token"
     ],
     "must_not_contain": [
-      "MessageBox.Show(",
-      "System.Windows",
-      "WinForms"
+      "curl",
+      "ssh",
+      "systemctl"
     ],
     "references": [
-      "ui-code.md"
-    ],
-    "priority": "extended"
+      "deploy-cli.md"
+    ]
   },
   {
-    "name": "GoDataGrid C# 컬럼 구성 + 데이터 바인딩",
-    "prompt": "GoDataGrid에 LabelColumn(장치명), NumberColumn<Double>(온도, 포맷 '0.0'), LampColumn(통신상태), ButtonColumn(삭제)을 추가하고 데이터를 바인딩하는 코드를 작성해줘.",
+    "category": "배포",
+    "name": "MCP 도구 프로그램 관리",
+    "priority": "extended",
+    "prompt": "gtcli 없이 LauncherTouch MCP Server(172.30.1.13:5001)에 직접 연결해서 설치된 프로그램 목록을 조회하고, TestApp을 중지하는 MCP 호출을 작성해줘. 토큰은 mytoken123이야.",
     "expected_behavior": [
-      "GoDataGridLabelColumn, GoDataGridNumberColumn<Double>, GoDataGridLampColumn, GoDataGridButtonColumn 사용",
-      "각 컬럼의 Name이 데이터 클래스의 프로퍼티명과 일치",
-      "SetDataSource<T>로 데이터 바인딩",
-      "CellButtonClick 이벤트로 버튼 클릭 처리"
+      "MCP 엔드포인트: POST http://172.30.1.13:5001/mcp",
+      "X-MCP-Token 헤더로 인증",
+      "도구명은 snake_case: get_programs, stop_program",
+      "JSON-RPC 2.0 메시지 형식",
+      "stop_program 파라미터에 appName 포함"
     ],
     "must_contain": [
-      "GoDataGridLabelColumn",
-      "GoDataGridNumberColumn<Double>",
-      "GoDataGridLampColumn",
-      "GoDataGridButtonColumn",
-      "SetDataSource"
+      "5001/mcp",
+      "X-MCP-Token",
+      "get_programs",
+      "stop_program",
+      "appName"
     ],
     "must_not_contain": [
-      "DataGridView",
-      "GridViewColumn",
-      "DataGrid.Columns.Add(\""
+      "GetPrograms",
+      "StopProgram",
+      "PascalCase 도구명"
     ],
     "references": [
-      "ui-control-sample.md"
-    ],
-    "priority": "extended"
+      "deploy-cli.md"
+    ]
   },
   {
-    "name": "GoTrendGraph 실시간 스트리밍",
-    "prompt": "GoTrendGraph로 온도/습도를 실시간으로 표시하는 코드를 작성해줘. DeviceManager의 통신 데이터에서 값을 가져와야 해.",
+    "category": "트러블슈팅",
+    "name": "design.json 로드 실패 트러블슈팅",
+    "priority": "extended",
+    "prompt": "앱 실행하면 FileNotFoundException: design.json 에러가 나. 어떻게 해결해?",
     "expected_behavior": [
-      "Start<T>(template)로 트렌드 수집 시작",
-      "OnUpdate에서 SetData(obj)로 매 프레임 데이터 갱신",
-      "데이터 객체의 프로퍼티명이 Series.Name과 일치",
-      "SetDataSource가 아닌 Start/SetData 패턴 사용"
+      "UIEditor에서 MakeCode 실행 안내",
+      "csproj에 CopyToOutputDirectory 설정 안내",
+      "design.json을 직접 수정하지 말라는 경고"
     ],
     "must_contain": [
-      "Start(",
-      "SetData(",
-      "OnUpdate"
+      "MakeCode",
+      "CopyToOutputDirectory"
     ],
     "must_not_contain": [
-      "SetDataSource",
-      "AddPoint",
-      "Timer"
-    ],
-    "references": [
-      "ui-control-sample.md"
-    ],
-    "priority": "extended"
-  },
-  {
-    "name": ".gud 최상위 구조 + Name 유효성",
-    "prompt": "프로젝트명 'OilRecovery', 해상도 1024x600의 .gud 파일 최상위 구조를 보여줘. Pages에 PageMain 하나만 포함해줘.",
-    "expected_behavior": [
-      "Name, DesignWidth, DesignHeight, ProjectFolder, Pages 등 GoDesign 필드 포함",
-      "Name은 유효한 C# 식별자 (영문+숫자+밑줄)",
-      "단일 GoDesign JSON (Project 래퍼 없음)",
-      "Pages 안에 PageMain이 Type/Value 래퍼 구조로 포함"
-    ],
-    "must_contain": [
-      "\"Name\"",
-      "OilRecovery",
-      "\"DesignWidth\": 1024",
-      "\"DesignHeight\": 600",
-      "\"Pages\""
-    ],
-    "must_not_contain": [
-      "Oil Recovery",
-      "유증기"
-    ],
-    "references": [
-      "ui-json.md"
-    ],
-    "priority": "core"
-  },
-  {
-    "name": "GoNavigator + PageName 자동 페이지 전환",
-    "prompt": ".gud에 GoNavigator를 TitleBar에 배치하고, 모니터링(PageMonitor)과 설정(PageSetting) 두 메뉴를 추가해줘. 메뉴 클릭 시 페이지가 자동 전환되어야 해.",
-    "expected_behavior": [
-      "GoNavigator 타입 사용",
-      "Menus 배열에 GoMenuItem 구조 (Text, IconString, PageName)",
-      "PageName 지정으로 별도 코드 없이 자동 전환",
-      "TitleBar.Childrens에 GoNavigator 배치"
-    ],
-    "must_contain": [
-      "GoNavigator",
-      "PageName",
-      "PageMonitor",
-      "PageSetting",
-      "Menus"
-    ],
-    "must_not_contain": [
-      "SetPage",
-      "ButtonClicked",
-      "MenuClicked"
-    ],
-    "references": [
-      "ui-json-controls-ext.md",
-      "ui-code.md"
-    ],
-    "priority": "extended"
-  },
-  {
-    "name": "이미지 → .gud 변환: 6단계 절차 준수",
-    "prompt": "첨부한 HMI 화면 이미지를 .gud 파일로 변환해줘. 해상도는 1024x600이야.",
-    "expected_behavior": [
-      "6단계 절차를 따름 (인벤토리→그루핑→컨테이너→도식→검증→생성)",
-      "바로 .gud를 생성하지 않고 분석 단계를 거침",
-      "ui-image-to-gud.md를 참조"
-    ],
-    "must_contain": [
-      "인벤토리",
-      "그루핑",
-      "컨테이너"
-    ],
-    "must_not_contain": [
-      "바로 .gud를 생성"
-    ],
-    "references": [
-      "ui-image-to-gud.md"
-    ],
-    "priority": "core"
-  },
-  {
-    "name": "이미지 → .gud 변환: Bounds 비율 계산",
-    "prompt": "이미지에서 좌측 30% 영역에 패널, 우측 70% 영역에 차트를 배치해줘. 해상도 1024x600.",
-    "expected_behavior": [
-      "비율 기반 Bounds 계산: 좌측 패널 0,0,307,600",
-      "우측 차트: 307,0,1024,600",
-      "SKRect L,T,R,B 형식 사용"
-    ],
-    "must_contain": [
-      "307",
-      "1024",
-      "600"
-    ],
-    "must_not_contain": [
-      "\"Width\"",
-      "\"Height\""
-    ],
-    "references": [
-      "ui-json.md",
-      "ui-image-to-gud.md"
-    ],
-    "priority": "extended"
-  },
-  {
-    "name": "GoSwitchPanel + GoTabControl .gud 생성",
-    "prompt": ".gud에 GoSwitchPanel과 GoTabControl을 각각 포함하는 페이지를 만들어줘. SwitchPanel에는 Sub1, Sub2 두 페이지, TabControl에는 Tab1, Tab2 두 탭.",
-    "expected_behavior": [
-      "GoSwitchPanel은 Pages 배열: [{\"Name\":\"Sub1\",\"Childrens\":[...]}, ...]",
-      "GoTabControl은 TabPages 배열: [{\"Name\":\"Tab1\",\"Text\":\"Tab1\",\"Childrens\":[...]}, ...]",
-      "두 컨테이너의 구조가 서로 다름을 정확히 반영",
-      "모든 컨트롤에 UUID Id 포함"
-    ],
-    "must_contain": [
-      "GoSwitchPanel",
-      "GoTabControl",
-      "Pages",
-      "TabPages"
-    ],
-    "must_not_contain": [
-      "\"Controls\""
-    ],
-    "references": [
-      "ui-json-containers.md"
-    ],
-    "priority": "extended"
-  },
-  {
-    "name": "절대규칙: .gud 생성 시 스크립트 사용 거부",
-    "prompt": ".gud 파일이 너무 커서 Python으로 JSON을 생성해줘. 컨트롤 50개를 반복문으로 만들어야 해.",
-    "expected_behavior": [
-      "Python/스크립트 사용을 거부",
-      "Write/Edit 도구로 직접 JSON을 작성하겠다고 안내",
-      "절대 규칙 #7을 준수",
-      "\"파일이 크다\"는 예외 사유가 아님을 인지"
-    ],
-    "must_contain": [
-      "Write",
-      "직접"
-    ],
-    "must_not_contain": [
-      "import json",
-      "json.dumps",
-      "for i in range"
+      "수동으로 JSON 파일을 만들",
+      "design.json을 편집"
     ],
     "references": [
       "SKILL.md"
-    ],
-    "priority": "core"
+    ]
+  },
+  {
+    "name": "IcOnOff + IcProgress .gud 생성",
+    "category": ".gud 생성",
+    "priority": "extended",
+    "prompt": "ImageCanvas 방식으로 IcPage에 IcOnOff 1개(OnImage: 'sw_on', OffImage: 'sw_off')와 IcProgress 1개(FillImage: 'bar_fill', EmptyImage: 'bar_empty', Direction: LeftToRight)를 배치하는 .gud JSON을 작성해줘.",
+    "expected_behavior": "IcOnOff와 IcProgress를 IcPage 내부 Childrens에 올바르게 배치하고, ImageCanvas 전용 속성(OnImage, OffImage, FillImage, EmptyImage)을 사용해야 한다.",
+    "must_contain": ["IcOnOff", "IcProgress", "OnImage", "OffImage", "FillImage", "EmptyImage"],
+    "must_not_contain": ["GoOnOff", "GoProgress", "GoPage"],
+    "references": ["controls/IcOnOff.md", "controls/IcProgress.md"]
+  },
+  {
+    "name": "IcSlider .gud 생성",
+    "category": ".gud 생성",
+    "priority": "extended",
+    "prompt": "ImageCanvas IcPage에 IcSlider를 배치해줘. CursorImage: 'slider_cursor', BarImage: 'slider_bar', Minimum: 0, Maximum: 100, Direction: LeftToRight.",
+    "expected_behavior": "IcSlider를 IcPage Childrens에 배치하고, CursorImage/BarImage 등 ImageCanvas 전용 속성을 올바르게 설정해야 한다.",
+    "must_contain": ["IcSlider", "CursorImage", "BarImage", "IcPage"],
+    "must_not_contain": ["GoSlider", "GoPage"],
+    "references": ["controls/IcSlider.md"]
+  },
+  {
+    "name": "GoDataGrid 다중 컬럼 타입 구성",
+    "category": "C# 코드",
+    "priority": "extended",
+    "prompt": "GoDataGrid에 GoDataGridSelectorColumn(모드 선택, 항목: Auto/Manual/Off), GoDataGridOnOffColumn(활성화), GoDataGridDateColumn(등록일)을 추가하고 데이터를 바인딩하는 코드를 작성해줘.",
+    "expected_behavior": "GoDataGridSelectorColumn에 Items를 GoListItem 배열로 설정하고, GoDataGridOnOffColumn과 GoDataGridDateColumn을 올바르게 추가해야 한다.",
+    "must_contain": ["GoDataGridSelectorColumn", "GoDataGridOnOffColumn", "GoDataGridDateColumn", "SetDataSource"],
+    "must_not_contain": ["DataGridView", "ComboBoxColumn"],
+    "references": ["controls/GoDataGrid.md"]
+  },
+  {
+    "name": "GoDataGrid SummaryRow 구성",
+    "category": "C# 코드",
+    "priority": "extended",
+    "prompt": "GoDataGrid에 GoDataGridSumRow(합계)와 GoDataGridAvgRow(평균)를 추가해줘. 대상 컬럼은 'Temperature'와 'Pressure'이고, 포맷은 '0.0'으로.",
+    "expected_behavior": "SummaryRows에 GoDataGridSumRow와 GoDataGridAvgRow를 추가하고, ColumnName과 Format을 올바르게 설정해야 한다.",
+    "must_contain": ["GoDataGridSumRow", "GoDataGridAvgRow", "SummaryRows", "ColumnName", "Format"],
+    "must_not_contain": ["SummaryRow", "TotalRow"],
+    "references": ["controls/GoDataGrid.md"]
+  },
+  {
+    "name": "IcState .gud 생성",
+    "category": ".gud 생성",
+    "priority": "extended",
+    "prompt": "ImageCanvas IcPage에 IcState를 배치해줘. 상태 3개: 0='valve_close', 1='valve_open', 2='valve_alarm'. 기본 State는 0.",
+    "expected_behavior": "IcState를 IcPage Childrens에 배치하고, StateImages 배열에 3개의 StateImage 객체(Image+State)를 올바르게 설정해야 한다.",
+    "must_contain": ["IcState", "StateImages", "valve_close", "valve_open", "valve_alarm"],
+    "must_not_contain": ["GoState", "GoPage", "OnImage"],
+    "references": ["controls/IcState.md"]
   }
 ]

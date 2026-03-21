@@ -1,0 +1,1362 @@
+{
+  "Name": "TemperatureMonitor",
+  "DesignWidth": 800,
+  "DesignHeight": 480,
+  "ProjectFolder": "D:\\Project\\Going\\library\\src\\going-ui-skill-rf\\sample\\sample2\\src",
+  "Pages": {
+    "PageMain": {
+      "Type": "GoPage",
+      "Value": {
+        "Childrens": [
+          {
+            "Type": "GoTableLayoutPanel",
+            "Value": {
+              "Columns": [
+                "60%",
+                "40%"
+              ],
+              "Rows": [
+                "100%"
+              ],
+              "Childrens": {
+                "indexes": {
+                  "00000001-0000-0000-0000-000000000010": {
+                    "Row": 0,
+                    "Column": 0,
+                    "RowSpan": 1,
+                    "ColSpan": 1
+                  },
+                  "00000001-0000-0000-0000-000000000020": {
+                    "Row": 0,
+                    "Column": 1,
+                    "RowSpan": 1,
+                    "ColSpan": 1
+                  }
+                },
+                "ls": [
+                  {
+                    "Type": "GoTableLayoutPanel",
+                    "Value": {
+                      "Columns": [
+                        "50%",
+                        "50%"
+                      ],
+                      "Rows": [
+                        "20%",
+                        "20%",
+                        "20%",
+                        "20%",
+                        "20%"
+                      ],
+                      "Childrens": {
+                        "indexes": {
+                          "00000001-0000-0000-0000-000000000011": {
+                            "Row": 0,
+                            "Column": 0,
+                            "RowSpan": 1,
+                            "ColSpan": 1
+                          },
+                          "00000001-0000-0000-0000-000000000012": {
+                            "Row": 0,
+                            "Column": 1,
+                            "RowSpan": 1,
+                            "ColSpan": 1
+                          },
+                          "00000001-0000-0000-0000-000000000013": {
+                            "Row": 1,
+                            "Column": 0,
+                            "RowSpan": 1,
+                            "ColSpan": 1
+                          },
+                          "00000001-0000-0000-0000-000000000014": {
+                            "Row": 1,
+                            "Column": 1,
+                            "RowSpan": 1,
+                            "ColSpan": 1
+                          },
+                          "00000001-0000-0000-0000-000000000015": {
+                            "Row": 2,
+                            "Column": 0,
+                            "RowSpan": 1,
+                            "ColSpan": 1
+                          },
+                          "00000001-0000-0000-0000-000000000016": {
+                            "Row": 2,
+                            "Column": 1,
+                            "RowSpan": 1,
+                            "ColSpan": 1
+                          },
+                          "00000001-0000-0000-0000-000000000017": {
+                            "Row": 3,
+                            "Column": 0,
+                            "RowSpan": 1,
+                            "ColSpan": 1
+                          },
+                          "00000001-0000-0000-0000-000000000018": {
+                            "Row": 3,
+                            "Column": 1,
+                            "RowSpan": 1,
+                            "ColSpan": 1
+                          },
+                          "00000001-0000-0000-0000-000000000019": {
+                            "Row": 4,
+                            "Column": 0,
+                            "RowSpan": 1,
+                            "ColSpan": 1
+                          },
+                          "00000001-0000-0000-0000-00000000001a": {
+                            "Row": 4,
+                            "Column": 1,
+                            "RowSpan": 1,
+                            "ColSpan": 1
+                          }
+                        },
+                        "ls": [
+                          {
+                            "Type": "GoLabel",
+                            "Value": {
+                              "IconString": null,
+                              "IconSize": 12,
+                              "IconDirection": 0,
+                              "IconGap": 5,
+                              "Text": "T1: 0.0\u2103",
+                              "FontName": "\uB098\uB214\uACE0\uB515",
+                              "FontStyle": 0,
+                              "FontSize": 12,
+                              "TextPadding": {
+                                "Left": 0,
+                                "Top": 0,
+                                "Right": 0,
+                                "Bottom": 0
+                              },
+                              "TextColor": "Fore",
+                              "LabelColor": "Base2",
+                              "BorderColor": "Base2",
+                              "Round": 1,
+                              "BorderWidth": 1,
+                              "BackgroundDraw": true,
+                              "BorderOnly": false,
+                              "ContentAlignment": 4,
+                              "AutoFontSize": 0,
+                              "AutoIconSize": 0,
+                              "Id": "00000001-0000-0000-0000-000000000011",
+                              "Name": "lblTemp0",
+                              "Visible": true,
+                              "Enabled": true,
+                              "UseLongClick": false,
+                              "LongClickTime": null,
+                              "Selectable": false,
+                              "Bounds": "3,3,236,82",
+                              "Dock": 5,
+                              "Margin": {
+                                "Left": 3,
+                                "Top": 3,
+                                "Right": 3,
+                                "Bottom": 3
+                              }
+                            }
+                          },
+                          {
+                            "Type": "GoLabel",
+                            "Value": {
+                              "IconString": null,
+                              "IconSize": 12,
+                              "IconDirection": 0,
+                              "IconGap": 5,
+                              "Text": "T2: 0.0\u2103",
+                              "FontName": "\uB098\uB214\uACE0\uB515",
+                              "FontStyle": 0,
+                              "FontSize": 12,
+                              "TextPadding": {
+                                "Left": 0,
+                                "Top": 0,
+                                "Right": 0,
+                                "Bottom": 0
+                              },
+                              "TextColor": "Fore",
+                              "LabelColor": "Base2",
+                              "BorderColor": "Base2",
+                              "Round": 1,
+                              "BorderWidth": 1,
+                              "BackgroundDraw": true,
+                              "BorderOnly": false,
+                              "ContentAlignment": 4,
+                              "AutoFontSize": 0,
+                              "AutoIconSize": 0,
+                              "Id": "00000001-0000-0000-0000-000000000012",
+                              "Name": "lblTemp1",
+                              "Visible": true,
+                              "Enabled": true,
+                              "UseLongClick": false,
+                              "LongClickTime": null,
+                              "Selectable": false,
+                              "Bounds": "242,3,475,82",
+                              "Dock": 5,
+                              "Margin": {
+                                "Left": 3,
+                                "Top": 3,
+                                "Right": 3,
+                                "Bottom": 3
+                              }
+                            }
+                          },
+                          {
+                            "Type": "GoLabel",
+                            "Value": {
+                              "IconString": null,
+                              "IconSize": 12,
+                              "IconDirection": 0,
+                              "IconGap": 5,
+                              "Text": "T3: 0.0\u2103",
+                              "FontName": "\uB098\uB214\uACE0\uB515",
+                              "FontStyle": 0,
+                              "FontSize": 12,
+                              "TextPadding": {
+                                "Left": 0,
+                                "Top": 0,
+                                "Right": 0,
+                                "Bottom": 0
+                              },
+                              "TextColor": "Fore",
+                              "LabelColor": "Base2",
+                              "BorderColor": "Base2",
+                              "Round": 1,
+                              "BorderWidth": 1,
+                              "BackgroundDraw": true,
+                              "BorderOnly": false,
+                              "ContentAlignment": 4,
+                              "AutoFontSize": 0,
+                              "AutoIconSize": 0,
+                              "Id": "00000001-0000-0000-0000-000000000013",
+                              "Name": "lblTemp2",
+                              "Visible": true,
+                              "Enabled": true,
+                              "UseLongClick": false,
+                              "LongClickTime": null,
+                              "Selectable": false,
+                              "Bounds": "3,88,236,168",
+                              "Dock": 5,
+                              "Margin": {
+                                "Left": 3,
+                                "Top": 3,
+                                "Right": 3,
+                                "Bottom": 3
+                              }
+                            }
+                          },
+                          {
+                            "Type": "GoLabel",
+                            "Value": {
+                              "IconString": null,
+                              "IconSize": 12,
+                              "IconDirection": 0,
+                              "IconGap": 5,
+                              "Text": "T4: 0.0\u2103",
+                              "FontName": "\uB098\uB214\uACE0\uB515",
+                              "FontStyle": 0,
+                              "FontSize": 12,
+                              "TextPadding": {
+                                "Left": 0,
+                                "Top": 0,
+                                "Right": 0,
+                                "Bottom": 0
+                              },
+                              "TextColor": "Fore",
+                              "LabelColor": "Base2",
+                              "BorderColor": "Base2",
+                              "Round": 1,
+                              "BorderWidth": 1,
+                              "BackgroundDraw": true,
+                              "BorderOnly": false,
+                              "ContentAlignment": 4,
+                              "AutoFontSize": 0,
+                              "AutoIconSize": 0,
+                              "Id": "00000001-0000-0000-0000-000000000014",
+                              "Name": "lblTemp3",
+                              "Visible": true,
+                              "Enabled": true,
+                              "UseLongClick": false,
+                              "LongClickTime": null,
+                              "Selectable": false,
+                              "Bounds": "242,88,475,168",
+                              "Dock": 5,
+                              "Margin": {
+                                "Left": 3,
+                                "Top": 3,
+                                "Right": 3,
+                                "Bottom": 3
+                              }
+                            }
+                          },
+                          {
+                            "Type": "GoLabel",
+                            "Value": {
+                              "IconString": null,
+                              "IconSize": 12,
+                              "IconDirection": 0,
+                              "IconGap": 5,
+                              "Text": "T5: 0.0\u2103",
+                              "FontName": "\uB098\uB214\uACE0\uB515",
+                              "FontStyle": 0,
+                              "FontSize": 12,
+                              "TextPadding": {
+                                "Left": 0,
+                                "Top": 0,
+                                "Right": 0,
+                                "Bottom": 0
+                              },
+                              "TextColor": "Fore",
+                              "LabelColor": "Base2",
+                              "BorderColor": "Base2",
+                              "Round": 1,
+                              "BorderWidth": 1,
+                              "BackgroundDraw": true,
+                              "BorderOnly": false,
+                              "ContentAlignment": 4,
+                              "AutoFontSize": 0,
+                              "AutoIconSize": 0,
+                              "Id": "00000001-0000-0000-0000-000000000015",
+                              "Name": "lblTemp4",
+                              "Visible": true,
+                              "Enabled": true,
+                              "UseLongClick": false,
+                              "LongClickTime": null,
+                              "Selectable": false,
+                              "Bounds": "3,174,236,253",
+                              "Dock": 5,
+                              "Margin": {
+                                "Left": 3,
+                                "Top": 3,
+                                "Right": 3,
+                                "Bottom": 3
+                              }
+                            }
+                          },
+                          {
+                            "Type": "GoLabel",
+                            "Value": {
+                              "IconString": null,
+                              "IconSize": 12,
+                              "IconDirection": 0,
+                              "IconGap": 5,
+                              "Text": "T6: 0.0\u2103",
+                              "FontName": "\uB098\uB214\uACE0\uB515",
+                              "FontStyle": 0,
+                              "FontSize": 12,
+                              "TextPadding": {
+                                "Left": 0,
+                                "Top": 0,
+                                "Right": 0,
+                                "Bottom": 0
+                              },
+                              "TextColor": "Fore",
+                              "LabelColor": "Base2",
+                              "BorderColor": "Base2",
+                              "Round": 1,
+                              "BorderWidth": 1,
+                              "BackgroundDraw": true,
+                              "BorderOnly": false,
+                              "ContentAlignment": 4,
+                              "AutoFontSize": 0,
+                              "AutoIconSize": 0,
+                              "Id": "00000001-0000-0000-0000-000000000016",
+                              "Name": "lblTemp5",
+                              "Visible": true,
+                              "Enabled": true,
+                              "UseLongClick": false,
+                              "LongClickTime": null,
+                              "Selectable": false,
+                              "Bounds": "242,174,475,253",
+                              "Dock": 5,
+                              "Margin": {
+                                "Left": 3,
+                                "Top": 3,
+                                "Right": 3,
+                                "Bottom": 3
+                              }
+                            }
+                          },
+                          {
+                            "Type": "GoLabel",
+                            "Value": {
+                              "IconString": null,
+                              "IconSize": 12,
+                              "IconDirection": 0,
+                              "IconGap": 5,
+                              "Text": "T7: 0.0\u2103",
+                              "FontName": "\uB098\uB214\uACE0\uB515",
+                              "FontStyle": 0,
+                              "FontSize": 12,
+                              "TextPadding": {
+                                "Left": 0,
+                                "Top": 0,
+                                "Right": 0,
+                                "Bottom": 0
+                              },
+                              "TextColor": "Fore",
+                              "LabelColor": "Base2",
+                              "BorderColor": "Base2",
+                              "Round": 1,
+                              "BorderWidth": 1,
+                              "BackgroundDraw": true,
+                              "BorderOnly": false,
+                              "ContentAlignment": 4,
+                              "AutoFontSize": 0,
+                              "AutoIconSize": 0,
+                              "Id": "00000001-0000-0000-0000-000000000017",
+                              "Name": "lblTemp6",
+                              "Visible": true,
+                              "Enabled": true,
+                              "UseLongClick": false,
+                              "LongClickTime": null,
+                              "Selectable": false,
+                              "Bounds": "3,259,236,339",
+                              "Dock": 5,
+                              "Margin": {
+                                "Left": 3,
+                                "Top": 3,
+                                "Right": 3,
+                                "Bottom": 3
+                              }
+                            }
+                          },
+                          {
+                            "Type": "GoLabel",
+                            "Value": {
+                              "IconString": null,
+                              "IconSize": 12,
+                              "IconDirection": 0,
+                              "IconGap": 5,
+                              "Text": "T8: 0.0\u2103",
+                              "FontName": "\uB098\uB214\uACE0\uB515",
+                              "FontStyle": 0,
+                              "FontSize": 12,
+                              "TextPadding": {
+                                "Left": 0,
+                                "Top": 0,
+                                "Right": 0,
+                                "Bottom": 0
+                              },
+                              "TextColor": "Fore",
+                              "LabelColor": "Base2",
+                              "BorderColor": "Base2",
+                              "Round": 1,
+                              "BorderWidth": 1,
+                              "BackgroundDraw": true,
+                              "BorderOnly": false,
+                              "ContentAlignment": 4,
+                              "AutoFontSize": 0,
+                              "AutoIconSize": 0,
+                              "Id": "00000001-0000-0000-0000-000000000018",
+                              "Name": "lblTemp7",
+                              "Visible": true,
+                              "Enabled": true,
+                              "UseLongClick": false,
+                              "LongClickTime": null,
+                              "Selectable": false,
+                              "Bounds": "242,259,475,339",
+                              "Dock": 5,
+                              "Margin": {
+                                "Left": 3,
+                                "Top": 3,
+                                "Right": 3,
+                                "Bottom": 3
+                              }
+                            }
+                          },
+                          {
+                            "Type": "GoLabel",
+                            "Value": {
+                              "IconString": null,
+                              "IconSize": 12,
+                              "IconDirection": 0,
+                              "IconGap": 5,
+                              "Text": "T9: 0.0\u2103",
+                              "FontName": "\uB098\uB214\uACE0\uB515",
+                              "FontStyle": 0,
+                              "FontSize": 12,
+                              "TextPadding": {
+                                "Left": 0,
+                                "Top": 0,
+                                "Right": 0,
+                                "Bottom": 0
+                              },
+                              "TextColor": "Fore",
+                              "LabelColor": "Base2",
+                              "BorderColor": "Base2",
+                              "Round": 1,
+                              "BorderWidth": 1,
+                              "BackgroundDraw": true,
+                              "BorderOnly": false,
+                              "ContentAlignment": 4,
+                              "AutoFontSize": 0,
+                              "AutoIconSize": 0,
+                              "Id": "00000001-0000-0000-0000-000000000019",
+                              "Name": "lblTemp8",
+                              "Visible": true,
+                              "Enabled": true,
+                              "UseLongClick": false,
+                              "LongClickTime": null,
+                              "Selectable": false,
+                              "Bounds": "3,345,236,424",
+                              "Dock": 5,
+                              "Margin": {
+                                "Left": 3,
+                                "Top": 3,
+                                "Right": 3,
+                                "Bottom": 3
+                              }
+                            }
+                          },
+                          {
+                            "Type": "GoLabel",
+                            "Value": {
+                              "IconString": null,
+                              "IconSize": 12,
+                              "IconDirection": 0,
+                              "IconGap": 5,
+                              "Text": "T10: 0.0\u2103",
+                              "FontName": "\uB098\uB214\uACE0\uB515",
+                              "FontStyle": 0,
+                              "FontSize": 12,
+                              "TextPadding": {
+                                "Left": 0,
+                                "Top": 0,
+                                "Right": 0,
+                                "Bottom": 0
+                              },
+                              "TextColor": "Fore",
+                              "LabelColor": "Base2",
+                              "BorderColor": "Base2",
+                              "Round": 1,
+                              "BorderWidth": 1,
+                              "BackgroundDraw": true,
+                              "BorderOnly": false,
+                              "ContentAlignment": 4,
+                              "AutoFontSize": 0,
+                              "AutoIconSize": 0,
+                              "Id": "00000001-0000-0000-0000-00000000001a",
+                              "Name": "lblTemp9",
+                              "Visible": true,
+                              "Enabled": true,
+                              "UseLongClick": false,
+                              "LongClickTime": null,
+                              "Selectable": false,
+                              "Bounds": "242,345,475,424",
+                              "Dock": 5,
+                              "Margin": {
+                                "Left": 3,
+                                "Top": 3,
+                                "Right": 3,
+                                "Bottom": 3
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "Id": "00000001-0000-0000-0000-000000000010",
+                      "Name": null,
+                      "Visible": true,
+                      "Enabled": true,
+                      "UseLongClick": false,
+                      "LongClickTime": null,
+                      "Selectable": false,
+                      "Bounds": "0,0,479,428",
+                      "Dock": 5,
+                      "Margin": {
+                        "Left": 0,
+                        "Top": 0,
+                        "Right": 0,
+                        "Bottom": 0
+                      }
+                    }
+                  },
+                  {
+                    "Type": "GoTableLayoutPanel",
+                    "Value": {
+                      "Columns": [
+                        "100%"
+                      ],
+                      "Rows": [
+                        "15%",
+                        "70%",
+                        "15%"
+                      ],
+                      "Childrens": {
+                        "indexes": {
+                          "00000001-0000-0000-0000-000000000021": {
+                            "Row": 0,
+                            "Column": 0,
+                            "RowSpan": 1,
+                            "ColSpan": 1
+                          },
+                          "00000001-0000-0000-0000-000000000022": {
+                            "Row": 1,
+                            "Column": 0,
+                            "RowSpan": 1,
+                            "ColSpan": 1
+                          },
+                          "00000001-0000-0000-0000-000000000023": {
+                            "Row": 2,
+                            "Column": 0,
+                            "RowSpan": 1,
+                            "ColSpan": 1
+                          }
+                        },
+                        "ls": [
+                          {
+                            "Type": "GoLamp",
+                            "Value": {
+                              "Text": "\uD1B5\uC2E0\uC0C1\uD0DC",
+                              "FontName": "\uB098\uB214\uACE0\uB515",
+                              "FontStyle": 0,
+                              "FontSize": 12,
+                              "TextColor": "Fore",
+                              "OnColor": "Good",
+                              "OffColor": "Base2",
+                              "OnOff": false,
+                              "LampSize": 24,
+                              "Gap": 10,
+                              "ContentAlignment": 4,
+                              "AutoFontSize": 0,
+                              "Id": "00000001-0000-0000-0000-000000000021",
+                              "Name": "lampStatus",
+                              "Visible": true,
+                              "Enabled": true,
+                              "UseLongClick": false,
+                              "LongClickTime": null,
+                              "Selectable": false,
+                              "Bounds": "3,3,315,61",
+                              "Dock": 5,
+                              "Margin": {
+                                "Left": 3,
+                                "Top": 3,
+                                "Right": 3,
+                                "Bottom": 3
+                              }
+                            }
+                          },
+                          {
+                            "Type": "GoProgress",
+                            "Value": {
+                              "FontName": "\uB098\uB214\uACE0\uB515",
+                              "FontStyle": 0,
+                              "FontSize": 18,
+                              "ValueFontSize": 14,
+                              "TextColor": "Fore",
+                              "FillColor": "Good",
+                              "EmptyColor": "Base1",
+                              "BorderColor": "Transparent",
+                              "Direction": 2,
+                              "Value": 0,
+                              "Minimum": 0,
+                              "Maximum": 1500,
+                              "Format": "0",
+                              "Gap": 5,
+                              "CornerRadius": 5,
+                              "BarSize": null,
+                              "ShowValueLabel": false,
+                              "Id": "00000001-0000-0000-0000-000000000022",
+                              "Name": "progLevel",
+                              "Visible": true,
+                              "Enabled": true,
+                              "UseLongClick": false,
+                              "LongClickTime": null,
+                              "Selectable": false,
+                              "Bounds": "3,67,315,360",
+                              "Dock": 5,
+                              "Margin": {
+                                "Left": 3,
+                                "Top": 3,
+                                "Right": 3,
+                                "Bottom": 3
+                              }
+                            }
+                          },
+                          {
+                            "Type": "GoButton",
+                            "Value": {
+                              "IconString": null,
+                              "IconSize": 12,
+                              "IconDirection": 0,
+                              "IconGap": 5,
+                              "Text": "\uC124\uC815",
+                              "FontName": "\uB098\uB214\uACE0\uB515",
+                              "FontStyle": 0,
+                              "FontSize": 12,
+                              "TextColor": "Fore",
+                              "ButtonColor": "Base3",
+                              "BorderColor": "Base3",
+                              "Round": 1,
+                              "BorderWidth": 1,
+                              "BackgroundDraw": true,
+                              "BorderOnly": false,
+                              "FillStyle": 0,
+                              "ContentAlignment": 4,
+                              "AutoFontSize": 0,
+                              "AutoIconSize": 0,
+                              "Id": "00000001-0000-0000-0000-000000000023",
+                              "Name": "btnSetting",
+                              "Visible": true,
+                              "Enabled": true,
+                              "UseLongClick": false,
+                              "LongClickTime": null,
+                              "Selectable": true,
+                              "Bounds": "3,366,315,424",
+                              "Dock": 5,
+                              "Margin": {
+                                "Left": 3,
+                                "Top": 3,
+                                "Right": 3,
+                                "Bottom": 3
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "Id": "00000001-0000-0000-0000-000000000020",
+                      "Name": null,
+                      "Visible": true,
+                      "Enabled": true,
+                      "UseLongClick": false,
+                      "LongClickTime": null,
+                      "Selectable": false,
+                      "Bounds": "479,0,798,428",
+                      "Dock": 5,
+                      "Margin": {
+                        "Left": 0,
+                        "Top": 0,
+                        "Right": 0,
+                        "Bottom": 0
+                      }
+                    }
+                  }
+                ]
+              },
+              "Id": "00000001-0000-0000-0000-000000000009",
+              "Name": null,
+              "Visible": true,
+              "Enabled": true,
+              "UseLongClick": false,
+              "LongClickTime": null,
+              "Selectable": false,
+              "Bounds": "0,0,799,429",
+              "Dock": 5,
+              "Margin": {
+                "Left": 0,
+                "Top": 0,
+                "Right": 0,
+                "Bottom": 0
+              }
+            }
+          }
+        ],
+        "BackgroundImage": null,
+        "Id": "00000001-0000-0000-0000-000000000001",
+        "Name": "PageMain",
+        "Visible": true,
+        "Enabled": true,
+        "UseLongClick": false,
+        "LongClickTime": null,
+        "Selectable": false,
+        "Bounds": "0,50,800,480",
+        "Dock": 5,
+        "Margin": {
+          "Left": 3,
+          "Top": 3,
+          "Right": 3,
+          "Bottom": 3
+        }
+      }
+    },
+    "PageHistory": {
+      "Type": "GoPage",
+      "Value": {
+        "Childrens": [
+          {
+            "Type": "GoTrendGraph",
+            "Value": {
+              "GridColor": "Base3",
+              "TextColor": "Fore",
+              "RemarkColor": "Base2",
+              "GraphColor": "Back",
+              "FontName": "\uB098\uB214\uACE0\uB515",
+              "FontStyle": 0,
+              "FontSize": 12,
+              "MaximumXScale": "1.00:00:00",
+              "XScale": "01:00:00",
+              "XAxisGraduationTime": "00:10:00",
+              "YAxisGraduationCount": 10,
+              "TimeFormatString": null,
+              "ValueFormatString": null,
+              "Interval": 1000,
+              "IsStart": false,
+              "Series": [
+                {
+                  "Name": "Temp1",
+                  "Alias": "Temp1",
+                  "Color": "Good",
+                  "Visible": true,
+                  "Minimum": 0,
+                  "Maximum": 1500
+                },
+                {
+                  "Name": "Temp2",
+                  "Alias": "Temp2",
+                  "Color": "Warning",
+                  "Visible": true,
+                  "Minimum": 0,
+                  "Maximum": 1500
+                },
+                {
+                  "Name": "Temp3",
+                  "Alias": "Temp3",
+                  "Color": "Danger",
+                  "Visible": true,
+                  "Minimum": 0,
+                  "Maximum": 1500
+                }
+              ],
+              "Id": "00000001-0000-0000-0000-000000000030",
+              "Name": "trendTemp",
+              "Visible": true,
+              "Enabled": true,
+              "UseLongClick": false,
+              "LongClickTime": null,
+              "Selectable": true,
+              "Bounds": "3,3,796,426",
+              "Dock": 5,
+              "Margin": {
+                "Left": 3,
+                "Top": 3,
+                "Right": 3,
+                "Bottom": 3
+              }
+            }
+          }
+        ],
+        "BackgroundImage": null,
+        "Id": "00000001-0000-0000-0000-000000000002",
+        "Name": "PageHistory",
+        "Visible": true,
+        "Enabled": true,
+        "UseLongClick": false,
+        "LongClickTime": null,
+        "Selectable": false,
+        "Bounds": "0,50,800,480",
+        "Dock": 5,
+        "Margin": {
+          "Left": 3,
+          "Top": 3,
+          "Right": 3,
+          "Bottom": 3
+        }
+      }
+    }
+  },
+  "Windows": {
+    "SettingWindow": {
+      "Type": "GoWindow",
+      "Value": {
+        "IconString": "fa-cog",
+        "IconSize": 12,
+        "IconGap": 10,
+        "Text": "\uC124\uC815",
+        "FontName": "\uB098\uB214\uACE0\uB515",
+        "FontStyle": 0,
+        "FontSize": 12,
+        "TextColor": "Fore",
+        "WindowColor": "Back",
+        "BorderColor": "Base2",
+        "Round": 1,
+        "TitleHeight": 40,
+        "Childrens": [
+          {
+            "Type": "GoTableLayoutPanel",
+            "Value": {
+              "Columns": [
+                "40%",
+                "60%"
+              ],
+              "Rows": [
+                "33%",
+                "33%",
+                "34%"
+              ],
+              "Childrens": {
+                "indexes": {
+                  "00000001-0000-0000-0000-000000000041": {
+                    "Row": 0,
+                    "Column": 0,
+                    "RowSpan": 1,
+                    "ColSpan": 1
+                  },
+                  "00000001-0000-0000-0000-000000000042": {
+                    "Row": 0,
+                    "Column": 1,
+                    "RowSpan": 1,
+                    "ColSpan": 1
+                  },
+                  "00000001-0000-0000-0000-000000000043": {
+                    "Row": 1,
+                    "Column": 0,
+                    "RowSpan": 1,
+                    "ColSpan": 1
+                  },
+                  "00000001-0000-0000-0000-000000000044": {
+                    "Row": 1,
+                    "Column": 1,
+                    "RowSpan": 1,
+                    "ColSpan": 1
+                  },
+                  "00000001-0000-0000-0000-000000000045": {
+                    "Row": 2,
+                    "Column": 0,
+                    "RowSpan": 1,
+                    "ColSpan": 1
+                  },
+                  "00000001-0000-0000-0000-000000000046": {
+                    "Row": 2,
+                    "Column": 1,
+                    "RowSpan": 1,
+                    "ColSpan": 1
+                  }
+                },
+                "ls": [
+                  {
+                    "Type": "GoLabel",
+                    "Value": {
+                      "IconString": null,
+                      "IconSize": 12,
+                      "IconDirection": 0,
+                      "IconGap": 5,
+                      "Text": "IP \uC8FC\uC18C",
+                      "FontName": "\uB098\uB214\uACE0\uB515",
+                      "FontStyle": 0,
+                      "FontSize": 12,
+                      "TextPadding": {
+                        "Left": 0,
+                        "Top": 0,
+                        "Right": 0,
+                        "Bottom": 0
+                      },
+                      "TextColor": "Fore",
+                      "LabelColor": "Base2",
+                      "BorderColor": "Base2",
+                      "Round": 1,
+                      "BorderWidth": 1,
+                      "BackgroundDraw": true,
+                      "BorderOnly": false,
+                      "ContentAlignment": 4,
+                      "AutoFontSize": 0,
+                      "AutoIconSize": 0,
+                      "Id": "00000001-0000-0000-0000-000000000041",
+                      "Name": null,
+                      "Visible": true,
+                      "Enabled": true,
+                      "UseLongClick": false,
+                      "LongClickTime": null,
+                      "Selectable": false,
+                      "Bounds": "0,0,70,30",
+                      "Dock": 5,
+                      "Margin": {
+                        "Left": 3,
+                        "Top": 3,
+                        "Right": 3,
+                        "Bottom": 3
+                      }
+                    }
+                  },
+                  {
+                    "Type": "GoInputString",
+                    "Value": {
+                      "Value": "",
+                      "IconString": null,
+                      "IconSize": 12,
+                      "IconGap": 5,
+                      "FontName": "\uB098\uB214\uACE0\uB515",
+                      "FontStyle": 0,
+                      "FontSize": 12,
+                      "Direction": 0,
+                      "TextColor": "Fore",
+                      "BorderColor": "Base3",
+                      "FillColor": "Base3",
+                      "ValueColor": "Base1",
+                      "Round": 1,
+                      "TitleSize": null,
+                      "Title": null,
+                      "ButtonSize": null,
+                      "Buttons": [],
+                      "AutoFontSize": 0,
+                      "AutoIconSize": 0,
+                      "Id": "00000001-0000-0000-0000-000000000042",
+                      "Name": "inpIP",
+                      "Visible": true,
+                      "Enabled": true,
+                      "UseLongClick": false,
+                      "LongClickTime": null,
+                      "Selectable": true,
+                      "Bounds": "0,0,200,30",
+                      "Dock": 5,
+                      "Margin": {
+                        "Left": 3,
+                        "Top": 3,
+                        "Right": 3,
+                        "Bottom": 3
+                      }
+                    }
+                  },
+                  {
+                    "Type": "GoLabel",
+                    "Value": {
+                      "IconString": null,
+                      "IconSize": 12,
+                      "IconDirection": 0,
+                      "IconGap": 5,
+                      "Text": "\uD3EC\uD2B8",
+                      "FontName": "\uB098\uB214\uACE0\uB515",
+                      "FontStyle": 0,
+                      "FontSize": 12,
+                      "TextPadding": {
+                        "Left": 0,
+                        "Top": 0,
+                        "Right": 0,
+                        "Bottom": 0
+                      },
+                      "TextColor": "Fore",
+                      "LabelColor": "Base2",
+                      "BorderColor": "Base2",
+                      "Round": 1,
+                      "BorderWidth": 1,
+                      "BackgroundDraw": true,
+                      "BorderOnly": false,
+                      "ContentAlignment": 4,
+                      "AutoFontSize": 0,
+                      "AutoIconSize": 0,
+                      "Id": "00000001-0000-0000-0000-000000000043",
+                      "Name": null,
+                      "Visible": true,
+                      "Enabled": true,
+                      "UseLongClick": false,
+                      "LongClickTime": null,
+                      "Selectable": false,
+                      "Bounds": "0,0,70,30",
+                      "Dock": 5,
+                      "Margin": {
+                        "Left": 3,
+                        "Top": 3,
+                        "Right": 3,
+                        "Bottom": 3
+                      }
+                    }
+                  },
+                  {
+                    "Type": "GoInputNumber\u003Cint\u003E",
+                    "Value": {
+                      "Value": 502,
+                      "Minimum": 1,
+                      "Maximum": 65535,
+                      "FormatString": null,
+                      "Unit": null,
+                      "UnitSize": null,
+                      "IconString": null,
+                      "IconSize": 12,
+                      "IconGap": 5,
+                      "FontName": "\uB098\uB214\uACE0\uB515",
+                      "FontStyle": 0,
+                      "FontSize": 12,
+                      "Direction": 0,
+                      "TextColor": "Fore",
+                      "BorderColor": "Base3",
+                      "FillColor": "Base3",
+                      "ValueColor": "Base1",
+                      "Round": 1,
+                      "TitleSize": null,
+                      "Title": null,
+                      "ButtonSize": null,
+                      "Buttons": [],
+                      "AutoFontSize": 0,
+                      "AutoIconSize": 0,
+                      "Id": "00000001-0000-0000-0000-000000000044",
+                      "Name": "inpPort",
+                      "Visible": true,
+                      "Enabled": true,
+                      "UseLongClick": false,
+                      "LongClickTime": null,
+                      "Selectable": true,
+                      "Bounds": "0,0,200,30",
+                      "Dock": 5,
+                      "Margin": {
+                        "Left": 3,
+                        "Top": 3,
+                        "Right": 3,
+                        "Bottom": 3
+                      }
+                    }
+                  },
+                  {
+                    "Type": "GoButton",
+                    "Value": {
+                      "IconString": null,
+                      "IconSize": 12,
+                      "IconDirection": 0,
+                      "IconGap": 5,
+                      "Text": "\uC800\uC7A5",
+                      "FontName": "\uB098\uB214\uACE0\uB515",
+                      "FontStyle": 0,
+                      "FontSize": 12,
+                      "TextColor": "Fore",
+                      "ButtonColor": "Good",
+                      "BorderColor": "Good",
+                      "Round": 1,
+                      "BorderWidth": 1,
+                      "BackgroundDraw": true,
+                      "BorderOnly": false,
+                      "FillStyle": 0,
+                      "ContentAlignment": 4,
+                      "AutoFontSize": 0,
+                      "AutoIconSize": 0,
+                      "Id": "00000001-0000-0000-0000-000000000045",
+                      "Name": "btnOK",
+                      "Visible": true,
+                      "Enabled": true,
+                      "UseLongClick": false,
+                      "LongClickTime": null,
+                      "Selectable": true,
+                      "Bounds": "0,0,100,40",
+                      "Dock": 5,
+                      "Margin": {
+                        "Left": 3,
+                        "Top": 3,
+                        "Right": 3,
+                        "Bottom": 3
+                      }
+                    }
+                  },
+                  {
+                    "Type": "GoButton",
+                    "Value": {
+                      "IconString": null,
+                      "IconSize": 12,
+                      "IconDirection": 0,
+                      "IconGap": 5,
+                      "Text": "\uCDE8\uC18C",
+                      "FontName": "\uB098\uB214\uACE0\uB515",
+                      "FontStyle": 0,
+                      "FontSize": 12,
+                      "TextColor": "Fore",
+                      "ButtonColor": "Danger",
+                      "BorderColor": "Danger",
+                      "Round": 1,
+                      "BorderWidth": 1,
+                      "BackgroundDraw": true,
+                      "BorderOnly": false,
+                      "FillStyle": 0,
+                      "ContentAlignment": 4,
+                      "AutoFontSize": 0,
+                      "AutoIconSize": 0,
+                      "Id": "00000001-0000-0000-0000-000000000046",
+                      "Name": "btnCancel",
+                      "Visible": true,
+                      "Enabled": true,
+                      "UseLongClick": false,
+                      "LongClickTime": null,
+                      "Selectable": true,
+                      "Bounds": "0,0,100,40",
+                      "Dock": 5,
+                      "Margin": {
+                        "Left": 3,
+                        "Top": 3,
+                        "Right": 3,
+                        "Bottom": 3
+                      }
+                    }
+                  }
+                ]
+              },
+              "Id": "00000001-0000-0000-0000-000000000040",
+              "Name": null,
+              "Visible": true,
+              "Enabled": true,
+              "UseLongClick": false,
+              "LongClickTime": null,
+              "Selectable": false,
+              "Bounds": "0,0,400,250",
+              "Dock": 5,
+              "Margin": {
+                "Left": 0,
+                "Top": 0,
+                "Right": 0,
+                "Bottom": 0
+              }
+            }
+          }
+        ],
+        "Id": "00000001-0000-0000-0000-000000000003",
+        "Name": "SettingWindow",
+        "Visible": true,
+        "Enabled": true,
+        "UseLongClick": false,
+        "LongClickTime": null,
+        "Selectable": false,
+        "Bounds": "0,0,400,250",
+        "Dock": 0,
+        "Margin": {
+          "Left": 3,
+          "Top": 3,
+          "Right": 3,
+          "Bottom": 3
+        }
+      }
+    }
+  },
+  "Images": {},
+  "Fonts": {},
+  "TitleBar": {
+    "BarSize": 50,
+    "Title": "TemperatureMonitor",
+    "TitleImage": null,
+    "LeftExpandIconString": "fa-bars",
+    "LeftCollapseIconString": "fa-chevron-left",
+    "RightExpandIconString": "fa-ellipsis-vertical",
+    "RightCollapseIconString": "fa-chevron-right",
+    "IconSize": 16,
+    "TextColor": "Fore",
+    "FontName": "\uB098\uB214\uACE0\uB515",
+    "FontStyle": 0,
+    "FontSize": 16,
+    "Childrens": [
+      {
+        "Type": "GoNavigator",
+        "Value": {
+          "IconSize": 12,
+          "IconDirection": 0,
+          "IconGap": 5,
+          "FontName": "\uB098\uB214\uACE0\uB515",
+          "FontStyle": 0,
+          "FontSize": 12,
+          "TextColor": "Fore",
+          "Indent": 20,
+          "MenuGap": 30,
+          "Menus": [
+            {
+              "IconString": "fa-thermometer-half",
+              "Text": "\uBAA8\uB2C8\uD130\uB9C1",
+              "Tag": null,
+              "PageName": "PageMain"
+            },
+            {
+              "IconString": "fa-chart-line",
+              "Text": "\uC774\uB825",
+              "Tag": null,
+              "PageName": "PageHistory"
+            }
+          ],
+          "Direction": 0,
+          "Id": "00000001-0000-0000-0000-000000000050",
+          "Name": null,
+          "Visible": true,
+          "Enabled": true,
+          "UseLongClick": false,
+          "LongClickTime": null,
+          "Selectable": false,
+          "Bounds": "3,3,619.976,46",
+          "Dock": 5,
+          "Margin": {
+            "Left": 3,
+            "Top": 3,
+            "Right": 3,
+            "Bottom": 3
+          }
+        }
+      }
+    ],
+    "Id": "00000001-0000-0000-0000-000000000004",
+    "Name": null,
+    "Visible": true,
+    "Enabled": true,
+    "UseLongClick": false,
+    "LongClickTime": null,
+    "Selectable": false,
+    "Bounds": "0,0,800,50",
+    "Dock": 0,
+    "Margin": {
+      "Left": 3,
+      "Top": 3,
+      "Right": 3,
+      "Bottom": 3
+    }
+  },
+  "LeftSideBar": {
+    "BarSize": 150,
+    "Fixed": false,
+    "Opening": false,
+    "Closing": false,
+    "Childrens": [],
+    "Id": "00000001-0000-0000-0000-000000000005",
+    "Name": null,
+    "Visible": false,
+    "Enabled": true,
+    "UseLongClick": false,
+    "LongClickTime": null,
+    "Selectable": false,
+    "Bounds": "0,50,0,480",
+    "Dock": 0,
+    "Margin": {
+      "Left": 3,
+      "Top": 3,
+      "Right": 3,
+      "Bottom": 3
+    }
+  },
+  "RightSideBar": {
+    "BarSize": 150,
+    "Fixed": false,
+    "Opening": false,
+    "Closing": false,
+    "Childrens": [],
+    "Id": "00000001-0000-0000-0000-000000000006",
+    "Name": null,
+    "Visible": false,
+    "Enabled": true,
+    "UseLongClick": false,
+    "LongClickTime": null,
+    "Selectable": false,
+    "Bounds": "800,50,800,480",
+    "Dock": 0,
+    "Margin": {
+      "Left": 3,
+      "Top": 3,
+      "Right": 3,
+      "Bottom": 3
+    }
+  },
+  "Footer": {
+    "BarSize": 40,
+    "Childrens": [],
+    "Id": "00000001-0000-0000-0000-000000000007",
+    "Name": null,
+    "Visible": false,
+    "Enabled": true,
+    "UseLongClick": false,
+    "LongClickTime": null,
+    "Selectable": false,
+    "Bounds": "0,480,800,480",
+    "Dock": 0,
+    "Margin": {
+      "Left": 3,
+      "Top": 3,
+      "Right": 3,
+      "Bottom": 3
+    }
+  },
+  "UseTitleBar": true,
+  "UseLeftSideBar": false,
+  "UseRightSideBar": false,
+  "UseFooter": false,
+  "BarColor": "Base2",
+  "OverlaySideBar": false,
+  "ExpandLeftSideBar": false,
+  "ExpandRightSideBar": false,
+  "CustomTheme": null
+}

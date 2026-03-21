@@ -48,7 +48,7 @@ Going Library로 HMI 애플리케이션을 만드는 전체 흐름입니다.
 > `Claude 채팅` / `Claude Code`
 
 브리프를 기반으로 디자인 파일(`.gud`)을 생성합니다.
-40개 이상의 산업용 컨트롤(GoButton, GoLamp, GoDataGrid, GoSlider 등)을 배치할 수 있습니다.
+50여 종의 산업용 컨트롤(GoButton, GoLamp, GoDataGrid, GoSlider 등)을 배치할 수 있습니다.
 
 ```
 "브리프 기반으로 디자인 파일 만들어줘."
@@ -121,25 +121,42 @@ btnStart.ButtonClicked += (o, s) =>
 
 ```
 going-ui-skill/
-├── SKILL.md                  진입점 — 워크플로우, 규칙, 참조 테이블
-├── ui-json-quick.md          디자인 파일(.gud) 빠른 생성 가이드
-├── ui-json.md                .gud 구조 상세, Enum, 테마
-├── ui-json-controls.md       기본 컨트롤 14종 속성
-├── ui-json-controls-ext.md   확장 컨트롤 19종 속성
-├── ui-json-containers.md     컨테이너 레이아웃
-├── ui-json-input-value.md    입력/값 표시 컨트롤
-├── ui-json-imagecanvas.md    이미지/캔버스 컨트롤
-├── ui-image-to-gud.md        이미지 → 디자인 파일 변환 절차
-├── ui-control-sample.md      컨트롤 코드 예제
-├── ui-code.md                C# 코드 패턴, Designer.cs 규칙
-├── ui-project-brief.md       프로젝트 브리프 작성 가이드
-├── basis.md                  통신 패턴 (Modbus, MQTT, CNet, MC)
-├── ui-mcp.md                 gtcli 배포 가이드
-├── troubleshooting.md        빌드/통신/런타임/배포 에러 해결
-├── session-context.md        세션 간 컨텍스트 유지 (Claude Code 전용)
-├── evals.json                스킬 평가 테스트 케이스 (35개, core/extended 구분)
-├── sample/                   샘플 프로젝트
-└── api/                      21개 HTML API 레퍼런스
+├── SKILL.md                  진입점 — 워크플로우, 규칙, 라우팅
+│
+├── gud-structure.md           .gud 최상위 구조, Pages/Windows, 테마
+├── enums-reference.md         Enum 전체 목록 + 숫자값 매핑
+├── image-to-gud.md            이미지 → .gud 변환 6단계 절차
+│
+├── controls/                  ★ 컨트롤 정본 (54개)
+│   ├── _common.md             GoControl 공통 속성/이벤트
+│   ├── GoButton.md ~ GoTrendGraph.md   기본 15 + 확장 19 + 입력/표시 2
+│   ├── GoTableLayoutPanel.md ~ GoPicturePanel.md   컨테이너 10
+│   └── IcContainer.md ~ IcSlider.md   ImageCanvas 7
+│
+├── code-pattern.md            C# 코드 패턴, using 참조, 페이지/윈도우
+├── code-makecode-ref.md       MakeCode 출력 템플릿 (참고용)
+│
+├── comm-pattern.md            통신 패턴 (자주 하는 실수 19개 포함)
+├── comm/                      통신 API 레퍼런스 (6개)
+│   ├── modbus-api.md          Modbus RTU/TCP Master/Slave 전체
+│   ├── mqtt-api.md            MQClient, MQSubscribe
+│   ├── ls-api.md              CNet (LS Electric)
+│   ├── mitsubishi-api.md      MC (Mitsubishi)
+│   ├── data-utils-api.md      INI, Serialize, Memory
+│   └── tools-api.md           Crypto, Math, EasyTask, Timer
+│
+├── project-brief.md           프로젝트 브리프 작성 가이드
+├── deploy-cli.md              gtcli 배포 가이드
+├── getting-started.md         튜토리얼 (모터 제어 예제)
+├── troubleshooting.md         에러 해결 + .gud 부분 수정 가이드
+├── session-context.md         세션 간 컨텍스트 유지
+│
+├── evals.json                 스킬 평가 테스트 (43개, core/extended)
+├── eval_runner.py             평가 실행기
+├── tools/gtcli.exe            배포 CLI 도구
+└── sample/                    샘플 프로젝트 (2개)
+    ├── sample1/               TspMonitor (Modbus RTU)
+    └── sample2/               TemperatureMonitor (Modbus TCP)
 ```
 
 ## 라이선스

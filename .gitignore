@@ -1,6 +1,6 @@
 # Binaries
 *.exe
-!gtcli.exe
+!tools/gtcli.exe
 *.dll
 *.zip
 
@@ -9,7 +9,6 @@ __pycache__/
 *.pyc
 
 # Scripts
-*.bat
 
 # Eval results
 eval_results.json
